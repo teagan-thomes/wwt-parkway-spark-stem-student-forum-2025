@@ -1,5 +1,6 @@
 html {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+  color: #faf6f0;
 }
 
 body {
@@ -41,7 +42,7 @@ button {
 
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 16px;
-  color: #2b2525;
+  color: #faf6f0;
 
   background-color: #2196f3;
   border: none;
