@@ -1,83 +1,362 @@
-<header>
-  <!-- Logo Placeholder -->
-  <div class="logo">
-    <!-- <img src="path/to/logo.png" alt="Logo"> -->
-    <!-- Logo Placeholder -->
-  </div>
-  <nav>
-      <button onclick="history.back()">⬅️</button>
-      <button onclick="history.forward()">➡️</button>
-  </nav>
-</header>
-<style>
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-  }
-  body {
-    padding-top: 60px; /* Adjust to match header height */
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Literacy Course - Keybinds Lesson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<h1 id="keybinds-lesson">Keybinds Lesson</h1>
-<h2 id="what-are-keybinds-">What are keybinds?</h2>
-<p>Keybinds, or keyboard shortcuts, are combinations of keys that perform specific actions within software applications. They help users execute commands quickly without navigating through menus.</p>
-<h2 id="why-are-keybinds-important-">Why are keybinds important?</h2>
-<p>Keybinds enhance productivity by allowing users to perform tasks more efficiently. They reduce the need for mouse movements and can speed up workflows, especially in software development, graphic design, and other tech-related fields.</p>
-<h2 id="what-are-some-common-keybinds-">What are some common keybinds?</h2>
-<ul>
-<li><strong>Copy:</strong> <code>Ctrl + C</code> (Windows) / <code>Cmd + C</code> (macOS)
-<img src="docs/image.png" alt="image" style="width: 100%"></li>
-<li><strong>Paste:</strong> <code>Ctrl + V</code> (Windows) / <code>Cmd + V</code> (macOS)</li>
-<li><strong>Cut:</strong> <code>Ctrl + X</code> (Windows) / <code>Cmd + X</code> (macOS)</li>
-<li><strong>Undo:</strong> <code>Ctrl + Z</code> (Windows) / <code>Cmd + Z</code> (macOS)</li>
-<li><strong>Redo:</strong> <code>Ctrl + Y</code> (Windows) / <code>Cmd + Shift + Z</code> (macOS)</li>
-<li><strong>Save:</strong> <code>Ctrl + S</code> (Windows) / <code>Cmd + S</code> (macOS)</li>
-<li><strong>Find:</strong> <code>Ctrl + F</code> (Windows) / <code>Cmd + F</code> (macOS)</li>
-</ul>
-<h2 id="how-can-i-learn-and-remember-keybinds-">How can I learn and remember keybinds?</h2>
-<ul>
-<li><strong>Practice regularly:</strong> Use keybinds frequently to build muscle memory.</li>
-<li><strong>Use cheat sheets:</strong> Keep a list of keybinds handy until you memorize them.</li>
-<li><strong>Start with common keybinds:</strong> Focus on the most frequently used shortcuts first.</li>
-<li><strong>Customize keybinds:</strong> Modify keybinds to suit your workflow if the software allows it.</li>
-</ul>
-<h2 id="what-resources-are-available-for-learning-keybinds-">What resources are available for learning keybinds?</h2>
-<ul>
-<li><strong>Software documentation:</strong> Most applications provide a list of keybinds in their help section.</li>
-<li><strong>Online tutorials:</strong> Websites and YouTube channels offer tutorials on keybinds for various software.</li>
-<li><strong>Cheat sheets:</strong> Downloadable cheat sheets are available for different applications.</li>
-<li><strong>Practice tools:</strong> Some websites and apps are designed to help users practice and learn keybinds.</li>
-</ul>
-<h2 id="how-do-keybinds-impact-productivity-">How do keybinds impact productivity?</h2>
-<p>Using keybinds can significantly speed up tasks, reduce repetitive strain, and improve overall efficiency. They are especially beneficial for professionals who spend a lot of time on computers, such as programmers, designers, and writers.</p>
-<h2 id="can-i-create-custom-keybinds-">Can I create custom keybinds?</h2>
-<p>Yes, many software applications allow users to create custom keybinds. This can be done through the settings or preferences menu, where you can assign specific actions to key combinations that are convenient for you.</p>
-<h2 id="what-are-some-tips-for-creating-effective-keybinds-">What are some tips for creating effective keybinds?</h2>
-<ul>
-<li><strong>Keep it simple:</strong> Choose key combinations that are easy to remember and execute.</li>
-<li><strong>Avoid conflicts:</strong> Ensure your custom keybinds do not conflict with existing shortcuts.</li>
-<li><strong>Group related actions:</strong> Use similar key combinations for related actions to make them easier to remember.</li>
-<li><strong>Test and adjust:</strong> Experiment with different keybinds and adjust them based on your workflow and comfort.</li>
-</ul>
-<h2 id="how-can-parents-help-their-children-learn-keybinds-">How can parents help their children learn keybinds?</h2>
-<ul>
-<li><strong>Introduce keybinds early:</strong> Teach children common keybinds as they start using computers.</li>
-<li><strong>Use educational software:</strong> Some educational programs incorporate keybinds into their activities.</li>
-<li><strong>Encourage practice:</strong> Encourage children to use keybinds regularly to build familiarity.</li>
-<li><strong>Provide resources:</strong> Share cheat sheets and tutorials to help them learn.</li>
-</ul>
-<h2 id="what-are-some-safety-tips-when-using-keybinds-">What are some safety tips when using keybinds?</h2>
-<ul>
-<li><strong>Avoid repetitive strain:</strong> Take breaks and vary your tasks to prevent strain from repetitive keybind use.</li>
-<li><strong>Be cautious with custom keybinds:</strong> Ensure custom keybinds do not interfere with important system functions.</li>
-<li><strong>Stay updated:</strong> Keep your software updated to ensure keybinds work correctly and securely.</li>
-</ul>
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            padding-top: 70px; /* Adjust to match header height */
+        }
 
-<a href="quiz1.html">
-	<button>quiz</button>
-</a>
+        /* Header Styling */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: color 0.3s;
+        }
+
+        nav button:hover {
+            color: #007BFF;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Headings */
+        h1, h2 {
+            margin-bottom: 15px;
+            color: #007BFF;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 25px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Lists */
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Code Styling */
+        code {
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Image Styling */
+        .list-image {
+            max-width: 100%; /* Ensure image doesn't overflow its container */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Quiz Button */
+        .quiz-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        .quiz-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Interactive Practice Section Styling */
+        .practice-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .practice-section h2 {
+            color: #28a745; /* Green color for practice sections */
+        }
+
+        .practice-area {
+            width: 100%;
+            min-height: 100px;
+            border: 2px dashed #007BFF;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1rem;
+            outline: none;
+            background-color: #f9f9f9;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #dc3545; /* Red color for feedback */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav button {
+                font-size: 1rem;
+            }
+
+            .quiz-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Comment: Logo image is currently missing. Replace 'path/to/logo.png' with the correct path once the logo is available. (if we want to have one at all) -->
+            <img src="path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Keybinds Lesson</h1>
+
+        <section id="what-are-keybinds">
+            <h2>What are keybinds?</h2>
+            <p>Keybinds, or keyboard shortcuts, are combinations of keys that perform specific actions within software applications. They help users execute commands quickly without navigating through menus.</p>
+        </section>
+
+        <section id="why-are-keybinds-important">
+            <h2>Why are keybinds important?</h2>
+            <p>Keybinds enhance productivity by allowing users to perform tasks more efficiently. They reduce the need for mouse movements and can speed up workflows, especially in software development, graphic design, and other tech-related fields.</p>
+        </section>
+
+        <section id="what-are-some-common-keybinds">
+            <h2>What are some common keybinds?</h2>
+            <ul>
+                <li><strong>Copy:</strong> <code>Ctrl + C</code> (Windows) / <code>Cmd + C</code> (macOS)
+                    <!-- Ensure the image is responsive and doesn't overflow -->
+                    <img src="docs/image.png" alt="Copy Keybind Example" class="list-image">
+                </li>
+                <li><strong>Paste:</strong> <code>Ctrl + V</code> (Windows) / <code>Cmd + V</code> (macOS)</li>
+                <li><strong>Cut:</strong> <code>Ctrl + X</code> (Windows) / <code>Cmd + X</code> (macOS)</li>
+                <li><strong>Undo:</strong> <code>Ctrl + Z</code> (Windows) / <code>Cmd + Z</code> (macOS)</li>
+                <li><strong>Redo:</strong> <code>Ctrl + Y</code> (Windows) / <code>Cmd + Shift + Z</code> (macOS)</li>
+                <li><strong>Save:</strong> <code>Ctrl + S</code> (Windows) / <code>Cmd + S</code> (macOS)</li>
+                <li><strong>Find:</strong> <code>Ctrl + F</code> (Windows) / <code>Cmd + F</code> (macOS)</li>
+            </ul>
+        </section>
+
+        <section id="interactive-practice">
+            <h2>Interactive Practice: Try Out Keybinds</h2>
+            <p>Use the text area below to practice the keybinds you've learned. Try copying, pasting, cutting, undoing, redoing, saving, and finding text using the corresponding keyboard shortcuts.</p>
+            
+            <!-- Practice Area -->
+            <div class="practice-section">
+                <textarea id="practice-area" class="practice-area" placeholder="Type here and use keybinds..."></textarea>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </section>
+
+        <section id="how-can-i-learn-and-remember-keybinds">
+            <h2>How can I learn and remember keybinds?</h2>
+            <ul>
+                <li><strong>Practice regularly:</strong> Use keybinds frequently to build muscle memory.</li>
+                <li><strong>Use cheat sheets:</strong> Keep a list of keybinds handy until you memorize them.</li>
+                <li><strong>Start with common keybinds:</strong> Focus on the most frequently used shortcuts first.</li>
+                <li><strong>Customize keybinds:</strong> Modify keybinds to suit your workflow if the software allows it.</li>
+            </ul>
+        </section>
+
+        <section id="what-resources-are-available-for-learning-keybinds">
+            <h2>What resources are available for learning keybinds?</h2>
+            <ul>
+                <li><strong>Software documentation:</strong> Most applications provide a list of keybinds in their help section.</li>
+                <li><strong>Online tutorials:</strong> Websites and YouTube channels offer tutorials on keybinds for various software.</li>
+                <li><strong>Cheat sheets:</strong> Downloadable cheat sheets are available for different applications.</li>
+                <li><strong>Practice tools:</strong> Some websites and apps are designed to help users practice and learn keybinds.</li>
+            </ul>
+        </section>
+
+        <section id="how-do-keybinds-impact-productivity">
+            <h2>How do keybinds impact productivity?</h2>
+            <p>Using keybinds can significantly speed up tasks, reduce repetitive strain, and improve overall efficiency. They are especially beneficial for professionals who spend a lot of time on computers, such as programmers, designers, and writers.</p>
+        </section>
+
+        <section id="can-i-create-custom-keybinds">
+            <h2>Can I create custom keybinds?</h2>
+            <p>Yes, many software applications allow users to create custom keybinds. This can be done through the settings or preferences menu, where you can assign specific actions to key combinations that are convenient for you.</p>
+        </section>
+
+        <section id="what-are-some-tips-for-creating-effective-keybinds">
+            <h2>What are some tips for creating effective keybinds?</h2>
+            <ul>
+                <li><strong>Keep it simple:</strong> Choose key combinations that are easy to remember and execute.</li>
+                <li><strong>Avoid conflicts:</strong> Ensure your custom keybinds do not conflict with existing shortcuts.</li>
+                <li><strong>Group related actions:</strong> Use similar key combinations for related actions to make them easier to remember.</li>
+                <li><strong>Test and adjust:</strong> Experiment with different keybinds and adjust them based on your workflow and comfort.</li>
+            </ul>
+        </section>
+
+        <section id="how-can-parents-help-their-children-learn-keybinds">
+            <h2>How can parents help their children learn keybinds?</h2>
+            <ul>
+                <li><strong>Introduce keybinds early:</strong> Teach children common keybinds as they start using computers.</li>
+                <li><strong>Use educational software:</strong> Some educational programs incorporate keybinds into their activities.</li>
+                <li><strong>Encourage practice:</strong> Encourage children to use keybinds regularly to build familiarity.</li>
+                <li><strong>Provide resources:</strong> Share cheat sheets and tutorials to help them learn.</li>
+            </ul>
+        </section>
+
+        <section id="what-are-some-safety-tips-when-using-keybinds">
+            <h2>What are some safety tips when using keybinds?</h2>
+            <ul>
+                <li><strong>Avoid repetitive strain:</strong> Take breaks and vary your tasks to prevent strain from repetitive keybind use.</li>
+                <li><strong>Be cautious with custom keybinds:</strong> Ensure custom keybinds do not interfere with important system functions.</li>
+                <li><strong>Stay updated:</strong> Keep your software updated to ensure keybinds work correctly and securely.</li>
+            </ul>
+        </section>
+
+        <a href="quiz1.html" class="quiz-button">Take the Quiz</a>
+    </div>
+
+    <!-- JavaScript for Interactive Practice -->
+    <script>
+        // Get references to the practice area and feedback div
+        const practiceArea = document.getElementById('practice-area');
+        const feedback = document.getElementById('feedback');
+
+        // Function to display feedback messages
+        function showFeedback(message, isError = true) {
+            feedback.textContent = message;
+            feedback.style.color = isError ? '#dc3545' : '#28a745'; // Red for errors, green for success
+            // Clear the message after 3 seconds
+            setTimeout(() => {
+                feedback.textContent = '';
+            }, 3000);
+        }
+
+        // Event listener for keydown events within the practice area
+        practiceArea.addEventListener('keydown', function(event) {
+            // Detect specific key combinations
+            if (event.ctrlKey || event.metaKey) { // metaKey for Mac (Cmd)
+                switch(event.key.toLowerCase()) {
+                    case 'c':
+                        showFeedback('Copy action detected! Try using Ctrl + C to copy text.', false);
+                        break;
+                    case 'v':
+                        showFeedback('Paste action detected! Try using Ctrl + V to paste text.', false);
+                        break;
+                    case 'x':
+                        showFeedback('Cut action detected! Try using Ctrl + X to cut text.', false);
+                        break;
+                    case 'z':
+                        if (event.shiftKey) {
+                            showFeedback('Redo action detected! Try using Ctrl + Shift + Z to redo.', false);
+                        } else {
+                            showFeedback('Undo action detected! Try using Ctrl + Z to undo.', false);
+                        }
+                        break;
+                    case 'y':
+                        showFeedback('Redo action detected! Try using Ctrl + Y to redo.', false);
+                        break;
+                    case 's':
+                        showFeedback('Save action detected! Try using Ctrl + S to save your work.', false);
+                        break;
+                    case 'f':
+                        showFeedback('Find action detected! Try using Ctrl + F to find text.', false);
+                        break;
+                    default:
+                        // Do nothing for other keys
+                        break;
+                }
+            }
+        });
+
+        // Optional: Prevent default browser actions for certain keybinds within the practice area
+        practiceArea.addEventListener('keydown', function(event) {
+            const keysToPrevent = ['s', 'f']; // Add more keys if needed
+            if ((event.ctrlKey || event.metaKey) && keysToPrevent.includes(event.key.toLowerCase())) {
+                event.preventDefault(); // Prevent default action (e.g., opening save dialog)
+            }
+        });
+    </script>
+</body>
+</html>
