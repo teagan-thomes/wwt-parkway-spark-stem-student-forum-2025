@@ -1,56 +1,293 @@
-<h1 id="terms-of-service">Terms of Service</h1>
-<h2 id="1-acceptance-of-terms">1. Acceptance of Terms</h2>
-<p>Welcome to [YourQuizSiteName] (&quot;the Site&quot;). By accessing or using the Site, you agree to comply with and be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, you are prohibited from using the Site.</p>
-<h2 id="2-use-of-the-site">2. Use of the Site</h2>
-<ul>
-<li>You must be at least 13 years old to use the Site.</li>
-<li>The Site is intended for personal, non-commercial use.</li>
-<li>You agree not to engage in activities that disrupt or harm the functionality of the Site, including but not limited to:<ul>
-<li>Unauthorized access to the Site&#39;s systems or data.</li>
-<li>Uploading malicious code or engaging in phishing activities.</li>
-<li>Attempting to circumvent security measures.</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-registration-and-accounts">3. Registration and Accounts</h2>
-<ul>
-<li>Some features of the Site may require you to create an account.</li>
-<li>You are responsible for maintaining the confidentiality of your login credentials and all activities that occur under your account.</li>
-<li>You agree to provide accurate, current, and complete information during registration and to update your information as necessary.</li>
-</ul>
-<h2 id="4-content-and-intellectual-property">4. Content and Intellectual Property</h2>
-<ul>
-<li>All content on the Site, including quizzes, text, graphics, and other materials, is owned by [YourQuizSiteName] or its licensors and is protected by applicable intellectual property laws.</li>
-<li>You may not reproduce, distribute, or create derivative works from the content without prior written consent.</li>
-<li>You retain ownership of any content you submit to the Site but grant [YourQuizSiteName] a non-exclusive, royalty-free, worldwide license to use, display, and distribute your content in connection with the Site.</li>
-</ul>
-<h2 id="5-privacy-policy">5. Privacy Policy</h2>
-<p>Your use of the Site is also governed by our Privacy Policy, which outlines how we collect, use, and protect your data. By using the Site, you consent to the practices described in the Privacy Policy.</p>
-<h2 id="6-limitation-of-liability">6. Limitation of Liability</h2>
-<ul>
-<li>The Site and its content are provided &quot;as is&quot; without any warranties of any kind, express or implied.</li>
-<li>[YourQuizSiteName] is not responsible for any errors, inaccuracies, or omissions in the content or for any damages resulting from the use of the Site.</li>
-<li>To the fullest extent permitted by law, [YourQuizSiteName] disclaims all liability for any direct, indirect, incidental, or consequential damages arising from your use of the Site.</li>
-</ul>
-<h2 id="7-user-conduct">7. User Conduct</h2>
-<p>By using the Site, you agree not to:</p>
-<ul>
-<li>Post or share content that is unlawful, defamatory, harassing, or obscene.</li>
-<li>Impersonate others or misrepresent your identity.</li>
-<li>Use the Site to conduct fraudulent or illegal activities.</li>
-</ul>
-<h2 id="8-modifications-to-the-terms">8. Modifications to the Terms</h2>
-<ul>
-<li>[YourQuizSiteName] reserves the right to modify these Terms at any time.</li>
-<li>Any changes will be effective immediately upon posting. Your continued use of the Site constitutes your acceptance of the modified Terms.</li>
-</ul>
-<h2 id="9-termination">9. Termination</h2>
-<ul>
-<li>We reserve the right to terminate or suspend your access to the Site for any reason, including violation of these Terms.</li>
-<li>Upon termination, your right to use the Site will immediately cease.</li>
-</ul>
-<h2 id="10-governing-law">10. Governing Law</h2>
-<p>These Terms are governed by and construed in accordance with the laws of [Your Country/State]. Any disputes arising from these Terms will be subject to the exclusive jurisdiction of the courts in [Your Jurisdiction].</p>
-<h2 id="11-contact-us">11. Contact Us</h2>
-<p>If you have any questions about these Terms, please contact us at:</p>
-<p><strong>Email:</strong> support@[yourquizsitename].com<br><strong>Address:</strong> [Your Company Address]</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Literacy Course - Terms of Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            min-height: 100vh;
+            padding-top: 70px; /* Adjust to match header height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styling */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        /* Main Content Styling */
+        .container {
+            max-width: 800px;
+            margin: 100px auto 40px; /* Top margin accounts for fixed header */
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        .container h2 {
+            color: #007BFF;
+            margin-top: 25px;
+            font-size: 1.8rem;
+        }
+
+        .container p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .container ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .container li {
+            margin-bottom: 10px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #007BFF;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                margin: 100px 10px 60px; /* Adjust margins for smaller screens */
+            }
+
+            .container h1 {
+                font-size: 2rem;
+            }
+
+            .container h2 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                margin-left: 10px;
+            }
+
+            footer a {
+                font-size: 0.8rem;
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+            <img src="path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="course_content.html">Courses</a>
+            <a href="TOS.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <!-- Placeholder links for future account system -->
+            <a href="#" id="login-button">Login</a>
+            <a href="#" id="register-button">Register</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Terms of Service</h1>
+        
+        <!-- Section 1: Acceptance of Terms -->
+        <section id="1-acceptance-of-terms">
+            <h2>1. Acceptance of Terms</h2>
+            <p>Welcome to [YourQuizSiteName] (&quot;the Site&quot;). By accessing or using the Site, you agree to comply with and be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, you are prohibited from using the Site.</p>
+        </section>
+
+        <!-- Section 2: Use of the Site -->
+        <section id="2-use-of-the-site">
+            <h2>2. Use of the Site</h2>
+            <ul>
+                <li>You must be at least 13 years old to use the Site.</li>
+                <li>The Site is intended for personal, non-commercial use.</li>
+                <li>You agree not to engage in activities that disrupt or harm the functionality of the Site, including but not limited to:
+                    <ul>
+                        <li>Unauthorized access to the Site's systems or data.</li>
+                        <li>Uploading malicious code or engaging in phishing activities.</li>
+                        <li>Attempting to circumvent security measures.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 3: Registration and Accounts -->
+        <section id="3-registration-and-accounts">
+            <h2>3. Registration and Accounts</h2>
+            <ul>
+                <li>Some features of the Site may require you to create an account.</li>
+                <li>You are responsible for maintaining the confidentiality of your login credentials and all activities that occur under your account.</li>
+                <li>You agree to provide accurate, current, and complete information during registration and to update your information as necessary.</li>
+            </ul>
+        </section>
+
+        <!-- Section 4: Content and Intellectual Property -->
+        <section id="4-content-and-intellectual-property">
+            <h2>4. Content and Intellectual Property</h2>
+            <ul>
+                <li>All content on the Site, including quizzes, text, graphics, and other materials, is owned by [YourQuizSiteName] or its licensors and is protected by applicable intellectual property laws.</li>
+                <li>You may not reproduce, distribute, or create derivative works from the content without prior written consent.</li>
+                <li>You retain ownership of any content you submit to the Site but grant [YourQuizSiteName] a non-exclusive, royalty-free, worldwide license to use, display, and distribute your content in connection with the Site.</li>
+            </ul>
+        </section>
+
+        <!-- Section 5: Privacy Policy -->
+        <section id="5-privacy-policy">
+            <h2>5. Privacy Policy</h2>
+            <p>Your use of the Site is also governed by our <a href="privacy.html">Privacy Policy</a>, which outlines how we collect, use, and protect your data. By using the Site, you consent to the practices described in the Privacy Policy.</p>
+        </section>
+
+        <!-- Section 6: Limitation of Liability -->
+        <section id="6-limitation-of-liability">
+            <h2>6. Limitation of Liability</h2>
+            <ul>
+                <li>The Site and its content are provided &quot;as is&quot; without any warranties of any kind, express or implied.</li>
+                <li>[YourQuizSiteName] is not responsible for any errors, inaccuracies, or omissions in the content or for any damages resulting from the use of the Site.</li>
+                <li>To the fullest extent permitted by law, [YourQuizSiteName] disclaims all liability for any direct, indirect, incidental, or consequential damages arising from your use of the Site.</li>
+            </ul>
+        </section>
+
+        <!-- Section 7: User Conduct -->
+        <section id="7-user-conduct">
+            <h2>7. User Conduct</h2>
+            <p>By using the Site, you agree not to:</p>
+            <ul>
+                <li>Post or share content that is unlawful, defamatory, harassing, or obscene.</li>
+                <li>Impersonate others or misrepresent your identity.</li>
+                <li>Use the Site to conduct fraudulent or illegal activities.</li>
+            </ul>
+        </section>
+
+        <!-- Section 8: Modifications to the Terms -->
+        <section id="8-modifications-to-the-terms">
+            <h2>8. Modifications to the Terms</h2>
+            <ul>
+                <li>[YourQuizSiteName] reserves the right to modify these Terms at any time.</li>
+                <li>Any changes will be effective immediately upon posting. Your continued use of the Site constitutes your acceptance of the modified Terms.</li>
+            </ul>
+        </section>
+
+        <!-- Section 9: Termination -->
+        <section id="9-termination">
+            <h2>9. Termination</h2>
+            <ul>
+                <li>We reserve the right to terminate or suspend your access to the Site for any reason, including violation of these Terms.</li>
+                <li>Upon termination, your right to use the Site will immediately cease.</li>
+            </ul>
+        </section>
+
+        <!-- Section 10: Governing Law -->
+        <section id="10-governing-law">
+            <h2>10. Governing Law</h2>
+            <p>These Terms are governed by and construed in accordance with the laws of [Your Country/State]. Any disputes arising from these Terms will be subject to the exclusive jurisdiction of the courts in [Your Jurisdiction].</p>
+        </section>
+
+        <!-- Section 11: Contact Us -->
+        <section id="11-contact-us">
+            <h2>11. Contact Us</h2>
+            <p>If you have any questions about these Terms, please contact us at:</p>
+            <p><strong>Email:</strong> support@[yourquizsitename].com<br><strong>Address:</strong> [Your Company Address]</p>
+        </section>
+    </div>
+
+    <footer>
+        <a href="TOS.html">Terms of Service</a>
+        <span>|</span>
+        <a href="privacy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" id="login-footer">Login</a>
+        <span>|</span>
+        <a href="#" id="register-footer">Register</a>
+    </footer>
+
+    <!-- Placeholder JavaScript for future account system -->
+    <script>
+        // Future implementation for account system
+        // You can add event listeners for Login and Register buttons here
+    </script>
+</body>
+</html>
