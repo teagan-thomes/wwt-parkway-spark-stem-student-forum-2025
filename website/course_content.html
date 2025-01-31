@@ -129,6 +129,37 @@
             background-color: #0056b3;
         }
 
+        /* Interactive Practice Section Styling */
+        .practice-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .practice-section h2 {
+            color: #28a745; /* Green color for practice sections */
+        }
+
+        .practice-area {
+            width: 100%;
+            min-height: 100px;
+            border: 2px dashed #007BFF;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1rem;
+            outline: none;
+            background-color: #f9f9f9;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #dc3545; /* Red color for feedback */
+        }
+
         /* Responsive Design */
         @media (max-width: 600px) {
             h1 {
@@ -193,6 +224,17 @@
             </ul>
         </section>
 
+        <section id="interactive-practice">
+            <h2>Interactive Practice: Try Out Keybinds</h2>
+            <p>Use the text area below to practice the keybinds you've learned. Try copying, pasting, cutting, undoing, redoing, saving, and finding text using the corresponding keyboard shortcuts.</p>
+            
+            <!-- Practice Area -->
+            <div class="practice-section">
+                <textarea id="practice-area" class="practice-area" placeholder="Type here and use keybinds..."></textarea>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </section>
+
         <section id="how-can-i-learn-and-remember-keybinds">
             <h2>How can I learn and remember keybinds?</h2>
             <ul>
@@ -255,5 +297,66 @@
         <a href="quiz1.html" class="quiz-button">Take the Quiz</a>
     </div>
 
+    <!-- JavaScript for Interactive Practice -->
+    <script>
+        // Get references to the practice area and feedback div
+        const practiceArea = document.getElementById('practice-area');
+        const feedback = document.getElementById('feedback');
+
+        // Function to display feedback messages
+        function showFeedback(message, isError = true) {
+            feedback.textContent = message;
+            feedback.style.color = isError ? '#dc3545' : '#28a745'; // Red for errors, green for success
+            // Clear the message after 3 seconds
+            setTimeout(() => {
+                feedback.textContent = '';
+            }, 3000);
+        }
+
+        // Event listener for keydown events within the practice area
+        practiceArea.addEventListener('keydown', function(event) {
+            // Detect specific key combinations
+            if (event.ctrlKey || event.metaKey) { // metaKey for Mac (Cmd)
+                switch(event.key.toLowerCase()) {
+                    case 'c':
+                        showFeedback('Copy action detected! Try using Ctrl + C to copy text.', false);
+                        break;
+                    case 'v':
+                        showFeedback('Paste action detected! Try using Ctrl + V to paste text.', false);
+                        break;
+                    case 'x':
+                        showFeedback('Cut action detected! Try using Ctrl + X to cut text.', false);
+                        break;
+                    case 'z':
+                        if (event.shiftKey) {
+                            showFeedback('Redo action detected! Try using Ctrl + Shift + Z to redo.', false);
+                        } else {
+                            showFeedback('Undo action detected! Try using Ctrl + Z to undo.', false);
+                        }
+                        break;
+                    case 'y':
+                        showFeedback('Redo action detected! Try using Ctrl + Y to redo.', false);
+                        break;
+                    case 's':
+                        showFeedback('Save action detected! Try using Ctrl + S to save your work.', false);
+                        break;
+                    case 'f':
+                        showFeedback('Find action detected! Try using Ctrl + F to find text.', false);
+                        break;
+                    default:
+                        // Do nothing for other keys
+                        break;
+                }
+            }
+        });
+
+        // Optional: Prevent default browser actions for certain keybinds within the practice area
+        practiceArea.addEventListener('keydown', function(event) {
+            const keysToPrevent = ['s', 'f']; // Add more keys if needed
+            if ((event.ctrlKey || event.metaKey) && keysToPrevent.includes(event.key.toLowerCase())) {
+                event.preventDefault(); // Prevent default action (e.g., opening save dialog)
+            }
+        });
+    </script>
 </body>
 </html>
