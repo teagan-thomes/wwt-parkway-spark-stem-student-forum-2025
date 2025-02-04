@@ -30,17 +30,29 @@ header {
 	z-index: 1000;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	padding: 10px 20px;
+}
+
+.logo {
+	margin-right: 20px;
 }
 
 .logo img {
 	height: 40px;
 }
 
-nav {
+/* Left Navigation */
+.nav-left {
 	display: flex;
 	align-items: center;
+	flex: 1;
+}
+
+/* Right Navigation */
+.nav-right {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
 }
 
 nav a {
@@ -49,6 +61,11 @@ nav a {
 	margin-left: 15px;
 	font-size: 1rem;
 	transition: color 0.3s;
+}
+
+.nav-left a {
+	margin-left: 0;
+	margin-right: 15px;
 }
 
 nav a:hover {
@@ -72,19 +89,29 @@ nav button:hover {
 footer {
 	background-color: #ffffff;
 	padding: 20px;
-	text-align: center;
 	border-top: 1px solid #e0e0e0;
 	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 	width: 100%;
 	margin-top: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 footer a {
 	text-decoration: none;
 	color: #333;
-	margin: 0 10px;
+	padding: 0 15px;
 	font-size: 0.9rem;
 	transition: color 0.3s;
+	position: relative;
+}
+
+footer a:not(:last-child)::after {
+	content: "|";
+	position: absolute;
+	right: -3px;
+	color: #e0e0e0;
 }
 
 footer a:hover {
