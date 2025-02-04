@@ -6,100 +6,6 @@
     <title>Digital Literacy Course - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
-    <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body Styling */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Main Content Styling */
-        .main {
-            flex: 1;
-            padding: 100px 20px 40px; /* Top padding accounts for fixed header */
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .main h1 {
-            font-size: 3rem;
-            color: #007BFF;
-            margin-bottom: 20px;
-        }
-
-        .courses {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .course-card {
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            width: 300px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .course-card h2 {
-            color: #28a745;
-            margin-bottom: 15px;
-        }
-
-        .course-card p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-
-        .course-card a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .course-card a:hover {
-            background-color: #0056b3;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .courses {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .course-card {
-                width: 90%;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Include the header -->
@@ -114,14 +20,14 @@
             <div class="course-card">
                 <h2>Keybinds Lesson</h2>
                 <p>Learn essential keyboard shortcuts to boost your productivity and efficiency in various applications.</p>
-                <a href="course_content.html">Start Course</a>
+                <a href="course_content.html" class="button">Start Course</a>
             </div>
 
             <!-- Course 2: Placeholder Course -->
             <div class="course-card">
                 <h2>Coming Soon: Basic Internet Safety</h2>
                 <p>Stay tuned! We are developing a course to help you navigate the internet safely and securely.</p>
-                <a href="course_placeholder.html">Learn More</a>
+                <a href="course_placeholder.html" class="button">Learn More</a>
             </div>
         </div>
     </div>
