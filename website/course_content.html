@@ -182,18 +182,8 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <!-- Logo Placeholder -->
-        <div class="logo">
-            <!-- Comment: Logo image is currently missing. Replace 'path/to/logo.png' with the correct path once the logo is available. (if we want to have one at all) -->
-            <img src="path/to/logo.png" alt="Logo">
-        </div>
-        <nav>
-            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
-            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
-        </nav>
-    </header>
+    <!-- Include the header -->
+    <div id="header-placeholder"></div>
 
     <div class="container">
         <h1>Keybinds Lesson</h1>
@@ -357,6 +347,15 @@
                 event.preventDefault(); // Prevent default action (e.g., opening save dialog)
             }
         });
+    </script>
+
+    <!-- Script to load header -->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
     </script>
 </body>
 </html>
