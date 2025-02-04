@@ -1,0 +1,77 @@
+/* Header Styling */
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #ffffff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+}
+
+.logo img {
+	height: 40px;
+}
+
+nav {
+	display: flex;
+	align-items: center;
+}
+
+nav a {
+	text-decoration: none;
+	color: #333;
+	margin-left: 15px;
+	font-size: 1rem;
+	transition: color 0.3s;
+}
+
+nav a:hover {
+	color: #007bff;
+}
+
+nav button {
+	background: none;
+	border: none;
+	font-size: 1.2rem;
+	cursor: pointer;
+	margin-left: 10px;
+	transition: color 0.3s;
+}
+
+nav button:hover {
+	color: #007bff;
+}
+
+/* Footer Styling */
+footer {
+	background-color: #ffffff;
+	padding: 20px;
+	text-align: center;
+	border-top: 1px solid #e0e0e0;
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	margin-top: auto; /* Push footer to bottom of flex container */
+}
+
+footer a {
+	text-decoration: none;
+	color: #333;
+	margin: 0 10px;
+	font-size: 0.9rem;
+	transition: color 0.3s;
+}
+
+footer a:hover {
+	color: #007bff;
+}
+
+/* Add body styles to ensure footer stays at bottom */
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}

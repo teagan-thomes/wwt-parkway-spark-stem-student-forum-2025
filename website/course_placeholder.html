@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Literacy Course - Basic Internet Safety</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
     <style>
         /* Reset some default styles */
         * {
@@ -88,30 +89,6 @@
         .container a:hover {
             background-color: #0056b3;
         }
-
-        /* Footer Styling */
-        footer {
-            background-color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        footer a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #007BFF;
-        }
     </style>
 </head>
 <body>
@@ -125,21 +102,13 @@
     </div>
 
     <!-- Include the footer -->
-    <div id="footer-placeholder"></div>
+    <div id="footer-placeholder">
+        <footer>
+            <a href="#">Loading...</a>
+        </footer>
+    </div>
 
     <!-- Script to load header and footer -->
-    <script>
-        fetch('imports/header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-
-        fetch('imports/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+    <script src="imports/loadImports.js"></script>
 </body>
 </html>
