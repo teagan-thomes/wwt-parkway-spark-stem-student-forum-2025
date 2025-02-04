@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Literacy Course - Keybinds Lesson</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="./imports/loadImports.js" defer></script>
+    
     <style>
         /* Reset some default styles */
         * {
@@ -347,15 +349,6 @@
                 event.preventDefault(); // Prevent default action (e.g., opening save dialog)
             }
         });
-    </script>
-
-    <!-- Script to load header -->
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
     </script>
 </body>
 </html>
