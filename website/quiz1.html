@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Keyboard Shortcuts Quiz</title>
+  <title>Interactive Keyboard Shortcuts Quiz</title>
   <style>
     html {
       font-family: 'Helvetica Neue', Helvetica, Arial, serif;
@@ -27,13 +27,17 @@
 
     #quiz-result {
       display: none;
-      margin-bottom: 10px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #2196f3;
+      color: #faf6f0;
       text-align: center;
-      font-size: 16px;
-      color: #25252b;
+      font-size: 18px;
+      border-radius: 2px;
     }
 
-    input[type="text"]  {
+    input[type="text"],
+    textarea {
       margin-left: 20px;
       padding: 5px;
       width: 60%;
@@ -81,209 +85,243 @@
     .result {
       margin-top: 20px;
       font-size: 18px;
-      color: #2196f3;
+    }
+
+    .explanation {
+      margin-top: 10px;
+      font-size: 16px;
+      background-color: #1a1a1c;
+      padding: 10px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .draggable {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 4px;
+      background-color: #2196f3;
+      color: #faf6f0;
+      border-radius: 4px;
+      cursor: move;
+    }
+
+    .dropzone {
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      margin: 4px;
+      border: 2px dashed #faf6f0;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Keyboard Shortcuts Quiz</h1>
+    <h1>Interactive Keyboard Shortcuts Quiz</h1>
     <form id="quiz-form">
-      <!-- Question 1: Matching -->
+      <!-- Question 1: Copy and Paste Interaction -->
       <div class="question">
         <p class="question-title">
-          1. Match the following actions with their keyboard shortcuts by writing the correct letter next to each action:
-        </p>
-        <ul>
-          <li>a) Ctrl + C</li>
-          <li>b) Ctrl + V</li>
-          <li>c) Ctrl + X</li>
-          <li>d) Ctrl + Z</li>
-          <li>e) Ctrl + Y</li>
-          <li>f) Ctrl + S</li>
-          <li>g) Ctrl + F</li>
-        </ul>
-        <p>
-          Copy: <input type="text" name="q1-copy" maxlength="1">
+          1. Copy the text from the first box and paste it into the second box using keyboard shortcuts only.
         </p>
         <p>
-          Paste: <input type="text" name="q1-paste" maxlength="1">
+          <input type="text" id="q1-source" value="Copy me!" readonly>
         </p>
         <p>
-          Cut: <input type="text" name="q1-cut" maxlength="1">
-        </p>
-        <p>
-          Undo: <input type="text" name="q1-undo" maxlength="1">
-        </p>
-        <p>
-          Redo: <input type="text" name="q1-redo" maxlength="1">
-        </p>
-        <p>
-          Save: <input type="text" name="q1-save" maxlength="1">
-        </p>
-        <p>
-          Find: <input type="text" name="q1-find" maxlength="1">
+          <input type="text" id="q1-destination" placeholder="Paste here">
         </p>
       </div>
 
-      <!-- Question 2: True or False -->
+      <!-- Question 2: Find Functionality -->
       <div class="question">
         <p class="question-title">
-          2. True or False: Pressing Ctrl + S will initiate the 'Save As' dialog in most applications.
+          2. Use the keyboard shortcut to find and highlight the word "shortcut" in the paragraph below.
         </p>
-        <label>
-          <input type="radio" name="q2" value="True"> True
-        </label><br>
-        <label>
-          <input type="radio" name="q2" value="False"> False
-        </label>
-      </div>
-
-      <!-- Question 3: Fill in the Blank -->
-      <div class="question">
-        <p class="question-title">
-          3. Fill in the blank: The keyboard shortcut to search for text within a document is Ctrl + ___.
-        </p>
-        <input type="text" name="q3" maxlength="1">
-      </div>
-
-      <!-- Question 4: Scenario-Based -->
-      <div class="question">
-        <p class="question-title">
-          4. Scenario: You accidentally deleted a paragraph in your document. Which keyboard shortcut will you use to restore it immediately?
-        </p>
-        <label>
-          <input type="radio" name="q4" value="Ctrl+Y"> Ctrl + Y
-        </label><br>
-        <label>
-          <input type="radio" name="q4" value="Ctrl+Z"> Ctrl + Z
-        </label><br>
-        <label>
-          <input type="radio" name="q4" value="Ctrl+X"> Ctrl + X
-        </label>
-      </div>
-
-      <!-- Question 5: Short Answer -->
-      <div class="question">
-        <p class="question-title">
-          5. Short Answer: Describe what happens when you use the keyboard shortcut Ctrl + X.
-        </p>
-        <textarea name="q5" rows="3" cols="60" style="margin-left: 20px; padding: 5px; background-color: #1a1a1c; color: #faf6f0; border: 1px solid #faf6f0;"></textarea>
-      </div>
-
-      <!-- Question 6: Ordering -->
-      <div class="question">
-        <p class="question-title">
-          6. Arrange the following steps to copy and paste text using keyboard shortcuts by numbering them from 1 to 4:
-        </p>
-        <p>
-          ___ Press Ctrl + V to paste the text.<br>
-          ___ Highlight the text you want to copy.<br>
-          ___ Place the cursor where you want to insert the text.<br>
-          ___ Press Ctrl + C to copy the text.
+        <p id="q2-paragraph">
+          Keyboard shortcuts can significantly enhance your productivity by allowing you to perform actions quickly without using the mouse.
         </p>
       </div>
 
-      <!-- Question 7: Multiple Select -->
+      <!-- Question 3: Drag and Drop Ordering -->
       <div class="question">
         <p class="question-title">
-          7. Select all actions that can be undone using Ctrl + Z:
+          3. Arrange the steps to perform an 'Undo' operation using keyboard shortcuts by dragging and dropping the steps in the correct order:
+        </p>
+        <div id="q3-draggable-container">
+          <div class="draggable" draggable="true" data-order="2">Release the keys</div>
+          <div class="draggable" draggable="true" data-order="1">Press and hold 'Ctrl' key</div>
+          <div class="draggable" draggable="true" data-order="3">The last action is undone</div>
+          <div class="draggable" draggable="true" data-order="2">Press 'Z' key</div>
+        </div>
+        <div id="q3-dropzone-container">
+          <div class="dropzone" data-position="1"></div>
+          <div class="dropzone" data-position="2"></div>
+          <div class="dropzone" data-position="3"></div>
+          <div class="dropzone" data-position="4"></div>
+        </div>
+      </div>
+
+      <!-- Question 4: Scenario-Based with Interaction -->
+      <div class="question">
+        <p class="question-title">
+          4. You want to save your document quickly without using the mouse. Press the keyboard shortcut now to perform the 'Save' action.
+        </p>
+        <input type="text" id="q4-input" placeholder="Focus here and press the shortcut" readonly onfocus="this.blur()">
+      </div>
+
+      <!-- Question 5: Graded Multiple Choice -->
+      <div class="question">
+        <p class="question-title">
+          5. Which keyboard shortcut will you use to redo an action that you have just undone?
         </p>
         <label>
-          <input type="checkbox" name="q7" value="Typing"> Typing text
+          <input type="radio" name="q5" value="Ctrl+Y"> Ctrl + Y
         </label><br>
         <label>
-          <input type="checkbox" name="q7" value="Saving"> Saving a file
+          <input type="radio" name="q5" value="Ctrl+Z"> Ctrl + Z
         </label><br>
         <label>
-          <input type="checkbox" name="q7" value="Deleting"> Deleting a file
-        </label><br>
-        <label>
-          <input type="checkbox" name="q7" value="Formatting"> Formatting changes
+          <input type="radio" name="q5" value="Ctrl+X"> Ctrl + X
         </label>
       </div>
 
       <!-- Submit Button -->
-      <button type="button" onclick="checkAnswers()">Submit Answers</button>
+      <button type="button" onclick="submitQuiz()">Submit Answers</button>
     </form>
 
     <!-- Result Display -->
-    <div id="quiz-result" class="result"></div>
+    <div id="quiz-result"></div>
   </div>
 
   <script>
-    function checkAnswers() {
-      let score = 0;
-      let total = 7;
+    // Variables to store quiz answers
+    let quizAnswers = {
+      q1: '',
+      q2: false,
+      q3: [],
+      q4: false,
+      q5: ''
+    };
 
-      // Question 1
-      let q1Answers = {
-        copy: 'a',
-        paste: 'b',
-        cut: 'c',
-        undo: 'd',
-        redo: 'e',
-        save: 'f',
-        find: 'g'
-      };
+    // Question 1: Monitor Paste Event
+    document.getElementById('q1-destination').addEventListener('paste', function() {
+      setTimeout(() => {
+        quizAnswers.q1 = this.value;
+      }, 100);
+    });
 
-      for (let key in q1Answers) {
-        let userAnswer = document.querySelector('input[name="q1-' + key + '"]').value.toLowerCase();
-        if (userAnswer === q1Answers[key]) {
-          score += (1 / 7);
+    // Question 2: Monitor Find Shortcut (Ctrl+F)
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'f') {
+        e.preventDefault();
+        let paragraph = document.getElementById('q2-paragraph');
+        let index = paragraph.innerText.toLowerCase().indexOf('shortcut');
+        if (index !== -1) {
+          let before = paragraph.innerText.substring(0, index);
+          let match = paragraph.innerText.substring(index, index + 8);
+          let after = paragraph.innerText.substring(index + 8);
+          paragraph.innerHTML = before + '<mark>' + match + '</mark>' + after;
+          quizAnswers.q2 = true;
         }
       }
+    });
 
-      // Question 2
-      let q2 = document.querySelector('input[name="q2"]:checked');
-      if (q2 && q2.value === 'False') {
+    // Question 3: Drag and Drop Functionality
+    let draggables = document.querySelectorAll('.draggable');
+    let dropzones = document.querySelectorAll('.dropzone');
+
+    draggables.forEach(draggable => {
+      draggable.addEventListener('dragstart', dragStart);
+    });
+
+    dropzones.forEach(dropzone => {
+      dropzone.addEventListener('dragover', dragOver);
+      dropzone.addEventListener('drop', drop);
+    });
+
+    function dragStart(e) {
+      e.dataTransfer.setData('text/plain', e.target.dataset.order);
+      e.dataTransfer.setData('text/content', e.target.innerText);
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      let order = e.dataTransfer.getData('text/plain');
+      let content = e.dataTransfer.getData('text/content');
+      e.target.innerText = content;
+      e.target.dataset.order = order;
+    }
+
+    // Question 4: Monitor Save Shortcut (Ctrl+S)
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        quizAnswers.q4 = true;
+        alert('Document saved successfully!');
+      }
+    });
+
+    // Function to Submit Quiz
+    function submitQuiz() {
+      let score = 0;
+      let explanations = '';
+
+      // Question 1: Check if text was pasted correctly
+      if (quizAnswers.q1 === 'Copy me!') {
         score += 1;
+        explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+C and Ctrl+V to copy and paste the text.</p>';
+      } else {
+        explanations += '<p><strong>Question 1:</strong> Incorrect. You should have used Ctrl+C to copy and Ctrl+V to paste the text.</p>';
       }
 
-      // Question 3
-      let q3 = document.querySelector('input[name="q3"]').value.toLowerCase();
-      if (q3 === 'f') {
+      // Question 2: Check if the word was highlighted
+      if (quizAnswers.q2) {
         score += 1;
+        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight the word "shortcut".</p>';
+      } else {
+        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "shortcut".</p>';
       }
 
-      // Question 4
-      let q4 = document.querySelector('input[name="q4"]:checked');
-      if (q4 && q4.value === 'Ctrl+Z') {
-        score += 1;
-      }
-
-      // Question 5 (Basic Keyword Check)
-      let q5 = document.querySelector('textarea[name="q5"]').value.toLowerCase();
-      if (q5.includes('cut') && q5.includes('clipboard')) {
-        score += 1;
-      }
-
-      // Question 6
-      let q6Order = ['2', '4', '3', '1'];
-      let q6UserOrder = [
-        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[0].trim()[0],
-        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[1].trim()[0],
-        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[2].trim()[0],
-        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[3].trim()[0],
-      ];
-      if (JSON.stringify(q6Order) === JSON.stringify(q6UserOrder)) {
-        score += 1;
-      }
-
-      // Question 7
-      let q7Answers = ['Typing', 'Formatting'];
-      let q7Checked = [];
-      document.querySelectorAll('input[name="q7"]:checked').forEach((checkbox) => {
-        q7Checked.push(checkbox.value);
+      // Question 3: Check the order of steps
+      let q3CorrectOrder = ['Press and hold \'Ctrl\' key', 'Press \'Z\' key', 'Release the keys', 'The last action is undone'];
+      let userOrder = [];
+      dropzones.forEach(dropzone => {
+        userOrder.push(dropzone.innerText);
       });
-      if (q7Checked.sort().toString() === q7Answers.sort().toString()) {
+      if (JSON.stringify(userOrder) === JSON.stringify(q3CorrectOrder)) {
         score += 1;
+        explanations += '<p><strong>Question 3:</strong> Correct! You arranged the steps properly to perform an Undo operation.</p>';
+      } else {
+        explanations += '<p><strong>Question 3:</strong> Incorrect. The correct order is: ' + q3CorrectOrder.join(', ') + '.</p>';
       }
 
-      // Display Result
+      // Question 4: Check if Save shortcut was used
+      if (quizAnswers.q4) {
+        score += 1;
+        explanations += '<p><strong>Question 4:</strong> Correct! You used Ctrl+S to save the document.</p>';
+      } else {
+        explanations += '<p><strong>Question 4:</strong> Incorrect. You needed to press Ctrl+S to save the document.</p>';
+      }
+
+      // Question 5: Check the selected answer
+      let q5 = document.querySelector('input[name="q5"]:checked');
+      if (q5 && q5.value === 'Ctrl+Y') {
+        score += 1;
+        explanations += '<p><strong>Question 5:</strong> Correct! Ctrl+Y is used to redo an action.</p>';
+      } else {
+        explanations += '<p><strong>Question 5:</strong> Incorrect. The correct answer is Ctrl+Y, which redoes an action.</p>';
+      }
+
+      // Display the result and explanations
       let resultElement = document.getElementById('quiz-result');
       resultElement.style.display = 'block';
-      resultElement.innerHTML = 'You scored ' + Math.round(score) + ' out of ' + total + '!';
+      resultElement.innerHTML = 'You scored ' + score + ' out of 5!';
+      resultElement.innerHTML += '<div class="explanation">' + explanations + '</div>';
     }
   </script>
 </body>
