@@ -1,70 +1,290 @@
-<!-- Try this example at https://alpsquid.github.io/quizlib -->
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <script type="text/javascript" src="scripts/quizlib.1.0.1.min.js"></script>
-        <!-- Dev: <script type="text/javascript" src="../../src/quizlib.js"></script>-->
-        <script type="text/javascript" src="scripts/main.js"></script>
-        <link rel="stylesheet" type="text/css" href="styles/quizlib.min.css" media="screen">
-        <!-- Dev: <link rel="stylesheet" type="text/css" href="../../src/quizlib.css" media="screen">-->
-        <link rel="stylesheet" type="text/css" href="styles/stylesheet.css" media="screen">
+<head>
+  <meta charset="UTF-8">
+  <title>Keyboard Shortcuts Quiz</title>
+  <style>
+    html {
+      font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+      color: #faf6f0;
+      background-color: #1a1a1c;
+    }
 
-        <title>Quizlib Example</title>
-    </head>
+    body {
+      width: 50%;
+      min-width: 820px;
+      margin: 0 auto;
+      background-color: #1a1a1c;
+    }
 
-    <body>
-		<header>
-			<!-- Logo Placeholder -->
-			<div class="logo">
-			  <!-- <img src="path/to/logo.png" alt="Logo"> -->
-			  <!-- Logo Placeholder -->
-			</div>
-			<nav>
-				<button onclick="history.back()">⬅️</button>
-				<button onclick="history.forward()">➡️</button>
-			</nav>
-		  </header>
+    .card {
+      padding: 16px;
+      margin-top: 20px;
+      background-color: #25252b;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.15);
+    }
 
-        <!-- Quiz Results -->
-        <div id="quiz-result" class="card">
-            You Scored <span id="quiz-percent"></span>% - <span id="quiz-score"></span>/<span id="quiz-max-score"></span><br/>
-        </div>
+    #quiz-result {
+      display: none;
+      margin-bottom: 10px;
+      text-align: center;
+      font-size: 16px;
+      color: #25252b;
+    }
 
-        <!-- Quiz Container -->
-        <div id="quiz">
-            <!-- Question 1 -->
-            <div class="card quizlib-question">
-                <div class="quizlib-question-title">1. What is the answer to life, the universe and everything?</div>
-                <div class="quizlib-question-answers">
-                    <input type="text" name="q1">
-                </div>
-            </div>
-            <!-- Question 2 -->
-            <div class="card quizlib-question">
-                <div class="quizlib-question-title">2. Your enemy's father...</div>
-                <div class="quizlib-question-answers">
-                    <ul>
-                        <li><label><input type="radio" name="q2" value="a"> is a hamster</label></li>
-                        <li><label><input type="radio" name="q2" value="b"> smells of elderberries</label></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Question 3 -->
-            <div class="card quizlib-question">
-                <div class="quizlib-question-title">3. Which factors will contribute to the end of humanity as we know it?</div>
-                <div class="quizlib-question-answers">
-                    <ul>
-                        <li><label><input type="checkbox" name="q3" value="a"> Global warming</label></li>
-                        <li><label><input type="checkbox" name="q3" value="b"> The release of Linux 4.1.15</label></li>
-                        <li><label><input type="checkbox" name="q3" value="c"> Cats</label></li>
-                        <li><label><input type="checkbox" name="q3" value="d"> Advancements in artificial intelligence</label></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Answer Button -->
-            <button type="button" onclick="showResults();">Check Answers</button>
-        </div>
-    </body>
+    input[type="text"]  {
+      margin-left: 20px;
+      padding: 5px;
+      width: 60%;
+      border: none;
+      border-bottom: 2px solid #faf6f0;
+      background-color: transparent;
+      color: #faf6f0;
+      font-size: 16px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    label {
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #faf6f0;
+      background-color: #2196f3;
+      border: none;
+      border-radius: 2px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      background-color: #0d5894;
+    }
+
+    button:active {
+      box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .question-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2196f3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Keyboard Shortcuts Quiz</h1>
+    <form id="quiz-form">
+      <!-- Question 1: Matching -->
+      <div class="question">
+        <p class="question-title">
+          1. Match the following actions with their keyboard shortcuts by writing the correct letter next to each action:
+        </p>
+        <ul>
+          <li>a) Ctrl + C</li>
+          <li>b) Ctrl + V</li>
+          <li>c) Ctrl + X</li>
+          <li>d) Ctrl + Z</li>
+          <li>e) Ctrl + Y</li>
+          <li>f) Ctrl + S</li>
+          <li>g) Ctrl + F</li>
+        </ul>
+        <p>
+          Copy: <input type="text" name="q1-copy" maxlength="1">
+        </p>
+        <p>
+          Paste: <input type="text" name="q1-paste" maxlength="1">
+        </p>
+        <p>
+          Cut: <input type="text" name="q1-cut" maxlength="1">
+        </p>
+        <p>
+          Undo: <input type="text" name="q1-undo" maxlength="1">
+        </p>
+        <p>
+          Redo: <input type="text" name="q1-redo" maxlength="1">
+        </p>
+        <p>
+          Save: <input type="text" name="q1-save" maxlength="1">
+        </p>
+        <p>
+          Find: <input type="text" name="q1-find" maxlength="1">
+        </p>
+      </div>
+
+      <!-- Question 2: True or False -->
+      <div class="question">
+        <p class="question-title">
+          2. True or False: Pressing Ctrl + S will initiate the 'Save As' dialog in most applications.
+        </p>
+        <label>
+          <input type="radio" name="q2" value="True"> True
+        </label><br>
+        <label>
+          <input type="radio" name="q2" value="False"> False
+        </label>
+      </div>
+
+      <!-- Question 3: Fill in the Blank -->
+      <div class="question">
+        <p class="question-title">
+          3. Fill in the blank: The keyboard shortcut to search for text within a document is Ctrl + ___.
+        </p>
+        <input type="text" name="q3" maxlength="1">
+      </div>
+
+      <!-- Question 4: Scenario-Based -->
+      <div class="question">
+        <p class="question-title">
+          4. Scenario: You accidentally deleted a paragraph in your document. Which keyboard shortcut will you use to restore it immediately?
+        </p>
+        <label>
+          <input type="radio" name="q4" value="Ctrl+Y"> Ctrl + Y
+        </label><br>
+        <label>
+          <input type="radio" name="q4" value="Ctrl+Z"> Ctrl + Z
+        </label><br>
+        <label>
+          <input type="radio" name="q4" value="Ctrl+X"> Ctrl + X
+        </label>
+      </div>
+
+      <!-- Question 5: Short Answer -->
+      <div class="question">
+        <p class="question-title">
+          5. Short Answer: Describe what happens when you use the keyboard shortcut Ctrl + X.
+        </p>
+        <textarea name="q5" rows="3" cols="60" style="margin-left: 20px; padding: 5px; background-color: #1a1a1c; color: #faf6f0; border: 1px solid #faf6f0;"></textarea>
+      </div>
+
+      <!-- Question 6: Ordering -->
+      <div class="question">
+        <p class="question-title">
+          6. Arrange the following steps to copy and paste text using keyboard shortcuts by numbering them from 1 to 4:
+        </p>
+        <p>
+          ___ Press Ctrl + V to paste the text.<br>
+          ___ Highlight the text you want to copy.<br>
+          ___ Place the cursor where you want to insert the text.<br>
+          ___ Press Ctrl + C to copy the text.
+        </p>
+      </div>
+
+      <!-- Question 7: Multiple Select -->
+      <div class="question">
+        <p class="question-title">
+          7. Select all actions that can be undone using Ctrl + Z:
+        </p>
+        <label>
+          <input type="checkbox" name="q7" value="Typing"> Typing text
+        </label><br>
+        <label>
+          <input type="checkbox" name="q7" value="Saving"> Saving a file
+        </label><br>
+        <label>
+          <input type="checkbox" name="q7" value="Deleting"> Deleting a file
+        </label><br>
+        <label>
+          <input type="checkbox" name="q7" value="Formatting"> Formatting changes
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="button" onclick="checkAnswers()">Submit Answers</button>
+    </form>
+
+    <!-- Result Display -->
+    <div id="quiz-result" class="result"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      let score = 0;
+      let total = 7;
+
+      // Question 1
+      let q1Answers = {
+        copy: 'a',
+        paste: 'b',
+        cut: 'c',
+        undo: 'd',
+        redo: 'e',
+        save: 'f',
+        find: 'g'
+      };
+
+      for (let key in q1Answers) {
+        let userAnswer = document.querySelector('input[name="q1-' + key + '"]').value.toLowerCase();
+        if (userAnswer === q1Answers[key]) {
+          score += (1 / 7);
+        }
+      }
+
+      // Question 2
+      let q2 = document.querySelector('input[name="q2"]:checked');
+      if (q2 && q2.value === 'False') {
+        score += 1;
+      }
+
+      // Question 3
+      let q3 = document.querySelector('input[name="q3"]').value.toLowerCase();
+      if (q3 === 'f') {
+        score += 1;
+      }
+
+      // Question 4
+      let q4 = document.querySelector('input[name="q4"]:checked');
+      if (q4 && q4.value === 'Ctrl+Z') {
+        score += 1;
+      }
+
+      // Question 5 (Basic Keyword Check)
+      let q5 = document.querySelector('textarea[name="q5"]').value.toLowerCase();
+      if (q5.includes('cut') && q5.includes('clipboard')) {
+        score += 1;
+      }
+
+      // Question 6
+      let q6Order = ['2', '4', '3', '1'];
+      let q6UserOrder = [
+        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[0].trim()[0],
+        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[1].trim()[0],
+        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[2].trim()[0],
+        document.querySelectorAll('.question')[5].innerText.match(/___ (.*?)\./g)[3].trim()[0],
+      ];
+      if (JSON.stringify(q6Order) === JSON.stringify(q6UserOrder)) {
+        score += 1;
+      }
+
+      // Question 7
+      let q7Answers = ['Typing', 'Formatting'];
+      let q7Checked = [];
+      document.querySelectorAll('input[name="q7"]:checked').forEach((checkbox) => {
+        q7Checked.push(checkbox.value);
+      });
+      if (q7Checked.sort().toString() === q7Answers.sort().toString()) {
+        score += 1;
+      }
+
+      // Display Result
+      let resultElement = document.getElementById('quiz-result');
+      resultElement.style.display = 'block';
+      resultElement.innerHTML = 'You scored ' + Math.round(score) + ' out of ' + total + '!';
+    }
+  </script>
+</body>
 </html>
