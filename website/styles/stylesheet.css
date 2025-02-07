@@ -13,53 +13,98 @@ body {
 
 .card {
   padding: 16px;
+  margin-top: 20px;
   background-color: #25252b;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.15);
+}
+
+.question {
+  margin-bottom: 50px;
 }
 
 #quiz-result {
   display: none;
-  margin-bottom: 10px;
-  
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #2196f3;
+  color: #faf6f0;
   text-align: center;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 16px;
-  color: #25252b;
+  font-size: 18px;
+  border-radius: 2px;
 }
 
-input[type="text"]  {
+input[type="text"],
+textarea {
   margin-left: 20px;
+  padding: 5px;
+  width: 80%;
+  border: none;
+  border-bottom: 2px solid #faf6f0;
+  background-color: transparent;
+  color: #faf6f0;
+  font-size: 16px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+label {
+  font-size: 16px;
 }
 
 button {
-  margin-top: 10px;
-  padding: 4px;
-
+  margin-top: 20px;
+  padding: 10px 20px;
   cursor: pointer;
-
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 16px;
   color: #faf6f0;
-
   background-color: #2196f3;
   border: none;
-  -webkit-border-radius: 2px;
-  -moz-border-radius:2px;
   border-radius: 2px;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
+
 button:hover {
   background-color: #0d5894;
 }
+
 button:active {
-  -webkit-box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.question-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.explanation {
+  margin-top: 10px;
+  font-size: 16px;
+  background-color: #1a1a1c;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+mark {
+  background-color: yellow;
+  color: black;
+}
+
+#q2-passage,
+#q3-paragraph {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #1a1a1c;
+  border: 1px solid #faf6f0;
+  border-radius: 2px;
+  line-height: 1.6;
 }
