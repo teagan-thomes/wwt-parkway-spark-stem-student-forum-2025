@@ -3,118 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Interactive Keyboard Shortcuts Quiz</title>
-  <style>
-    html {
-      font-family: 'Helvetica Neue', Helvetica, Arial, serif;
-      color: #faf6f0;
-      background-color: #1a1a1c;
-    }
-
-    body {
-      width: 50%;
-      min-width: 820px;
-      margin: 0 auto;
-      background-color: #1a1a1c;
-    }
-
-    .card {
-      padding: 16px;
-      margin-top: 20px;
-      background-color: #25252b;
-      border-radius: 2px;
-      box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.15);
-    }
-
-    .question {
-      margin-bottom: 50px;
-    }
-
-    #quiz-result {
-      display: none;
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #2196f3;
-      color: #faf6f0;
-      text-align: center;
-      font-size: 18px;
-      border-radius: 2px;
-    }
-
-    input[type="text"],
-    textarea {
-      margin-left: 20px;
-      padding: 5px;
-      width: 80%;
-      border: none;
-      border-bottom: 2px solid #faf6f0;
-      background-color: transparent;
-      color: #faf6f0;
-      font-size: 16px;
-    }
-
-    input[type="radio"],
-    input[type="checkbox"] {
-      margin-right: 10px;
-    }
-
-    label {
-      font-size: 16px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #faf6f0;
-      background-color: #2196f3;
-      border: none;
-      border-radius: 2px;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
-    }
-
-    button:hover {
-      background-color: #0d5894;
-    }
-
-    button:active {
-      box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    .question-title {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .result {
-      margin-top: 20px;
-      font-size: 18px;
-    }
-
-    .explanation {
-      margin-top: 10px;
-      font-size: 16px;
-      background-color: #1a1a1c;
-      padding: 10px;
-      border-radius: 2px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-
-    mark {
-      background-color: yellow;
-      color: black;
-    }
-
-    #q2-passage,
-    #q3-paragraph {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #1a1a1c;
-      border: 1px solid #faf6f0;
-      border-radius: 2px;
-      line-height: 1.6;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
   <div class="card">
@@ -163,22 +52,6 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
           4. You want to save your document quickly without using the mouse. Press the keyboard shortcut now to perform the 'Save' action.
         </p>
         <input type="text" id="q4-input" placeholder="Focus here and press the shortcut" readonly onfocus="this.blur()">
-      </div>
-
-      <!-- Question 5: Graded Multiple Choice -->
-      <div class="question">
-        <p class="question-title">
-          5. Which keyboard shortcut will you use to cut selected text?
-        </p>
-        <label>
-          <input type="radio" name="q5" value="Ctrl+X"> Ctrl + X
-        </label><br>
-        <label>
-          <input type="radio" name="q5" value="Ctrl+C"> Ctrl + C
-        </label><br>
-        <label>
-          <input type="radio" name="q5" value="Ctrl+V"> Ctrl + V
-        </label>
       </div>
 
       <!-- Submit Button -->
@@ -253,7 +126,7 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
         e.preventDefault();
         quizAnswers.q4 = true;
-        // No pop-up; action is recorded silently
+        alert('Document saved successfully!');
       }
     });
 
@@ -295,19 +168,10 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
         explanations += '<p><strong>Question 4:</strong> Incorrect. You needed to press Ctrl+S to save the document.</p>';
       }
 
-      // Question 5: Check the selected answer
-      let q5 = document.querySelector('input[name="q5"]:checked');
-      if (q5 && q5.value === 'Ctrl+X') {
-        score += 1;
-        explanations += '<p><strong>Question 5:</strong> Correct! Ctrl+X is used to cut selected text.</p>';
-      } else {
-        explanations += '<p><strong>Question 5:</strong> Incorrect. The correct answer is Ctrl+X, which cuts selected text.</p>';
-      }
-
       // Display the result and explanations
       let resultElement = document.getElementById('quiz-result');
       resultElement.style.display = 'block';
-      resultElement.innerHTML = 'You scored ' + score + ' out of 5!';
+      resultElement.innerHTML = 'You scored ' + score + ' out of 4!';
       resultElement.innerHTML += '<div class="explanation">' + explanations + '</div>';
 
       // Reset the quiz after submission
