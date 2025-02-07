@@ -1,158 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Literacy Course - Basic Internet Safety</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body Styling */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            min-height: 100vh;
-            padding-top: 70px; /* Adjust to match header height */
-        }
-
-        /* Header Styling */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin-left: 15px;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #007BFF;
-        }
-
-        /* Main Content Styling */
-        .container {
-            max-width: 800px;
-            margin: 100px auto 40px; /* Top margin accounts for fixed header */
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .container h1 {
-            color: #28a745;
-            margin-bottom: 20px;
-        }
-
-        .container p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-
-        .container a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .container a:hover {
-            background-color: #0056b3;
-        }
-
-        /* Footer Styling */
-        footer {
-            background-color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        footer a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #007BFF;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Literacy Course - Basic Internet Safety</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+  <!-- Header placeholder -->
+  <div id="header-placeholder"></div>
 
-    <header>
-        <!-- Logo Placeholder -->
-        <div class="logo">
-            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
-            <img src="path/to/logo.png" alt="Logo">
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="course_content.html">Courses</a>
-            <a href="TOS.html">Terms of Service</a>
-            <!-- Placeholder links for future account system -->
-            <a href="#" id="login-button">Login</a>
-            <a href="#" id="register-button">Register</a>
-        </nav>
-    </header>
+  <div class="container">
+    <h1>Basic Internet Safety</h1>
+    <p>This course is under development. Stay tuned for more information!</p>
+    <a href="index.html" class="button">Return to Home</a>
+  </div>
 
-    <div class="container">
-        <h1>Basic Internet Safety</h1>
-        <p>This course is under development. Stay tuned for more information!</p>
-        <a href="index.html">Return to Home</a>
-    </div>
-
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder">
     <footer>
-        <a href="TOS.html">Terms of Service</a>
-        <span>|</span>
-        <a href="privacy.html">Privacy Policy</a>
-        <!-- Future links for account management -->
-        <span>|</span>
-        <a href="#" id="login-footer">Login</a>
-        <span>|</span>
-        <a href="#" id="register-footer">Register</a>
+      <a href="#">Loading...</a>
     </footer>
+  </div>
 
-    <!-- Placeholder JavaScript for future account system -->
-    <script>
-        // Future implementation for account system
-        // You can add event listeners for Login and Register buttons here
-    </script>
+  <!-- Load header and footer components -->
+  <script src="imports/loadImports.js"></script>
 </body>
 </html>

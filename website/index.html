@@ -5,174 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Literacy Course - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body Styling */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header Styling */
-        header {
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin-left: 15px;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #007BFF;
-        }
-
-        /* Main Content Styling */
-        .main {
-            flex: 1;
-            padding: 100px 20px 40px; /* Top padding accounts for fixed header */
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .main h1 {
-            font-size: 3rem;
-            color: #007BFF;
-            margin-bottom: 20px;
-        }
-
-        .courses {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .course-card {
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            width: 300px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .course-card h2 {
-            color: #28a745;
-            margin-bottom: 15px;
-        }
-
-        .course-card p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-
-        .course-card a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .course-card a:hover {
-            background-color: #0056b3;
-        }
-
-        /* Footer Styling */
-        footer {
-            background-color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-        }
-
-        footer a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #007BFF;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .courses {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .course-card {
-                width: 90%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-
-    <header>
-        <!-- Logo Placeholder -->
-        <div class="logo">
-            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
-            <img src="path/to/logo.png" alt="Logo">
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="course_content.html">Courses</a>
-            <a href="TOS.html">Terms of Service</a>
-            <!-- Placeholder links for future account system -->
-            <a href="#" id="login-button">Login</a>
-            <a href="#" id="register-button">Register</a>
-        </nav>
-    </header>
+    <!-- Include the header -->
+    <div id="header-placeholder"></div>
 
     <div class="main">
         <h1>Welcome to Digital Literacy Courses</h1>
@@ -183,33 +20,26 @@
             <div class="course-card">
                 <h2>Keybinds Lesson</h2>
                 <p>Learn essential keyboard shortcuts to boost your productivity and efficiency in various applications.</p>
-                <a href="course_content.html">Start Course</a>
+                <a href="course_content.html" class="button">Start Course</a>
             </div>
 
             <!-- Course 2: Placeholder Course -->
             <div class="course-card">
                 <h2>Coming Soon: Basic Internet Safety</h2>
                 <p>Stay tuned! We are developing a course to help you navigate the internet safely and securely.</p>
-                <a href="course_placeholder.html">Learn More</a>
+                <a href="course_placeholder.html" class="button">Learn More</a>
             </div>
         </div>
     </div>
 
-    <footer>
-        <a href="TOS.html">Terms of Service</a>
-        <span>|</span>
-        <a href="privacy.html">Privacy Policy</a>
-        <!-- Future links for account management -->
-        <span>|</span>
-        <a href="#" id="login-footer">Login</a>
-        <span>|</span>
-        <a href="#" id="register-footer">Register</a>
-    </footer>
+    <!-- Include the footer -->
+    <div id="footer-placeholder">
+        <footer>
+            <a href="#">Loading...</a>
+        </footer>
+    </div>
 
-    <!-- Placeholder JavaScript for future account system -->
-    <script>
-        // Future implementation for account system
-        // You can add event listeners for Login and Register buttons here
-    </script>
+    <!-- Script to load header and footer -->
+    <script src="imports/loadImports.js"></script>
 </body>
 </html>
