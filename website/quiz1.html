@@ -96,23 +96,17 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
-    .draggable {
-      display: inline-block;
-      padding: 8px 12px;
-      margin: 4px;
-      background-color: #2196f3;
-      color: #faf6f0;
-      border-radius: 4px;
-      cursor: move;
+    mark {
+      background-color: yellow;
+      color: black;
     }
 
-    .dropzone {
-      display: inline-block;
-      width: 100px;
-      height: 30px;
-      margin: 4px;
-      border: 2px dashed #faf6f0;
-      vertical-align: middle;
+    #q3-paragraph {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #1a1a1c;
+      border: 1px solid #faf6f0;
+      border-radius: 2px;
     }
   </style>
 </head>
@@ -123,43 +117,38 @@
       <!-- Question 1: Copy and Paste Interaction -->
       <div class="question">
         <p class="question-title">
-          1. Copy the text from the first box and paste it into the second box using keyboard shortcuts only.
+          1. Copy the following text and paste it into the box below using keyboard shortcuts only.
         </p>
         <p>
-          <input type="text" id="q1-source" value="Copy me!" readonly>
+          <textarea id="q1-source" rows="5" readonly>
+“Productivity is never an accident. It is always the result of a commitment to excellence, intelligent planning, and focused effort.” – Paul J. Meyer
+
+Utilizing keyboard shortcuts can significantly enhance your efficiency by saving time and reducing repetitive strain.
+          </textarea>
         </p>
         <p>
-          <input type="text" id="q1-destination" placeholder="Paste here">
+          <textarea id="q1-destination" rows="5" placeholder="Paste here"></textarea>
         </p>
       </div>
 
       <!-- Question 2: Find Functionality -->
       <div class="question">
         <p class="question-title">
-          2. Use the keyboard shortcut to find and highlight the word "shortcut" in the paragraph below.
+          2. Use the keyboard shortcut to find and highlight all occurrences of the words "productivity" and "efficiency" in the passage below.
         </p>
-        <p id="q2-paragraph">
-          Keyboard shortcuts can significantly enhance your productivity by allowing you to perform actions quickly without using the mouse.
+        <p id="q2-passage">
+          In today's fast-paced world, productivity and efficiency are more important than ever. Professionals seek tools and techniques to maximize their productivity, allowing them to achieve more in less time. Efficiency isn't just about speed; it's about reducing waste and making the most of available resources. By enhancing both productivity and efficiency, individuals and organizations can reach their goals more effectively.
         </p>
       </div>
 
-      <!-- Question 3: Drag and Drop Ordering -->
+      <!-- Question 3: Undo Deletion -->
       <div class="question">
         <p class="question-title">
-          3. Arrange the steps to perform an 'Undo' operation using keyboard shortcuts by dragging and dropping the steps in the correct order:
+          3. Delete the paragraph below and then restore it using the undo keyboard shortcut.
         </p>
-        <div id="q3-draggable-container">
-          <div class="draggable" draggable="true" data-order="2">Release the keys</div>
-          <div class="draggable" draggable="true" data-order="1">Press and hold 'Ctrl' key</div>
-          <div class="draggable" draggable="true" data-order="3">The last action is undone</div>
-          <div class="draggable" draggable="true" data-order="2">Press 'Z' key</div>
-        </div>
-        <div id="q3-dropzone-container">
-          <div class="dropzone" data-position="1"></div>
-          <div class="dropzone" data-position="2"></div>
-          <div class="dropzone" data-position="3"></div>
-          <div class="dropzone" data-position="4"></div>
-        </div>
+        <p id="q3-paragraph">
+          This is an important paragraph containing critical information. Please delete this paragraph using your keyboard and then bring it back using the appropriate undo shortcut.
+        </p>
       </div>
 
       <!-- Question 4: Scenario-Based with Interaction -->
@@ -199,7 +188,7 @@
     let quizAnswers = {
       q1: '',
       q2: false,
-      q3: [],
+      q3: false,
       q4: false,
       q5: ''
     };
@@ -213,53 +202,41 @@
 
     // Question 2: Monitor Find Shortcut (Ctrl+F)
     document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && e.key === 'f') {
+      if (e.ctrlKey && (e.key === 'f' || e.key === 'F')) {
         e.preventDefault();
-        let paragraph = document.getElementById('q2-paragraph');
-        let index = paragraph.innerText.toLowerCase().indexOf('shortcut');
-        if (index !== -1) {
-          let before = paragraph.innerText.substring(0, index);
-          let match = paragraph.innerText.substring(index, index + 8);
-          let after = paragraph.innerText.substring(index + 8);
-          paragraph.innerHTML = before + '<mark>' + match + '</mark>' + after;
-          quizAnswers.q2 = true;
+        let passageElement = document.getElementById('q2-passage');
+        let passageText = passageElement.innerText;
+        let highlightedText = passageText.replace(/(productivity|efficiency)/gi, function(match) {
+          return '<mark>' + match + '</mark>';
+        });
+        passageElement.innerHTML = highlightedText;
+        quizAnswers.q2 = true;
+      }
+    });
+
+    // Question 3: Undo Deletion
+    let q3Paragraph = document.getElementById('q3-paragraph');
+    q3Paragraph.addEventListener('click', function() {
+      q3Paragraph.innerText = ''; // Delete the paragraph
+      alert('Paragraph deleted! Now use the undo shortcut to restore it.');
+      quizAnswers.q3Deleted = true;
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
+        if (quizAnswers.q3Deleted && !quizAnswers.q3Restored) {
+          e.preventDefault();
+          q3Paragraph.innerText = 'This is an important paragraph containing critical information. Please delete this paragraph using your keyboard and then bring it back using the appropriate undo shortcut.';
+          quizAnswers.q3 = true;
+          quizAnswers.q3Restored = true;
+          alert('Paragraph restored!');
         }
       }
     });
 
-    // Question 3: Drag and Drop Functionality
-    let draggables = document.querySelectorAll('.draggable');
-    let dropzones = document.querySelectorAll('.dropzone');
-
-    draggables.forEach(draggable => {
-      draggable.addEventListener('dragstart', dragStart);
-    });
-
-    dropzones.forEach(dropzone => {
-      dropzone.addEventListener('dragover', dragOver);
-      dropzone.addEventListener('drop', drop);
-    });
-
-    function dragStart(e) {
-      e.dataTransfer.setData('text/plain', e.target.dataset.order);
-      e.dataTransfer.setData('text/content', e.target.innerText);
-    }
-
-    function dragOver(e) {
-      e.preventDefault();
-    }
-
-    function drop(e) {
-      e.preventDefault();
-      let order = e.dataTransfer.getData('text/plain');
-      let content = e.dataTransfer.getData('text/content');
-      e.target.innerText = content;
-      e.target.dataset.order = order;
-    }
-
     // Question 4: Monitor Save Shortcut (Ctrl+S)
     document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && e.key === 's') {
+      if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
         e.preventDefault();
         quizAnswers.q4 = true;
         alert('Document saved successfully!');
@@ -272,32 +249,28 @@
       let explanations = '';
 
       // Question 1: Check if text was pasted correctly
-      if (quizAnswers.q1 === 'Copy me!') {
+      let originalText = document.getElementById('q1-source').value.trim();
+      if (quizAnswers.q1.trim() === originalText) {
         score += 1;
-        explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+C and Ctrl+V to copy and paste the text.</p>';
+        explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+C and Ctrl+V to copy and paste the extended text.</p>';
       } else {
-        explanations += '<p><strong>Question 1:</strong> Incorrect. You should have used Ctrl+C to copy and Ctrl+V to paste the text.</p>';
+        explanations += '<p><strong>Question 1:</strong> Incorrect. You should have used Ctrl+C to copy and Ctrl+V to paste the text. Ensure you've copied the entire text.</p>';
       }
 
-      // Question 2: Check if the word was highlighted
+      // Question 2: Check if the words were highlighted
       if (quizAnswers.q2) {
         score += 1;
-        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight the word "shortcut".</p>';
+        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "productivity" and "efficiency".</p>';
       } else {
-        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "shortcut".</p>';
+        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "productivity" and "efficiency".</p>';
       }
 
-      // Question 3: Check the order of steps
-      let q3CorrectOrder = ['Press and hold \'Ctrl\' key', 'Press \'Z\' key', 'Release the keys', 'The last action is undone'];
-      let userOrder = [];
-      dropzones.forEach(dropzone => {
-        userOrder.push(dropzone.innerText);
-      });
-      if (JSON.stringify(userOrder) === JSON.stringify(q3CorrectOrder)) {
+      // Question 3: Check if paragraph was restored
+      if (quizAnswers.q3) {
         score += 1;
-        explanations += '<p><strong>Question 3:</strong> Correct! You arranged the steps properly to perform an Undo operation.</p>';
+        explanations += '<p><strong>Question 3:</strong> Correct! You deleted and then restored the paragraph using Ctrl+Z.</p>';
       } else {
-        explanations += '<p><strong>Question 3:</strong> Incorrect. The correct order is: ' + q3CorrectOrder.join(', ') + '.</p>';
+        explanations += '<p><strong>Question 3:</strong> Incorrect. You needed to delete the paragraph and then press Ctrl+Z to undo the deletion.</p>';
       }
 
       // Question 4: Check if Save shortcut was used
@@ -312,7 +285,7 @@
       let q5 = document.querySelector('input[name="q5"]:checked');
       if (q5 && q5.value === 'Ctrl+Y') {
         score += 1;
-        explanations += '<p><strong>Question 5:</strong> Correct! Ctrl+Y is used to redo an action.</p>';
+        explanations += '<p><strong>Question 5:</strong> Correct! Ctrl+Y is used to redo an action that has been undone.</p>';
       } else {
         explanations += '<p><strong>Question 5:</strong> Incorrect. The correct answer is Ctrl+Y, which redoes an action.</p>';
       }
