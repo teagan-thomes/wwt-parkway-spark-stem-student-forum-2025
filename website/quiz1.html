@@ -25,6 +25,10 @@
       box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.15);
     }
 
+    .question {
+      margin-bottom: 40px;
+    }
+
     #quiz-result {
       display: none;
       margin-top: 20px;
@@ -40,7 +44,7 @@
     textarea {
       margin-left: 20px;
       padding: 5px;
-      width: 60%;
+      width: 80%;
       border: none;
       border-bottom: 2px solid #faf6f0;
       background-color: transparent;
@@ -101,12 +105,14 @@
       color: black;
     }
 
+    #q2-passage,
     #q3-paragraph {
       margin-top: 10px;
       padding: 10px;
       background-color: #1a1a1c;
       border: 1px solid #faf6f0;
       border-radius: 2px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -121,9 +127,9 @@
         </p>
         <p>
           <textarea id="q1-source" rows="5" readonly>
-“Productivity is never an accident. It is always the result of a commitment to excellence, intelligent planning, and focused effort.” – Paul J. Meyer
+“Productivity is not just about doing more. It's about creating more impact with less work.” – Unknown
 
-Utilizing keyboard shortcuts can significantly enhance your efficiency by saving time and reducing repetitive strain.
+Mastering keyboard shortcuts empowers you to work smarter and increase efficiency in your daily tasks.
           </textarea>
         </p>
         <p>
@@ -134,10 +140,10 @@ Utilizing keyboard shortcuts can significantly enhance your efficiency by saving
       <!-- Question 2: Find Functionality -->
       <div class="question">
         <p class="question-title">
-          2. Use the keyboard shortcut to find and highlight all occurrences of the words "productivity" and "efficiency" in the passage below.
+          2. Use the keyboard shortcut to find and highlight all occurrences of the word "efficiency" in the passage below.
         </p>
         <p id="q2-passage">
-          In today's fast-paced world, productivity and efficiency are more important than ever. Professionals seek tools and techniques to maximize their productivity, allowing them to achieve more in less time. Efficiency isn't just about speed; it's about reducing waste and making the most of available resources. By enhancing both productivity and efficiency, individuals and organizations can reach their goals more effectively.
+          Efficiency is key in achieving success. By focusing on efficiency, you can accomplish more with less effort. Implementing efficient methods in your workflow allows for better time management and productivity.
         </p>
       </div>
 
@@ -146,8 +152,8 @@ Utilizing keyboard shortcuts can significantly enhance your efficiency by saving
         <p class="question-title">
           3. Delete the paragraph below and then restore it using the undo keyboard shortcut.
         </p>
-        <p id="q3-paragraph">
-          This is an important paragraph containing critical information. Please delete this paragraph using your keyboard and then bring it back using the appropriate undo shortcut.
+        <p contenteditable="true" id="q3-paragraph">
+          This paragraph contains important information that you might need later. Please delete it using your keyboard and then bring it back using the appropriate undo shortcut.
         </p>
       </div>
 
@@ -206,7 +212,7 @@ Utilizing keyboard shortcuts can significantly enhance your efficiency by saving
         e.preventDefault();
         let passageElement = document.getElementById('q2-passage');
         let passageText = passageElement.innerText;
-        let highlightedText = passageText.replace(/(productivity|efficiency)/gi, function(match) {
+        let highlightedText = passageText.replace(/(efficiency)/gi, function(match) {
           return '<mark>' + match + '</mark>';
         });
         passageElement.innerHTML = highlightedText;
@@ -216,20 +222,24 @@ Utilizing keyboard shortcuts can significantly enhance your efficiency by saving
 
     // Question 3: Undo Deletion
     let q3Paragraph = document.getElementById('q3-paragraph');
-    q3Paragraph.addEventListener('click', function() {
-      q3Paragraph.innerText = ''; // Delete the paragraph
-      alert('Paragraph deleted! Now use the undo shortcut to restore it.');
-      quizAnswers.q3Deleted = true;
+    let q3OriginalContent = q3Paragraph.innerHTML;
+
+    q3Paragraph.addEventListener('input', function() {
+      if (q3Paragraph.innerText.trim() === '') {
+        quizAnswers.q3Deleted = true;
+        alert('Paragraph deleted! Now use the undo shortcut to restore it.');
+      }
     });
 
     document.addEventListener('keydown', function(e) {
       if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
         if (quizAnswers.q3Deleted && !quizAnswers.q3Restored) {
-          e.preventDefault();
-          q3Paragraph.innerText = 'This is an important paragraph containing critical information. Please delete this paragraph using your keyboard and then bring it back using the appropriate undo shortcut.';
           quizAnswers.q3 = true;
           quizAnswers.q3Restored = true;
-          alert('Paragraph restored!');
+          // Wait for the undo operation to happen in the browser
+          setTimeout(() => {
+            alert('Paragraph restored!');
+          }, 100);
         }
       }
     });
@@ -254,15 +264,15 @@ Utilizing keyboard shortcuts can significantly enhance your efficiency by saving
         score += 1;
         explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+C and Ctrl+V to copy and paste the extended text.</p>';
       } else {
-        explanations += '<p><strong>Question 1:</strong> Incorrect. You should have used Ctrl+C to copy and Ctrl+V to paste the text. Ensure you've copied the entire text.</p>';
+        explanations += '<p><strong>Question 1:</strong> Incorrect. Ensure you copied and pasted the entire text using Ctrl+C and Ctrl+V.</p>';
       }
 
-      // Question 2: Check if the words were highlighted
+      // Question 2: Check if the word was highlighted
       if (quizAnswers.q2) {
         score += 1;
-        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "productivity" and "efficiency".</p>';
+        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "efficiency".</p>';
       } else {
-        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "productivity" and "efficiency".</p>';
+        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "efficiency".</p>';
       }
 
       // Question 3: Check if paragraph was restored
