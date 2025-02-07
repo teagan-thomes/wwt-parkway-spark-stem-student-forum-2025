@@ -3,68 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Digital Literacy Course: Selecting All Content</title>
-    <style>
-        /* [Same CSS Styles for consistency] */
-        /* [Content omitted for brevity - use the same style as before] */
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <h1>Selecting All Content</h1>
 
-    <div class="section">
-        <h2>Why It Matters</h2>
-        <p>Need to copy, move, or delete everything in a document or folder? The 'Select All' function streamlines this process, eliminating the need for manual selection.</p>
-    </div>
+    <!-- Content Sections -->
 
-    <div class="section">
-        <h2>The Basics</h2>
-        <p>With a simple command, you can highlight all text, files, or elements in your current context, making batch actions quick and efficient.</p>
-    </div>
-
-    <div class="section">
-        <h2>Keyboard Shortcuts</h2>
-        <div class="shortcuts">
-            <div class="shortcut">
-                <h3>For Windows Users</h3>
-                <ul>
-                    <li><strong>Select All:</strong> Ctrl + A</li>
-                </ul>
-            </div>
-            <div class="shortcut">
-                <h3>For Mac Users</h3>
-                <ul>
-                    <li><strong>Select All:</strong> Command (⌘) + A</li>
-                </ul>
-            </div>
-        </div>
-        <div class="tip">
-            <p><strong>Pro Tip:</strong> Be cautious when performing actions after 'Select All' to avoid unintended modifications.</p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Advanced Techniques</h2>
-        <ul>
-            <li><strong>Deselecting:</strong> Click anywhere outside the selection or press <strong>Esc</strong> to deselect.</li>
-            <li><strong>Selective Actions:</strong> After selecting all, you can hold Ctrl (Windows) or Command (Mac) and click to deselect specific items.</li>
-            <li><strong>Context-Specific:</strong> 'Select All' operates within the active window or field, whether it's text in a document or files in a folder.</li>
-        </ul>
-    </div>
+    <!-- Interactive Practice Section -->
 
     <div class="practice">
         <h2>Hands-On Practice</h2>
-        <p>Open a document or folder and use the 'Select All' shortcut. Try copying or moving the selected content to a new location.</p>
+        <p>Click inside the editor below and use the 'Select All' keyboard shortcut to highlight all the text. Try copying it afterwards.</p>
+        <textarea id="select-all-editor">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </textarea>
     </div>
 
-    <div class="section">
-        <h2>Additional Resources</h2>
-        <ul class="resources">
-            <li><a href="https://lifehacker.com/awesome-mac-trick-shift-and-click-to-select-everything-510256827" target="_blank">Lifehacker: Advanced Selection Tricks</a></li>
-            <li><a href="https://www.digitalcitizen.life/select-files-windows-explorer/" target="_blank">Digital Citizen: Selecting Files in Windows</a></li>
-            <li><a href="https://support.apple.com/guide/mac-help/select-and-deselect-items-mchlp2444/mac" target="_blank">Apple Support: Select and Deselect Items</a></li>
-        </ul>
-    </div>
+    <!-- Navigation Arrows -->
 
     <div class="navigation">
         <a href="save.html">&#8592; Saving Your Work</a>
@@ -74,6 +31,12 @@
     <footer>
         © 2023 Digital Literacy Initiative
     </footer>
+
+    <script>
+        const selectAllEditor = document.getElementById('select-all-editor');
+        selectAllEditor.focus();
+        // Users can use Ctrl+A or Command+A to select all text within the textarea
+    </script>
 
 </body>
 </html>

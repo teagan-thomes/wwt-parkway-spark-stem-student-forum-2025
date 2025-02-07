@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Digital Literacy Course: Mastering Undo and Redo</title>
-    <!-- [Include the same CSS styles as in copy_paste.html] -->
-    <style>
-        /* [Same CSS Styles for consistency] */
-        /* [Content omitted for brevity - use the same style as before] */
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <h1>Mastering Undo and Redo</h1>
 
-    <!-- [Content similar to previous undo_redo.html] -->
+    <!-- Content Sections -->
 
-    <!-- [Sections: Why It Matters, The Basics, Keyboard Shortcuts, etc.] -->
+    <!-- Interactive Practice Section -->
+
+    <div class="practice">
+        <h2>Hands-On Practice</h2>
+        <p>Type into the editor below and use the Undo and Redo keyboard shortcuts to see these features in action.</p>
+        <textarea id="editor" placeholder="Start typing here..."></textarea>
+    </div>
 
     <!-- Navigation Arrows -->
+
     <div class="navigation">
         <a href="copy_paste.html">&#8592; Copy and Paste Overview</a>
         <a href="find.html">Find Function Overview &#8594;</a>
@@ -27,7 +30,11 @@
         © 2023 Digital Literacy Initiative
     </footer>
 
-    <!-- [Include any JavaScript required for interactivity] -->
+    <script>
+        const editor = document.getElementById('editor');
+        editor.focus();
+        // Undo and Redo are handled by the browser; no JS required
+    </script>
 
 </body>
 </html>
