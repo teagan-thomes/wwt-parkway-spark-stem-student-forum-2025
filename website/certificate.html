@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Course Completion Certificate</title>
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			margin: 0;
+			background-color: #f5f5f5;
+		}
+		.certificate {
+			background-color: white;
+			padding: 40px;
+			border: 20px solid #1a5f7a;
+			width: 800px;
+			text-align: center;
+			position: relative;
+			box-shadow: 0 0 20px rgba(0,0,0,0.1);
+		}
+		.certificate::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border: 2px solid #1a5f7a;
+			margin: 20px;
+			pointer-events: none;
+		}
+		.header {
+			color: #1a5f7a;
+			font-size: 48px;
+			margin-bottom: 20px;
+			font-weight: bold;
+		}
+		.sub-header {
+			font-size: 24px;
+			color: #333;
+			margin-bottom: 30px;
+		}
+		.recipient {
+			font-size: 36px;
+			color: #1a5f7a;
+			margin: 20px 0;
+			font-style: italic;
+		}
+		.description {
+			font-size: 18px;
+			color: #555;
+			margin: 20px 0;
+			line-height: 1.6;
+		}
+		.date {
+			font-size: 18px;
+			color: #666;
+			margin: 30px 0;
+		}
+		.signature {
+			margin-top: 40px;
+			border-top: 2px solid #1a5f7a;
+			width: 200px;
+			display: inline-block;
+			padding-top: 10px;
+			font-weight: bold;
+			color: #1a5f7a;
+		}
+		@media print {
+			body {
+				background-color: white;
+			}
+			.certificate {
+				box-shadow: none;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="certificate">
+		<div class="header">Certificate of Completion</div>
+		<div class="sub-header">This is to certify that</div>
+		<div class="recipient" id="recipientName">John Doe</div>
+		<div class="description">
+			has successfully completed the<br>
+			<strong>Digital Literacy and Cybersecurity Course</strong><br>
+			demonstrating proficiency in essential digital skills and cybersecurity practices
+		</div>
+		<div class="date" id="certDate"></div>
+		<div class="signature">Course Administrator</div>
+	</div>
+
+	<script>
+		// Function to get URL parameters
+		function getUrlParameter(name) {
+			name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+			var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+			var results = regex.exec(location.search);
+			return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+		}
+
+		// Set recipient name from URL parameter
+		window.onload = function() {
+			const name = getUrlParameter('name');
+			if (name) {
+				document.getElementById('recipientName').textContent = name;
+			}
+
+			// Set current date
+			const today = new Date();
+			const options = { year: 'numeric', month: 'long', day: 'numeric' };
+			document.getElementById('certDate').textContent = today.toLocaleDateString('en-US', options);
+		}
+	</script>
+</body>
+</html>
