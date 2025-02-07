@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Literacy Course: Saving Your Work</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Saving Your Work</h1>
+
+    <!-- Content Sections -->
+
+    <!-- Interactive Practice Section -->
+
+    <div class="practice">
+        <h2>Hands-On Practice</h2>
+        <p>Type some notes in the editor below, and use the keyboard shortcut to save your work. Note that due to browser limitations, saving will prompt you to save the content as a file.</p>
+        <textarea id="editor" placeholder="Start typing your notes here..."></textarea>
+        <div id="buttons">
+            <button onclick="saveContent()">Save Notes</button>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+
+    <div class="navigation">
+        <a href="find.html">&#8592; Find Function Overview</a>
+        <a href="select_all.html">Selecting All Content &#8594;</a>
+    </div>
+
+    <footer>
+        © 2023 Digital Literacy Initiative
+    </footer>
+
+    <script>
+        function saveContent() {
+            const textToSave = document.getElementById('editor').value;
+            const blob = new Blob([textToSave], { type: 'text/plain' });
+            const anchor = document.createElement('a');
+            anchor.download = 'notes.txt';
+            anchor.href = window.URL.createObjectURL(blob);
+            anchor.target = '_blank';
+            anchor.style.display = 'none'; // just to be safe!
+
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+    </script>
+
+</body>
+</html>

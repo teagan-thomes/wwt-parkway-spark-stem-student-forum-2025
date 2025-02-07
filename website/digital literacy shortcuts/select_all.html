@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Literacy Course: Selecting All Content</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Selecting All Content</h1>
+
+    <!-- Content Sections -->
+
+    <!-- Interactive Practice Section -->
+
+    <div class="practice">
+        <h2>Hands-On Practice</h2>
+        <p>Click inside the editor below and use the 'Select All' keyboard shortcut to highlight all the text. Try copying it afterwards.</p>
+        <textarea id="select-all-editor">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </textarea>
+    </div>
+
+    <!-- Navigation Arrows -->
+
+    <div class="navigation">
+        <a href="save.html">&#8592; Saving Your Work</a>
+        <a href="website/quiz.html">Start the quiz &#8594;</a>
+    </div>
+
+    <footer>
+        © 2023 Digital Literacy Initiative
+    </footer>
+
+    <script>
+        const selectAllEditor = document.getElementById('select-all-editor');
+        selectAllEditor.focus();
+        // Users can use Ctrl+A or Command+A to select all text within the textarea
+    </script>
+
+</body>
+</html>
