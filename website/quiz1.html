@@ -9,10 +9,10 @@
   <div class="card">
     <h1>Interactive Keyboard Shortcuts Quiz</h1>
     <form id="quiz-form">
-      <!-- Question 1: Copy and Paste Interaction -->
+      <!-- Question 1: Copy, Select All, and Paste Interaction -->
       <div class="question">
         <p class="question-title">
-          1. Copy the following text and paste it into the box below using keyboard shortcuts only.
+          1. Use the keyboard shortcut to select all the text below, copy it, and then paste it into the box that follows.
         </p>
         <p>
           <textarea id="q1-source" rows="5" readonly>
@@ -65,17 +65,27 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
   <script>
     // Variables to store quiz answers
     let quizAnswers = {
-      q1: '',
+      q1SelectAll: false,
+      q1CopiedText: '',
       q2: false,
       q3Undo: false,
       q3Redo: false,
       q4: false
     };
 
-    // Question 1: Monitor Paste Event
-    document.getElementById('q1-destination').addEventListener('paste', function() {
+    // Question 1: Monitor Ctrl+A and Paste Events
+    const q1Source = document.getElementById('q1-source');
+    const q1Destination = document.getElementById('q1-destination');
+
+    q1Source.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === 'a' || e.key === 'A')) {
+        quizAnswers.q1SelectAll = true;
+      }
+    });
+
+    q1Destination.addEventListener('paste', function() {
       setTimeout(() => {
-        quizAnswers.q1 = this.value;
+        quizAnswers.q1CopiedText = this.value;
       }, 100);
     });
 
@@ -135,13 +145,15 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       let score = 0;
       let explanations = '';
 
-      // Question 1: Check if text was pasted correctly
-      let originalText = document.getElementById('q1-source').value.trim();
-      if (quizAnswers.q1.trim() === originalText) {
+      // Question 1: Check if Ctrl+A was used and text was pasted correctly
+      let originalText = q1Source.value.trim();
+      if (quizAnswers.q1SelectAll && quizAnswers.q1CopiedText.trim() === originalText) {
         score += 1;
-        explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+C and Ctrl+V to copy and paste the extended text.</p>';
+        explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+A to select all, Ctrl+C to copy, and Ctrl+V to paste the text.</p>';
+      } else if (quizAnswers.q1CopiedText.trim() === originalText) {
+        explanations += '<p><strong>Question 1:</strong> Partially correct. You copied and pasted the text, but did not use Ctrl+A to select all.</p>';
       } else {
-        explanations += '<p><strong>Question 1:</strong> Incorrect. Ensure you copied and pasted the entire text using Ctrl+C and Ctrl+V.</p>';
+        explanations += '<p><strong>Question 1:</strong> Incorrect. Ensure you used Ctrl+A to select all the text, then Ctrl+C to copy, and Ctrl+V to paste.</p>';
       }
 
       // Question 2: Check if the word was highlighted
@@ -177,7 +189,8 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       // Reset the quiz after submission
       document.getElementById('quiz-form').reset();
       quizAnswers = {
-        q1: '',
+        q1SelectAll: false,
+        q1CopiedText: '',
         q2: false,
         q3Undo: false,
         q3Redo: false,
