@@ -355,3 +355,19 @@ code {
 		text-align: center;
 	}
 }
+
+/* Quiz Container */
+#quiz {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+}
+
+#quiz .card {
+	margin-bottom: 20px;
+}
+
+#quiz button {
+	margin: 20px auto;
+	display: block;
+}
