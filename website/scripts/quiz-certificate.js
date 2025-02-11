@@ -11,8 +11,7 @@ function generateChecksum(str) {
 
 // Function to generate certificate URL
 function generateCertificateURL(name) {
-	const secretKey = "WWT-PARKWAY-STEM-2025";
-	const checksum = generateChecksum(name + secretKey);
+	const checksum = generateChecksum(name + CERTIFICATE_SECRET_KEY);
 	return `certificate.html?name=${encodeURIComponent(
 		name
 	)}&checksum=${checksum}`;

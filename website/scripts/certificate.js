@@ -23,10 +23,9 @@ function generateChecksum(str) {
 window.onload = function () {
 	const name = getUrlParameter("name");
 	const providedChecksum = getUrlParameter("checksum");
-	const secretKey = "WWT-PARKWAY-STEM-2025"; // This should match the key used to generate the checksum
 
 	if (name && providedChecksum) {
-		const expectedChecksum = generateChecksum(name + secretKey);
+		const expectedChecksum = generateChecksum(name + CERTIFICATE_SECRET_KEY);
 
 		if (providedChecksum === expectedChecksum) {
 			// Valid certificate request
