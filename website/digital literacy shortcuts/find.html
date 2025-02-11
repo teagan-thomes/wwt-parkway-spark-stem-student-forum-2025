@@ -6,7 +6,7 @@
     <title>Digital Literacy Course: Mastering the Find Function</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
-    
+
 </head>
 <body>
 
@@ -21,6 +21,8 @@
             <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
         </nav>
     </header>
+
+    <div id="header-placeholder"></div>
 
     <div class="container">
         <h1>Mastering the Find Function</h1>
@@ -75,33 +77,8 @@
         </div>
     </div>
 
-    <footer>
-        <a href="../TOS.html">Terms of Service</a>
-        <span>|</span>
-        <a href="../privacy.html">Privacy Policy</a>
-        <!-- Future links for account management -->
-        <span>|</span>
-        <a href="#" id="login-footer">Login</a>
-        <span>|</span>
-        <a href="#" id="register-footer">Register</a>
-        <p>© 2023 Digital Literacy Initiative</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script>
-        function checkAnswer() {
-            const answer = document.getElementById('answer').value;
-            const feedback = document.getElementById('feedback');
-            const correctAnswer = 9; // The correct number of times "find" appears on the page
-
-            if (answer == correctAnswer) {
-                feedback.textContent = 'Correct! The word "find" appears ' + correctAnswer + ' times on this page.';
-                feedback.style.color = '#28a745'; // Green for success
-            } else {
-                feedback.textContent = 'Incorrect. Please try again.';
-                feedback.style.color = '#dc3545'; // Red for errors
-            }
-        }
-    </script>
-
+    <script src="../imports/loadImports.js"></script>
 </body>
 </html>

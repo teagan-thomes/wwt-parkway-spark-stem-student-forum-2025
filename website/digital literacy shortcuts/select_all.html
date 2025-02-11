@@ -20,6 +20,8 @@
         </nav>
     </header>
 
+    <div id="header-placeholder"></div>
+
     <div class="container">
         <h1>Selecting All Content</h1>
 
@@ -71,41 +73,8 @@
         </div>
     </div>
 
-    <footer>
-        <a href="../TOS.html">Terms of Service</a>
-        <span>|</span>
-        <a href="../privacy.html">Privacy Policy</a>
-        <!-- Future links for account management -->
-        <span>|</span>
-        <a href="#" id="login-footer">Login</a>
-        <span>|</span>
-        <a href="#" id="register-footer">Register</a>
-        <p>© 2023 Digital Literacy Initiative</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script>
-        const selectAllEditor = document.getElementById('select-all-editor');
-        const feedback = document.getElementById('feedback');
-
-        selectAllEditor.focus();
-
-        // Event listener for keydown events within the practice area
-        selectAllEditor.addEventListener('keydown', function(event) {
-            if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'a') {
-                showFeedback('Select All action detected! Try using Ctrl + A or Command + A to select all text.', false);
-            }
-        });
-
-        // Function to display feedback messages
-        function showFeedback(message, isError = true) {
-            feedback.textContent = message;
-            feedback.style.color = isError ? '#dc3545' : '#28a745'; // Red for errors, green for success
-            // Clear the message after 3 seconds
-            setTimeout(() => {
-                feedback.textContent = '';
-            }, 3000);
-        }
-    </script>
-
+    <script src="../imports/loadImports.js"></script>
 </body>
 </html>

@@ -9,17 +9,7 @@
 </head>
 <body>
 
-    <header>
-        <!-- Logo Placeholder -->
-        <div class="logo">
-            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
-            <img src="../path/to/logo.png" alt="Logo">
-        </div>
-        <nav>
-            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
-            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
-        </nav>
-    </header>
+    <div id="header-placeholder"></div>
 
     <div class="container">
         <h1>Mastering Undo and Redo</h1>
@@ -72,23 +62,13 @@
         </div>
     </div>
 
-    <footer>
-        <a href="../TOS.html">Terms of Service</a>
-        <span>|</span>
-        <a href="../privacy.html">Privacy Policy</a>
-        <!-- Future links for account management -->
-        <span>|</span>
-        <a href="#" id="login-footer">Login</a>
-        <span>|</span>
-        <a href="#" id="register-footer">Register</a>
-        <p>© 2023 Digital Literacy Initiative</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script>
         const practiceArea = document.getElementById('practice-area');
         practiceArea.focus();
         // Undo and Redo are handled by the browser; no JS required
     </script>
-
+    <script src="../imports/loadImports.js" defer></script>
 </body>
 </html>

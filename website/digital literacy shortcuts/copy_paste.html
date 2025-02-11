@@ -10,17 +10,7 @@
 </head>
 <body>
 
-    <header>
-        <!-- Logo Placeholder -->
-        <div class="logo">
-            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
-            <img src="../path/to/logo.png" alt="Logo">
-        </div>
-        <nav>
-            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
-            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
-        </nav>
-    </header>
+    <div id="header-placeholder"></div>
 
     <div class="container">
         <h1>Mastering Copy and Paste</h1>
@@ -74,7 +64,7 @@
                 <textarea id="practice-area" class="practice-area" placeholder="Type or paste text here to copy, cut, or paste..."></textarea>
                 <div id="feedback" class="feedback"></div>
             </div>
-            
+
         </section>
 
         <div class="navigation">
@@ -83,19 +73,8 @@
         </div>
     </div>
 
-    <footer>
-        <a href="../TOS.html">Terms of Service</a>
-        <span>|</span>
-        <a href="../privacy.html">Privacy Policy</a>
-        <!-- Future links for account management -->
-        <span>|</span>
-        <a href="#" id="login-footer">Login</a>
-        <span>|</span>
-        <a href="#" id="register-footer">Register</a>
-        <p>© 2023 Digital Literacy Initiative</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <!-- JavaScript for Interactive Practice -->
     <script>
         // Get references to the practice area and feedback div
         const practiceArea = document.getElementById('practice-area');
@@ -140,6 +119,6 @@
             }
         });
     </script>
-
+    <script src="../imports/loadImports.js" defer></script>
 </body>
 </html>
