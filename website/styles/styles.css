@@ -434,68 +434,6 @@ button:hover,
 	}
 }
 
-/* Quiz Library Styles */
-.quizlib-question {
-	margin-bottom: 1em;
-}
-
-.quizlib-question-title {
-	font-weight: bold;
-	margin-bottom: 0.5em;
-}
-
-.quizlib-question-answers ul {
-	list-style: none;
-	margin-left: 0;
-}
-
-.answer-input {
-	width: 100px;
-	padding: 5px;
-	font-size: 1rem;
-	margin-left: 10px;
-	border: 2px solid var(--primary-color);
-	color: var(--text-color);
-	outline: none;
-	background-color: var(--practice-background-color);
-	border-radius: 5px;
-}
-
-.quizlib-question-warning {
-	color: var(--incorrect-warning-color);
-	margin-left: 1em;
-	margin-bottom: 0.5em;
-}
-
-.quizlib-correct {
-	color: var(--correct-color);
-}
-
-.quizlib-incorrect {
-	color: var(--incorrect-warning-color);
-}
-
-.quizlib-temp {
-	margin-left: 10px;
-}
-
-/* Quiz Results Colors */
-#quiz-result[style*="background-color: rgb(76, 175, 80)"] {
-	color: var(--result-color);
-}
-
-#quiz-result[style*="background-color: rgb(255, 193, 7)"] {
-	color: var(--result-warning-color);
-}
-
-#quiz-result[style*="background-color: rgb(255, 152, 0)"] {
-	color: var(--result-warning-color);
-}
-
-#quiz-result[style*="background-color: rgb(244, 67, 54)"] {
-	color: var(--result-color);
-}
-
 /* Quiz Container */
 #quiz {
 	max-width: 800px;
@@ -510,4 +448,15 @@ button:hover,
 #quiz button {
 	margin: 20px auto;
 	display: block;
+}
+
+/* Remove unused quizlib styles */
+.quizlib-question,
+.quizlib-question-title,
+.quizlib-question-answers ul,
+.quizlib-question-warning,
+.quizlib-correct,
+.quizlib-incorrect,
+.quizlib-temp {
+	/* Remove these styles */
 }

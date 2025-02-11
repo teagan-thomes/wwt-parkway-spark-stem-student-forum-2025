@@ -8,7 +8,47 @@
         <a href="course_content.html" id="courses-link">Courses</a>
     </nav>
     <nav class="nav-right">
+        <button id="theme-icon" onclick="toggleTheme()" class="theme-toggle" title="Switch to Light Mode">
+            <img src="images/dark-mode.svg" alt="Theme Toggle" class="theme-icon-img">
+        </button>
         <a href="#" id="login-button">Login</a>
         <a href="#" id="register-button">Register</a>
+
     </nav>
 </header>
+
+<style>
+    .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        margin-right: 10px;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .theme-toggle:hover {
+        background-color: var(--header-hover-background);
+    }
+
+    .theme-icon-img {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.5s ease;
+    }
+
+    .theme-icon-img.light-mode {
+        transform: rotate(180deg);
+    }
+
+    /* Override header nav link hover styles */
+    header nav a:hover {
+        background-color: var(--header-hover-background);
+        color: var(--text-color);
+    }
+</style>
