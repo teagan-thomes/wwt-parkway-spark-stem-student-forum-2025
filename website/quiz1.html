@@ -10,23 +10,95 @@
       border: 2px solid var(--primary-color);
     }
     .submit-button {
-      margin-top: 30px; /* Add margin to increase distance */
+      margin-top: 30px;
+    }
+    .certificate-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .certificate-button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    .name-dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .name-dialog-content {
+      background-color: var(--card-background-color);
+      color: var(--text-color);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 10px var(--card-box-shadow);
+    }
+    .name-dialog-content h2 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    .name-dialog-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: var(--light-background);
+      color: var(--text-color);
+    }
+    .name-dialog-content input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .dialog-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .name-dialog-content button {
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .name-dialog-content button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    .cancel-button {
+      background-color: var(--light-background) !important;
+    }
+    .cancel-button:hover {
+      background-color: var(--background-color) !important;
     }
   </style>
+  <script src="scripts/quiz-certificate.js" defer></script>
 </head>
 <body>
-
-  <header>
-    <!-- Logo Placeholder -->
-    <div class="logo">
-      <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
-      <img src="path/to/logo.png" alt="Logo">
-    </div>
-    <nav>
-      <button onclick="history.back()" aria-label="Go Back">⬅️</button>
-      <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
-    </nav>
-  </header>
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
 
   <div class="container">
     <h1>Interactive Keyboard Shortcuts Quiz</h1>
@@ -38,7 +110,7 @@
         </p>
         <div style="margin-left: 20px;">
           <textarea id="q1-source" class="bordered-box" rows="5" readonly>
-“Efficiency is doing things right; effectiveness is doing the right things.” – Peter Drucker
+"Efficiency is doing things right; effectiveness is doing the right things." – Peter Drucker
 
 Mastering keyboard shortcuts is a step towards both efficiency and effectiveness in your daily tasks.
           </textarea>
@@ -219,6 +291,11 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       resultElement.innerHTML = 'You scored ' + score + ' out of 4!';
       resultElement.innerHTML += '<div class="explanation">' + explanations + '</div>';
 
+      // Add certificate button if score is perfect
+      if (score === 4) {
+        addCertificateButton(resultElement);
+      }
+
       // Reset the quiz after submission
       document.getElementById('quiz-form').reset();
       quizAnswers = {
@@ -229,12 +306,16 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
         q3Redo: false,
         q4: false
       };
-      // Reset contenteditable paragraph and passage
+      // Reset contenteditable paragraph
       q3Paragraph.innerHTML = q3OriginalContent;
-      document.getElementById('q2-passage').innerHTML = `
-        Efficiency is a crucial component in achieving success. By focusing on efficiency, you can accomplish more with less effort. Implementing efficient methods in your workflow allows for better time management and productivity.
-      `;
     }
+
+    // Add event listener for Ctrl+F
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === 'f' || e.key === 'F')) {
+        quizAnswers.q2 = true; // Mark question 2 as correct when Ctrl+F is used
+      }
+    });
   </script>
 
 </body>

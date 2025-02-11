@@ -82,7 +82,7 @@
 	</style>
 </head>
 <body>
-	<div class="certificate">
+	<div class="certificate" style="display: none;" id="certificateContainer">
 		<div class="header">Certificate of Completion</div>
 		<div class="sub-header">This is to certify that</div>
 		<div class="recipient" id="recipientName">John Doe</div>
@@ -94,28 +94,10 @@
 		<div class="date" id="certDate"></div>
 		<div class="signature">Course Administrator</div>
 	</div>
+	<div id="errorMessage" style="text-align: center; color: #ff0000; font-size: 24px; display: none;">
+		Invalid certificate request. Please complete the course to receive your certificate.
+	</div>
 
-	<script>
-		// Function to get URL parameters
-		function getUrlParameter(name) {
-			name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-			var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-			var results = regex.exec(location.search);
-			return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-		}
-
-		// Set recipient name from URL parameter
-		window.onload = function() {
-			const name = getUrlParameter('name');
-			if (name) {
-				document.getElementById('recipientName').textContent = name;
-			}
-
-			// Set current date
-			const today = new Date();
-			const options = { year: 'numeric', month: 'long', day: 'numeric' };
-			document.getElementById('certDate').textContent = today.toLocaleDateString('en-US', options);
-		}
-	</script>
+	<script src="scripts/certificate.js"></script>
 </body>
 </html>
