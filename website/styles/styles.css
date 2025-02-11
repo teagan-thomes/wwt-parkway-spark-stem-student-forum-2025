@@ -449,14 +449,3 @@ button:hover,
 	margin: 20px auto;
 	display: block;
 }
-
-/* Remove unused quizlib styles */
-.quizlib-question,
-.quizlib-question-title,
-.quizlib-question-answers ul,
-.quizlib-question-warning,
-.quizlib-correct,
-.quizlib-incorrect,
-.quizlib-temp {
-	/* Remove these styles */
-}
