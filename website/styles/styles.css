@@ -1,26 +1,25 @@
 /* Define CSS Variables */
 :root {
+	/* Core Colors */
 	--primary-color: #007bff;
 	--secondary-color: #0056b3;
 	--background-color: #181a1b;
 	--light-background: #272a2c;
 	--text-color: #f0f7ff;
-	--fade-text-color: #f0f7ff80;
-	--header-footer-background-color: var(--light-background);
-	--header-footer-box-shadow: rgba(0, 0, 0, 0.1);
-	--border-color: #007bff;
-	--hover-color: #f0f7ff80;
-	--card-background-color: var(--light-background);
-	--card-box-shadow: rgba(0, 0, 0, 0.1);
-	--card-hover-shadow: rgba(0, 0, 0, 0.2);
+	--border-color: var(--primary-color);
+
+	/* Component Colors */
+	--header-footer-background: var(--light-background);
+	--card-background: var(--light-background);
+
+	/* Interactive Colors */
+	--hover-color: #e9ecef;
 	--correct-color: #1abc9c;
-	--dark-green: #1abc9c27;
-	--incorrect-warning-color: #f44336;
-	--result-color: white;
-	--result-warning-color: black;
-	--practice-background-color: var(--background-color);
-	--feedback-color: #dc3545;
-	--code-background-color: var(--light-background);
+	--incorrect-color: #dc3545;
+
+	/* Shadows */
+	--shadow-color: rgba(0, 0, 0, 0.1);
+	--shadow-color-dark: rgba(0, 0, 0, 0.2);
 }
 
 /* Reset some default styles */
@@ -42,7 +41,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	line-height: 1.6;
-	padding-top: 70px; /* Adjust to match header height */
+	padding-top: 70px;
 }
 
 /* Header Styling */
@@ -50,13 +49,13 @@ header {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: var(--header-footer-background-color);
-	box-shadow: 0 2px 5px var(--header-footer-box-shadow);
+	background-color: var(--header-footer-background);
+	box-shadow: 0 2px 5px var(--shadow-color);
 	z-index: 1000;
 	display: flex;
 	align-items: center;
-	padding: 10px 20px;
-	justify-content: space-between;
+	padding: 0 20px;
+	height: 65px;
 }
 
 header nav {
@@ -73,7 +72,7 @@ header nav a {
 	padding: 6px 12px;
 	border-radius: 5px;
 	background-color: var(--light-background);
-	border: 1px solid var(--primary-color);
+	border: 1px solid var(--border-color);
 }
 
 header nav a:hover {
@@ -90,12 +89,18 @@ header .nav-left {
 	margin-left: 20px;
 }
 
+/* Logo Styling */
 .logo {
-	margin-right: 0;
+	padding: 0 5px;
+	display: flex;
+	align-items: center;
+	min-width: 200px;
 }
 
 .logo img {
-	height: 40px;
+	height: 65px;
+	width: auto;
+	display: block;
 }
 
 /* Navigation Styling */
@@ -105,7 +110,7 @@ header .nav-left {
 	align-items: center;
 	background-color: var(--background-color);
 	padding: 10px 20px;
-	box-shadow: 0 2px 5px var(--header-footer-box-shadow);
+	box-shadow: 0 2px 5px var(--shadow-color);
 	margin: 20px;
 }
 
@@ -118,36 +123,20 @@ header .nav-left {
 	padding: 10px 15px;
 	border-radius: 5px;
 	background-color: var(--light-background);
-	border: 2px solid var(--primary-color);
+	border: 2px solid var(--border-color);
 }
 
 .navigation a:hover {
-	color: var(--hover-color);
-	background-color: var(--primary-color);
-}
-
-.navigation button {
-	background-color: var(--light-background);
-	border: 2px solid var(--primary-color);
-	font-size: 1.2rem;
-	cursor: pointer;
-	margin-left: 10px;
-	transition: color 0.3s, background-color 0.3s;
-	padding: 10px 15px;
-	border-radius: 5px;
-}
-
-.navigation button:hover {
-	color: var(--hover-color);
+	color: var(--text-color);
 	background-color: var(--primary-color);
 }
 
 /* Footer Styling */
 footer {
-	background-color: var(--header-footer-background-color);
+	background-color: var(--header-footer-background);
 	padding: 20px;
 	border-top: 1px solid var(--border-color);
-	box-shadow: 0 -2px 5px var(--header-footer-box-shadow);
+	box-shadow: 0 -2px 5px var(--shadow-color);
 	width: 100%;
 	margin-top: auto;
 	display: flex;
@@ -176,28 +165,19 @@ footer a:hover {
 	color: var(--hover-color);
 }
 
-/* Container Styles */
+/* Container and Layout */
 .container {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
-/* Main Content Styling */
 .main {
 	flex: 1;
 	padding: 100px 20px 40px;
 	max-width: 1200px;
 	margin: 0 auto;
 	text-align: center;
-}
-
-/* Card Styles */
-.card {
-	padding: 16px;
-	background-color: var(--card-background-color);
-	border-radius: 8px;
-	box-shadow: 0 2px 4px 1px var(--card-box-shadow);
 }
 
 /* Course Cards */
@@ -210,18 +190,18 @@ footer a:hover {
 }
 
 .course-card {
-	background-color: var(--card-background-color);
+	background-color: var(--card-background);
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
 	width: 300px;
 	padding: 20px;
-	box-shadow: 0 2px 5px var(--card-box-shadow);
+	box-shadow: 0 2px 5px var(--shadow-color);
 	transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .course-card:hover {
 	transform: translateY(-5px);
-	box-shadow: 0 4px 10px var(--card-hover-shadow);
+	box-shadow: 0 4px 10px var(--shadow-color-dark);
 }
 
 .course-card h2 {
@@ -234,62 +214,66 @@ footer a:hover {
 	margin-bottom: 20px;
 }
 
-.course-card a {
+/* Buttons and Interactive Elements */
+button,
+.button {
 	display: inline-block;
 	padding: 10px 20px;
 	background-color: var(--primary-color);
-	color: var(--result-color);
+	color: white;
 	border: none;
 	border-radius: 5px;
 	text-decoration: none;
 	font-size: 1rem;
-	transition: background-color 0.3s;
+	transition: background-color 0.3s, transform 0.2s;
 	cursor: pointer;
 }
 
-.course-card a:hover {
+button:hover,
+.button:hover {
 	background-color: var(--secondary-color);
+	transform: translateY(-2px);
 }
 
-.shortcut {
-	width: 48%;
+/* Practice and Quiz Elements */
+.practice-section {
+	margin-top: 40px;
+	padding: 20px;
 	background-color: var(--light-background);
-	padding: 15px;
-	margin-bottom: 20px;
-	box-sizing: border-box;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px var(--shadow-color);
 }
 
-.shortcuts {
-	display: flex;
-	justify-content: space-between;
-	gap: 20px;
-}
-
-.tip {
-	background-color: var(--dark-green);
-	border-left: 5px solid var(--correct-color);
-	padding: 15px;
-	margin-bottom: 20px;
-}
-
-.practice {
-	background-color: #f9e79f;
-	border-left: 5px solid #f1c40f;
-	padding: 15px;
-	margin-bottom: 20px;
-}
-
+.practice-area,
 .bordered-box {
 	width: 100%;
 	min-height: 100px;
-	border: 2px solid var(--primary-color);
+	border: 2px solid var(--border-color);
 	color: var(--text-color);
 	border-radius: 5px;
 	padding: 10px;
 	margin-top: 10px;
 	font-size: 1rem;
 	outline: none;
-	background-color: var(--practice-background-color);
+	background-color: var(--background-color);
+}
+
+.answer-input {
+	width: 100px;
+	padding: 5px;
+	font-size: 1rem;
+	margin-left: 10px;
+	border: 2px solid var(--border-color);
+	color: var(--text-color);
+	outline: none;
+	background-color: var(--background-color);
+	border-radius: 5px;
+}
+
+.feedback {
+	margin-top: 10px;
+	font-size: 0.9rem;
+	color: var(--incorrect-color);
 }
 
 /* Typography */
@@ -326,74 +310,12 @@ li {
 	margin-bottom: 10px;
 }
 
-/* Code Styling */
+/* Code Blocks */
 code {
-	background-color: var(--code-background-color);
+	background-color: var(--light-background);
 	padding: 2px 6px;
 	border-radius: 4px;
 	font-family: "Courier New", Courier, monospace;
-}
-
-/* Buttons */
-button,
-.button {
-	display: inline-block;
-	padding: 10px 20px;
-	background-color: var(--primary-color);
-	color: var(--result-color);
-	border: none;
-	border-radius: 5px;
-	text-decoration: none;
-	font-size: 1rem;
-	transition: background-color 0.3s;
-	cursor: pointer;
-}
-
-button:hover,
-.button:hover {
-	background-color: var(--secondary-color);
-}
-
-/* Quiz Styles */
-#quiz-result {
-	display: none;
-	margin-bottom: 10px;
-	text-align: center;
-	font-size: 16px;
-	padding: 15px;
-	border-radius: 8px;
-}
-
-.quiz-button {
-	margin-top: 30px;
-}
-
-/* Practice Section */
-.practice-section {
-	margin-top: 40px;
-	padding: 20px;
-	background-color: var(--light-background);
-	border-radius: 8px;
-	box-shadow: 0 2px 5px var(--card-box-shadow);
-}
-
-.practice-area {
-	width: 100%;
-	min-height: 100px;
-	border: 2px dashed var(--border-color);
-	color: var(--fade-text-color);
-	border-radius: 5px;
-	padding: 10px;
-	margin-top: 10px;
-	font-size: 1rem;
-	outline: none;
-	background-color: var(--practice-background-color);
-}
-
-.feedback {
-	margin-top: 10px;
-	font-size: 0.9rem;
-	color: var(--feedback-color);
 }
 
 /* Images */
@@ -402,7 +324,7 @@ button:hover,
 	height: auto;
 	margin-top: 10px;
 	border-radius: 8px;
-	box-shadow: 0 2px 5px var(--card-box-shadow);
+	box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 /* Responsive Design */
@@ -428,35 +350,8 @@ button:hover,
 		font-size: 1rem;
 	}
 
-	.quiz-button {
+	.button {
 		width: 100%;
 		text-align: center;
 	}
-}
-
-/* Quiz Container */
-#quiz {
-	max-width: 800px;
-	margin: 20px auto;
-	padding: 20px;
-}
-
-#quiz .card {
-	margin-bottom: 20px;
-}
-
-#quiz button {
-	margin: 20px auto;
-	display: block;
-}
-
-/* Remove unused quizlib styles */
-.quizlib-question,
-.quizlib-question-title,
-.quizlib-question-answers ul,
-.quizlib-question-warning,
-.quizlib-correct,
-.quizlib-incorrect,
-.quizlib-temp {
-	/* Remove these styles */
 }
