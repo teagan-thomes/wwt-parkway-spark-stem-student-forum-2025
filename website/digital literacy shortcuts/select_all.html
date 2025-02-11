@@ -3,39 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <title>Digital Literacy Course: Selecting All Content</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
 
-    <h1>Selecting All Content</h1>
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+            <img src="../path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+        </nav>
+    </header>
 
-    <!-- Content Sections -->
+    <div class="container">
+        <h1>Selecting All Content</h1>
 
-    <!-- Interactive Practice Section -->
+        <section id="why-it-matters">
+            <h2>Why It Matters</h2>
+            <p>Selecting all content is a fundamental skill that can save you time and effort when you need to copy, cut, or format large sections of text.</p>
+        </section>
 
-    <div class="practice">
-        <h2>Hands-On Practice</h2>
-        <p>Click inside the editor below and use the 'Select All' keyboard shortcut to highlight all the text. Try copying it afterwards.</p>
-        <textarea id="select-all-editor">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </textarea>
-    </div>
+        <section id="the-basics">
+            <h2>The Basics</h2>
+            <ol>
+                <li><strong>Select All:</strong> Use the keyboard shortcut <code>Ctrl + A</code> (Windows) or <code>Cmd + A</code> (macOS) to select all content in a document or text area.</li>
+            </ol>
+        </section>
 
-    <!-- Navigation Arrows -->
+        <section id="keyboard-shortcuts">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="shortcuts">
+                <div class="shortcut">
+                    <h3>For Windows Users</h3>
+                    <ul>
+                        <li><strong>Select All:</strong> Ctrl + A</li>
+                    </ul>
+                </div>
+                <div class="shortcut">
+                    <h3>For Mac Users</h3>
+                    <ul>
+                        <li><strong>Select All:</strong> Command (⌘) + A</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tip">
+                <p><strong>Pro Tip:</strong> Tabbing into a text box will let you only select all the text ONLY in that box!</p>
+            </div>
+        </section>
 
-    <div class="navigation">
-        <a href="save.html">&#8592; Saving Your Work</a>
-        <a href="website/quiz.html">Start the quiz &#8594;</a>
+        <section id="interactive-practice">
+            <h2>Hands-On Practice</h2>
+            <p>Click inside the editor below and use the 'Select All' keyboard shortcut to highlight all the text. Try copying it afterwards.</p>
+            <div class="practice-section">
+                <textarea id="select-all-editor" class="practice-area">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="hub.html">&#8592; Back to Hub</a>
+            <a href="../quiz1.html">Start the quiz &#8594;</a>
+        </div>
     </div>
 
     <footer>
-        © 2023 Digital Literacy Initiative
+        <a href="../TOS.html">Terms of Service</a>
+        <span>|</span>
+        <a href="../privacy.html">Privacy Policy</a>
+        <!-- Future links for account management -->
+        <span>|</span>
+        <a href="#" id="login-footer">Login</a>
+        <span>|</span>
+        <a href="#" id="register-footer">Register</a>
+        <p>© 2023 Digital Literacy Initiative</p>
     </footer>
 
     <script>
         const selectAllEditor = document.getElementById('select-all-editor');
+        const feedback = document.getElementById('feedback');
+
         selectAllEditor.focus();
-        // Users can use Ctrl+A or Command+A to select all text within the textarea
+
+        // Event listener for keydown events within the practice area
+        selectAllEditor.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'a') {
+                showFeedback('Select All action detected! Try using Ctrl + A or Command + A to select all text.', false);
+            }
+        });
+
+        // Function to display feedback messages
+        function showFeedback(message, isError = true) {
+            feedback.textContent = message;
+            feedback.style.color = isError ? '#dc3545' : '#28a745'; // Red for errors, green for success
+            // Clear the message after 3 seconds
+            setTimeout(() => {
+                feedback.textContent = '';
+            }, 3000);
+        }
     </script>
 
 </body>

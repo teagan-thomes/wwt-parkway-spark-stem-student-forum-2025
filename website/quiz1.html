@@ -1,66 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Interactive Keyboard Shortcuts Quiz</title>
-  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+  <style>
+    .bordered-box:focus {
+      border: 2px solid var(--primary-color);
+    }
+    .submit-button {
+      margin-top: 30px; /* Add margin to increase distance */
+    }
+  </style>
 </head>
 <body>
-  <div class="card">
+
+  <header>
+    <!-- Logo Placeholder -->
+    <div class="logo">
+      <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+      <img src="path/to/logo.png" alt="Logo">
+    </div>
+    <nav>
+      <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+      <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+    </nav>
+  </header>
+
+  <div class="container">
     <h1>Interactive Keyboard Shortcuts Quiz</h1>
     <form id="quiz-form">
       <!-- Question 1: Copy, Select All, and Paste Interaction -->
-      <div class="question">
+      <div class="practice-section">
         <p class="question-title">
           1. Use the keyboard shortcut to select all the text below, copy it, and then paste it into the box that follows.
         </p>
-        <p>
-          <textarea id="q1-source" rows="5" readonly>
+        <div style="margin-left: 20px;">
+          <textarea id="q1-source" class="bordered-box" rows="5" readonly>
 “Efficiency is doing things right; effectiveness is doing the right things.” – Peter Drucker
 
 Mastering keyboard shortcuts is a step towards both efficiency and effectiveness in your daily tasks.
           </textarea>
-        </p>
-        <p>
-          <textarea id="q1-destination" rows="5" placeholder="Paste here"></textarea>
-        </p>
+        </div>
+        <div style="margin-left: 20px;">
+          <textarea id="q1-destination" class="bordered-box" rows="5" placeholder="Paste here"></textarea>
+        </div>
       </div>
 
       <!-- Question 2: Find Functionality -->
-      <div class="question">
+      <div class="practice-section">
         <p class="question-title">
-          2. Use the keyboard shortcut to find and highlight all occurrences of the word "efficiency" in the passage below.
+          2. Use the Find function to answer the following question:
         </p>
-        <p id="q2-passage">
-          Efficiency is a crucial component in achieving success. By focusing on efficiency, you can accomplish more with less effort. Implementing efficient methods in your workflow allows for better time management and productivity.
-        </p>
+        <div style="margin-left: 20px;">
+          <label for="q2-answer">How many times does the word "use" appear on this page?</label>
+          <input type="number" id="q2-answer" class="answer-input" placeholder="">
+        </div>
+        <div id="q2-feedback" class="feedback"></div>
       </div>
 
       <!-- Question 3: Undo and Redo Actions -->
-      <div class="question">
+      <div class="practice-section">
         <p class="question-title">
           3. Edit the paragraph below: delete the text, then use the undo shortcut to restore it, and finally use the redo shortcut to remove it again.
         </p>
-        <p contenteditable="true" id="q3-paragraph">
-          This paragraph contains important information that you might need later. Please delete it using your keyboard, undo the deletion, and then redo it using the appropriate keyboard shortcuts.
-        </p>
+        <div style="margin-left: 20px;">
+          <p contenteditable="true" id="q3-paragraph" class="bordered-box" style="outline: none;">
+            This paragraph contains important information that you might need later. Please delete it using your keyboard, undo the deletion, and then redo it using the appropriate keyboard shortcuts.
+          </p>
+        </div>
       </div>
 
       <!-- Question 4: Scenario-Based with Interaction -->
-      <div class="question">
+      <div class="practice-section">
         <p class="question-title">
           4. You want to save your document quickly without using the mouse. Press the keyboard shortcut now to perform the 'Save' action.
         </p>
-        <input type="text" id="q4-input" placeholder="Focus here and press the shortcut" readonly onfocus="this.blur()">
+        <div style="margin-left: 20px;">
+          <input type="text" id="q4-input" class="bordered-box" placeholder="Focus here and press the shortcut" readonly onfocus="this.blur()">
+        </div>
       </div>
 
       <!-- Submit Button -->
-      <button type="button" onclick="submitQuiz()">Submit Answers</button>
+      <button type="button" class="submit-button" onclick="submitQuiz()">Submit Answers</button>
     </form>
 
     <!-- Result Display -->
     <div id="quiz-result"></div>
   </div>
+
+  <footer>
+    <a href="TOS.html">Terms of Service</a>
+    <span>|</span>
+    <a href="privacy.html">Privacy Policy</a>
+    <!-- Future links for account management -->
+    <span>|</span>
+    <a href="#" id="login-footer">Login</a>
+    <span>|</span>
+    <a href="#" id="register-footer">Register</a>
+    <p>© 2023 Digital Literacy Initiative</p>
+  </footer>
 
   <script>
     // Variables to store quiz answers
@@ -89,17 +129,16 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       }, 100);
     });
 
-    // Question 2: Monitor Find Shortcut (Ctrl+F)
-    document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && (e.key === 'f' || e.key === 'F')) {
-        e.preventDefault();
-        let passageElement = document.getElementById('q2-passage');
-        let passageText = passageElement.innerText;
-        let highlightedText = passageText.replace(/(efficiency)/gi, function(match) {
-          return '<mark>' + match + '</mark>';
-        });
-        passageElement.innerHTML = highlightedText;
+    // Question 2: Check Answer
+    document.getElementById('q2-answer').addEventListener('input', function() {
+      const answer = this.value;
+      const feedback = document.getElementById('q2-feedback');
+      const correctAnswer = 5; // The correct number of times "use" appears in the passage
+
+      if (answer == correctAnswer) {
         quizAnswers.q2 = true;
+      } else {
+        quizAnswers.q2 = false;
       }
     });
 
@@ -159,9 +198,9 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       // Question 2: Check if the word was highlighted
       if (quizAnswers.q2) {
         score += 1;
-        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "efficiency".</p>';
+        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "use".</p>';
       } else {
-        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "efficiency".</p>';
+        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "use". Be careful to not count other words that contain "use" inside them.</p>';
       }
 
       // Question 3: Check if undo and redo actions were performed
@@ -203,5 +242,6 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       `;
     }
   </script>
+
 </body>
 </html>

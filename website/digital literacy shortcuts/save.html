@@ -3,49 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <title>Digital Literacy Course: Saving Your Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--card-background-color);
+            padding: 20px;
+            box-shadow: 0 2px 10px var(--card-box-shadow);
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .popup p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        .popup button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--result-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: var(--secondary-color);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Saving Your Work</h1>
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+            <img src="../path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+        </nav>
+    </header>
 
-    <!-- Content Sections -->
+    <div class="container">
+        <h1>Saving Your Work</h1>
 
-    <!-- Interactive Practice Section -->
+        <section id="why-it-matters">
+            <h2>Why It Matters</h2>
+            <p>Saving your work is crucial to ensure that you don't lose any progress. Regularly saving your work can prevent data loss due to unexpected issues.</p>
+        </section>
 
-    <div class="practice">
-        <h2>Hands-On Practice</h2>
-        <p>Type some notes in the editor below, and use the keyboard shortcut to save your work. Note that due to browser limitations, saving will prompt you to save the content as a file.</p>
-        <textarea id="editor" placeholder="Start typing your notes here..."></textarea>
-        <div id="buttons">
-            <button onclick="saveContent()">Save Notes</button>
+        <section id="the-basics">
+            <h2>The Basics</h2>
+            <ol>
+                <li><strong>Save:</strong> Use the keyboard shortcut <code>Ctrl + S</code> (Windows) or <code>Cmd + S</code> (macOS) to save your work.</li>
+                <li><strong>Save As:</strong> Use the "Save As" option to save your work with a different name or location.</li>
+            </ol>
+        </section>
+
+        <section id="keyboard-shortcuts">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="shortcuts">
+                <div class="shortcut">
+                    <h3>For Windows Users</h3>
+                    <ul>
+                        <li><strong>Save:</strong> Ctrl + S</li>
+                        <li><strong>Save As:</strong> F12</li>
+                    </ul>
+                </div>
+                <div class="shortcut">
+                    <h3>For Mac Users</h3>
+                    <ul>
+                        <li><strong>Save:</strong> Command (⌘) + S</li>
+                        <li><strong>Save As:</strong> Command (⌘) + Shift + S</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tip">
+                <p><strong>Pro Tip:</strong> Regularly saving your work can prevent data loss and ensure that you always have the latest version of your work.</p>
+            </div>
+        </section>
+
+        <section id="interactive-practice">
+            <h2>Hands-On Practice</h2>
+            <p>Type some notes in the editor below, and use the keyboard shortcut to save your work. Note that due to browser limitations, saving will prompt you to save the content as a file.</p>
+            <div class="practice-section">
+                <textarea id="editor" class="practice-area" placeholder="Start typing your notes here..."></textarea>
+                <div id="buttons">
+                    <button class="submit-button" onclick="showPopup()">Save Notes</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="hub.html">&#8592; Back to Hub</a>
+            <a href="select_all.html">Selecting All Content &#8594;</a>
         </div>
     </div>
 
-    <!-- Navigation Arrows -->
-
-    <div class="navigation">
-        <a href="find.html">&#8592; Find Function Overview</a>
-        <a href="select_all.html">Selecting All Content &#8594;</a>
-    </div>
-
     <footer>
-        © 2023 Digital Literacy Initiative
+        <a href="../TOS.html">Terms of Service</a>
+        <span>|</span>
+        <a href="../privacy.html">Privacy Policy</a>
+        <!-- Future links for account management -->
+        <span>|</span>
+        <a href="#" id="login-footer">Login</a>
+        <span>|</span>
+        <a href="#" id="register-footer">Register</a>
+        <p>© 2023 Digital Literacy Initiative</p>
     </footer>
 
-    <script>
-        function saveContent() {
-            const textToSave = document.getElementById('editor').value;
-            const blob = new Blob([textToSave], { type: 'text/plain' });
-            const anchor = document.createElement('a');
-            anchor.download = 'notes.txt';
-            anchor.href = window.URL.createObjectURL(blob);
-            anchor.target = '_blank';
-            anchor.style.display = 'none'; // just to be safe!
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2>File Saved</h2>
+        <p>Your notes have been "saved". This is a simulated save action for practice purposes.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
 
-            document.body.appendChild(anchor);
-            anchor.click();
-            document.body.removeChild(anchor);
+    <script>
+        function showPopup() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
         }
     </script>
 

@@ -1,42 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Literacy Course: Mastering the Find Function</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
+    
 </head>
 <body>
 
-    <h1>Mastering the Find Function</h1>
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+            <img src="../path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+        </nav>
+    </header>
 
-    <!-- Content Sections -->
+    <div class="container">
+        <h1>Mastering the Find Function</h1>
 
-    <!-- Interactive Practice Section -->
+        <section id="why-it-matters">
+            <h2>Why It Matters</h2>
+            <p>The Find function is a powerful tool for quickly locating specific words or phrases in a document. It can save you time and effort, especially when working with large amounts of text.</p>
+        </section>
 
-    <div class="practice">
-        <h2>Hands-On Practice</h2>
-        <p>Use the text area below to practice using the Find function. Try searching for the word "technology" using the keyboard shortcut.</p>
-        <textarea id="find-editor">
-The rapid advancement of technology has transformed the way we live, work, and communicate. Embracing new technological tools can enhance productivity and open up a world of opportunities.
-        </textarea>
-    </div>
+        <section id="the-basics">
+            <h2>The Basics</h2>
+            <ol>
+                <li><strong>Open Find:</strong> Use the keyboard shortcut <code>Ctrl + F</code> (Windows) or <code>Cmd + F</code> (macOS) to open the Find function.</li>
+                <li><strong>Enter Search Term:</strong> Type the word or phrase you want to find in the search box.</li>
+                <li><strong>Navigate Results:</strong> Use the navigation buttons to move through the search results.</li>
+            </ol>
+        </section>
 
-    <!-- Navigation Arrows -->
+        <section id="keyboard-shortcuts">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="shortcuts">
+                <div class="shortcut">
+                    <h3>For Windows Users</h3>
+                    <ul>
+                        <li><strong>Open Find:</strong> Ctrl + F</li>
+                    </ul>
+                </div>
+                <div class="shortcut">
+                    <h3>For Mac Users</h3>
+                    <ul>
+                        <li><strong>Open Find:</strong> Command (⌘) + F</li>
+                    </ul>
+                </div>
+            </div>
 
-    <div class="navigation">
-        <a href="undo_redo.html">&#8592; Undo and Redo Overview</a>
-        <a href="save.html">Saving Your Work &#8594;</a>
+        </section>
+
+        <section id="practice-section" class="practice-section">
+            <h2>Hands-On Practice</h2>
+            <p>Use the Find function to answer the following question:</p>
+            <div>
+                <label for="answer">How many times does the word "find" appear on this page?</label>
+                <input type="number" id="answer" class="answer-input" placeholder="">
+                <button class="submit-button" onclick="checkAnswer()">Submit</button>
+            </div>
+            <div id="feedback" class="feedback"></div>
+        </section>
+
+        <div class="navigation">
+            <a href="hub.html">&#8592; Back to Hub</a>
+            <a href="save.html">Saving Your Work &#8594;</a>
+        </div>
     </div>
 
     <footer>
-        © 2023 Digital Literacy Initiative
+        <a href="../TOS.html">Terms of Service</a>
+        <span>|</span>
+        <a href="../privacy.html">Privacy Policy</a>
+        <!-- Future links for account management -->
+        <span>|</span>
+        <a href="#" id="login-footer">Login</a>
+        <span>|</span>
+        <a href="#" id="register-footer">Register</a>
+        <p>© 2023 Digital Literacy Initiative</p>
     </footer>
 
     <script>
-        const findEditor = document.getElementById('find-editor');
-        findEditor.focus();
-        // Users can use Ctrl+F or Command+F to open the browser's find function
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value;
+            const feedback = document.getElementById('feedback');
+            const correctAnswer = 9; // The correct number of times "find" appears on the page
+
+            if (answer == correctAnswer) {
+                feedback.textContent = 'Correct! The word "find" appears ' + correctAnswer + ' times on this page.';
+                feedback.style.color = '#28a745'; // Green for success
+            } else {
+                feedback.textContent = 'Incorrect. Please try again.';
+                feedback.style.color = '#dc3545'; // Red for errors
+            }
+        }
     </script>
 
 </body>

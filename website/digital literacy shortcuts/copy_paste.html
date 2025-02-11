@@ -2,63 +2,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Literacy Course: Mastering Copy and Paste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
+
 </head>
 <body>
 
-    <h1>Mastering Copy and Paste</h1>
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+            <img src="../path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+        </nav>
+    </header>
 
-    <!-- Content Sections -->
+    <div class="container">
+        <h1>Mastering Copy and Paste</h1>
 
-    <div class="section">
-        <h2>Why It Matters</h2>
-        <p>Copying and pasting might seem basic, but it's a powerhouse for boosting productivity. Whether you're drafting emails, coding, or organizing documents, this skill saves time and ensures accuracy.</p>
-    </div>
+        <section id="why-it-matters">
+            <h2>Why It Matters</h2>
+            <p>Copying and pasting might seem basic, but it's a powerhouse for boosting productivity. Whether you're drafting emails, coding, or organizing documents, this skill saves time and ensures accuracy.</p>
+        </section>
 
-    <div class="section">
-        <h2>The Basics</h2>
-        <ol>
-            <li><strong>Select Content:</strong> Highlight the text or files you want to copy.</li>
-            <li><strong>Copy:</strong> Duplicate the selected content into your clipboard.</li>
-            <li><strong>Paste:</strong> Insert the content from your clipboard to the desired location.</li>
-        </ol>
-    </div>
+        <section id="the-basics">
+            <h2>The Basics</h2>
+            <ol>
+                <li><strong>Select Content:</strong> Highlight the text or files you want to copy.</li>
+                <li><strong>Copy:</strong> Duplicate the selected content into your clipboard.</li>
+                <li><strong>Paste:</strong> Insert the content from your clipboard to the desired location.</li>
+                <li><strong>Cut:</strong> Remove the selected content and place it into your clipboard.</li>
+            </ol>
+        </section>
 
-    <!-- Keyboard Shortcuts Section -->
+        <section id="keyboard-shortcuts">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="shortcuts">
+                <div class="shortcut">
+                    <h3>For Windows Users</h3>
+                    <ul>
+                        <li><strong>Copy:</strong> Ctrl + C</li>
+                        <li><strong>Paste:</strong> Ctrl + V</li>
+                        <li><strong>Select All:</strong> Ctrl + A</li>
+                        <li><strong>Cut:</strong> Ctrl + X</li>
+                    </ul>
+                </div>
+                <div class="shortcut">
+                    <h3>For Mac Users</h3>
+                    <ul>
+                        <li><strong>Copy:</strong> Command (⌘) + C</li>
+                        <li><strong>Paste:</strong> Command (⌘) + V</li>
+                        <li><strong>Select All:</strong> Command (⌘) + A</li>
+                        <li><strong>Cut:</strong> Command (⌘) + X</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tip">
+                <p><strong>Pro Tip:</strong> Mastering these shortcuts can significantly speed up your workflow. They're universal across most applications!</p>
+            </div>
+        </section>
 
-    <div class="section">
-        <h2>Keyboard Shortcuts</h2>
-        <!-- Shortcuts for Windows and Mac -->
-    </div>
+        <section id="interactive-practice">
+            <h2>Hands-On Practice</h2>
+            <p>Use the editor below to practice copying, cutting, and pasting text. Try using the keyboard shortcuts to copy or cut text and paste it within the editor.</p>
+            <div class="practice-section">
+                <textarea id="practice-area" class="practice-area" placeholder="Type or paste text here to copy, cut, or paste..."></textarea>
+                <div id="feedback" class="feedback"></div>
+            </div>
+            
+        </section>
 
-    <!-- Interactive Practice Section -->
-
-    <div class="practice">
-        <h2>Hands-On Practice</h2>
-        <p>Use the editor below to practice copying and pasting text. Try using the keyboard shortcuts to copy selected text and paste it elsewhere in the editor.</p>
-        <textarea id="editor" placeholder="Start typing here..."></textarea>
-    </div>
-
-    <!-- Additional Sections -->
-
-    <!-- Navigation Arrows -->
-
-    <div class="navigation">
-        <a href="website/index.html">&#8592; Back to Home</a>
-        <a href="undo_redo.html">Undo and Redo Overview &#8594;</a>
+        <div class="navigation">
+            <a href="hub.html">&#8592; Back to Hub</a>
+            <a href="undo_redo.html">Undo and Redo Overview &#8594;</a>
+        </div>
     </div>
 
     <footer>
-        © 2023 Digital Literacy Initiative
+        <a href="../TOS.html">Terms of Service</a>
+        <span>|</span>
+        <a href="../privacy.html">Privacy Policy</a>
+        <!-- Future links for account management -->
+        <span>|</span>
+        <a href="#" id="login-footer">Login</a>
+        <span>|</span>
+        <a href="#" id="register-footer">Register</a>
+        <p>© 2023 Digital Literacy Initiative</p>
     </footer>
 
     <!-- JavaScript for Interactive Practice -->
-
     <script>
-        const editor = document.getElementById('editor');
-        // No additional JS needed as copy-paste functions are native
-        editor.focus();
+        // Get references to the practice area and feedback div
+        const practiceArea = document.getElementById('practice-area');
+        const feedback = document.getElementById('feedback');
+
+        // Function to display feedback messages
+        function showFeedback(message, isError = true) {
+            feedback.textContent = message;
+            feedback.style.color = isError ? '#dc3545' : '#28a745'; // Red for errors, green for success
+            // Clear the message after 3 seconds
+            setTimeout(() => {
+                feedback.textContent = '';
+            }, 3000);
+        }
+
+        // Event listener for keydown events within the practice area
+        practiceArea.addEventListener('keydown', function(event) {
+            // Detect specific key combinations
+            if (event.ctrlKey || event.metaKey) { // metaKey for Mac (Cmd)
+                switch(event.key.toLowerCase()) {
+                    case 'c':
+                        showFeedback('Copy action detected! Try using Ctrl + C to copy text.', false);
+                        break;
+                    case 'v':
+                        showFeedback('Paste action detected! Try using Ctrl + V to paste text.', false);
+                        break;
+                    case 'x':
+                        showFeedback('Cut action detected! Try using Ctrl + X to cut text.', false);
+                        break;
+                    default:
+                        // Do nothing for other keys
+                        break;
+                }
+            }
+        });
+
+        // Optional: Prevent default browser actions for certain keybinds within the practice area
+        practiceArea.addEventListener('keydown', function(event) {
+            const keysToPrevent = ['s', 'f']; // Add more keys if needed
+            if ((event.ctrlKey || event.metaKey) && keysToPrevent.includes(event.key.toLowerCase())) {
+                event.preventDefault(); // Prevent default action (e.g., opening save dialog)
+            }
+        });
     </script>
 
 </body>
