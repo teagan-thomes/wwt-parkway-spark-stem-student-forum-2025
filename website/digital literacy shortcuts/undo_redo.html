@@ -2,37 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Literacy Course: Mastering Undo and Redo</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
 
-    <h1>Mastering Undo and Redo</h1>
+    <header>
+        <!-- Logo Placeholder -->
+        <div class="logo">
+            <!-- Replace 'path/to/logo.png' with the actual path to your logo -->
+            <img src="../path/to/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <button onclick="history.back()" aria-label="Go Back">⬅️</button>
+            <button onclick="history.forward()" aria-label="Go Forward">➡️</button>
+        </nav>
+    </header>
 
-    <!-- Content Sections -->
+    <div class="container">
+        <h1>Mastering Undo and Redo</h1>
 
-    <!-- Interactive Practice Section -->
+        <section id="why-it-matters">
+            <h2>Why It Matters</h2>
+            <p>Undo and redo functions are essential for correcting mistakes and refining your work. They allow you to revert changes or reapply them, making your workflow more efficient and less stressful.</p>
+        </section>
 
-    <div class="practice">
-        <h2>Hands-On Practice</h2>
-        <p>Type into the editor below and use the Undo and Redo keyboard shortcuts to see these features in action.</p>
-        <textarea id="editor" placeholder="Start typing here..."></textarea>
-    </div>
+        <section id="the-basics">
+            <h2>The Basics</h2>
+            <ol>
+                <li><strong>Undo:</strong> Revert the last action you performed.</li>
+                <li><strong>Redo:</strong> Reapply the action you just undid.</li>
+            </ol>
+        </section>
 
-    <!-- Navigation Arrows -->
+        <section id="keyboard-shortcuts">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="shortcuts">
+                <div class="shortcut">
+                    <h3>For Windows Users</h3>
+                    <ul>
+                        <li><strong>Undo:</strong> Ctrl + Z</li>
+                        <li><strong>Redo:</strong> Ctrl + Y</li>
+                    </ul>
+                </div>
+                <div class="shortcut">
+                    <h3>For Mac Users</h3>
+                    <ul>
+                        <li><strong>Undo:</strong> Command (⌘) + Z</li>
+                        <li><strong>Redo:</strong> Command (⌘) + Shift + Z</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <div class="navigation">
-        <a href="copy_paste.html">&#8592; Copy and Paste Overview</a>
-        <a href="find.html">Find Function Overview &#8594;</a>
+        <section id="interactive-practice">
+            <h2>Hands-On Practice</h2>
+            <p>Type into the editor below and use the Undo and Redo keyboard shortcuts to see these features in action.</p>
+            <div class="practice-section">
+                <textarea id="practice-area" class="practice-area" placeholder="Start typing here..."></textarea>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="hub.html">&#8592; Back to Hub</a>
+            <a href="find.html">Find Function Overview &#8594;</a>
+        </div>
     </div>
 
     <footer>
-        © 2023 Digital Literacy Initiative
+        <a href="../TOS.html">Terms of Service</a>
+        <span>|</span>
+        <a href="../privacy.html">Privacy Policy</a>
+        <!-- Future links for account management -->
+        <span>|</span>
+        <a href="#" id="login-footer">Login</a>
+        <span>|</span>
+        <a href="#" id="register-footer">Register</a>
+        <p>© 2023 Digital Literacy Initiative</p>
     </footer>
 
     <script>
-        const editor = document.getElementById('editor');
-        editor.focus();
+        const practiceArea = document.getElementById('practice-area');
+        practiceArea.focus();
         // Undo and Redo are handled by the browser; no JS required
     </script>
 
