@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					const coursesLink = document.getElementById("courses-link");
 					const themeIcon = document.querySelector(".theme-icon-img");
 
-					if (logoImg) logoImg.src = `${websiteRoot}assets/images/logo.png`;
+					if (logoImg) logoImg.src = `${websiteRoot}images/wwt.png`;
 					if (homeLink) homeLink.href = `${websiteRoot}index.html`;
 					if (coursesLink)
 						coursesLink.href = `${websiteRoot}course_content.html`;
