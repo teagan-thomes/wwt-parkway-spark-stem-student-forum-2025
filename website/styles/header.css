@@ -1,0 +1,78 @@
+/* Logo styles */
+.logo {
+	display: flex;
+	align-items: center;
+	min-width: fit-content;
+	padding: 0;
+}
+
+.logo img {
+	height: 65px;
+	width: auto;
+	display: block;
+}
+
+/* Header layout */
+header {
+	padding: 0 15px 0 10px;
+}
+
+header nav {
+	gap: 5px;
+}
+
+.nav-left {
+	margin-left: 5px;
+}
+
+.nav-right {
+	margin-left: auto;
+	gap: 5px;
+}
+
+/* Navigation link styles */
+#home-link,
+#courses-link,
+#login-button,
+#register-button {
+	padding: 8px 12px;
+	border-radius: 6px;
+	transition: background-color 0.3s;
+	text-decoration: none;
+	color: var(--text-color);
+	border: 1px solid var(--border-color);
+}
+
+/* Theme toggle specific styles */
+.theme-toggle {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 50%;
+	transition: background-color 0.3s;
+	color: var(--text-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.theme-toggle:hover {
+	background-color: var(--header-hover-background);
+}
+
+.theme-icon-img {
+	width: 20px;
+	height: 20px;
+	transition: transform 0.5s ease;
+}
+
+.theme-icon-img.light-mode {
+	transform: rotate(180deg);
+}
+
+/* Override header nav link hover styles */
+header nav a:hover {
+	background-color: var(--header-hover-background);
+	color: var(--text-color);
+}
