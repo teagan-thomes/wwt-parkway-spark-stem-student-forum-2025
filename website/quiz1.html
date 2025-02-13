@@ -94,6 +94,7 @@
       background-color: var(--background-color) !important;
     }
   </style>
+  <script src="scripts/quiz-text.js" defer></script>
   <script src="scripts/quiz-certificate.js" defer></script>
   <script src="scripts/certificate-utils.js" defer></script>
 </head>
@@ -110,24 +111,21 @@
           1. Use the keyboard shortcut to select all the text below, copy it, and then paste it into the box that follows.
         </p>
         <div style="margin-left: 20px;">
-          <textarea id="q1-source" class="bordered-box" rows="5" readonly>
-"Efficiency is doing things right; effectiveness is doing the right things." – Peter Drucker
-
-Mastering keyboard shortcuts is a step towards both efficiency and effectiveness in your daily tasks.
-          </textarea>
+          <textarea id="q1-source" class="bordered-box" rows="8" readonly></textarea>
         </div>
         <div style="margin-left: 20px;">
-          <textarea id="q1-destination" class="bordered-box" rows="5" placeholder="Paste here"></textarea>
+          <textarea id="q1-destination" class="bordered-box" rows="8" placeholder="Paste here"></textarea>
         </div>
       </div>
 
       <!-- Question 2: Find Functionality -->
       <div class="practice-section">
         <p class="question-title">
-          2. Use the Find function to answer the following question:
+          2. Use the Find function (Ctrl+F) to count occurrences:
         </p>
         <div style="margin-left: 20px;">
-          <label for="q2-answer">How many times does the word "use" appear on this page?</label>
+          <textarea id="q2-source" class="bordered-box" rows="8" readonly></textarea>
+          <label for="q2-answer">How many times does the word "<span id="target-word"></span>" appear in the text above?</label>
           <input type="number" id="q2-answer" class="answer-input" placeholder="">
         </div>
         <div id="q2-feedback" class="feedback"></div>
@@ -139,9 +137,7 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
           3. Edit the paragraph below: delete the text, then use the undo shortcut to restore it, and finally use the redo shortcut to remove it again.
         </p>
         <div style="margin-left: 20px;">
-          <p contenteditable="true" id="q3-paragraph" class="bordered-box" style="outline: none;">
-            This paragraph contains important information that you might need later. Please delete it using your keyboard, undo the deletion, and then redo it using the appropriate keyboard shortcuts.
-          </p>
+          <p contenteditable="true" id="q3-paragraph" class="bordered-box" style="outline: none;"></p>
         </div>
       </div>
 
@@ -170,7 +166,7 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
   <script src="imports/loadImports.js"></script>
 
   <script>
-    // Variables to store quiz answers
+    // Variables to store quiz answers and question data
     let quizAnswers = {
       q1SelectAll: false,
       q1CopiedText: '',
@@ -179,6 +175,37 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       q3Redo: false,
       q4: false
     };
+
+    let quizData = {
+      question2: {
+        targetWord: '',
+        occurrences: 0
+      }
+    };
+
+    // Load quiz texts when the page loads
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const texts = await loadQuizTexts();
+        
+        // Set question 1 text
+        document.getElementById('q1-source').value = texts.question1;
+
+        // Set question 2 text and data
+        document.getElementById('q2-source').value = texts.question2.text;
+        document.getElementById('target-word').textContent = texts.question2.targetWord;
+        quizData.question2.targetWord = texts.question2.targetWord;
+        quizData.question2.occurrences = texts.question2.occurrences;
+
+        // Set question 3 text
+        const q3Paragraph = document.getElementById('q3-paragraph');
+        q3Paragraph.innerHTML = texts.question3;
+        q3OriginalContent = texts.question3;
+        q3History = [q3OriginalContent];
+      } catch (error) {
+        console.error('Error loading quiz texts:', error);
+      }
+    });
 
     // Question 1: Monitor Ctrl+A and Paste Events
     const q1Source = document.getElementById('q1-source');
@@ -198,11 +225,8 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
 
     // Question 2: Check Answer
     document.getElementById('q2-answer').addEventListener('input', function() {
-      const answer = this.value;
-      const feedback = document.getElementById('q2-feedback');
-      const correctAnswer = 5; // The correct number of times "use" appears in the passage
-
-      if (answer == correctAnswer) {
+      const answer = parseInt(this.value);
+      if (answer === quizData.question2.occurrences) {
         quizAnswers.q2 = true;
       } else {
         quizAnswers.q2 = false;
@@ -274,9 +298,9 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
       // Question 2: Check if the word was highlighted
       if (quizAnswers.q2) {
         score += 1;
-        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "use".</p>';
+        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "' + quizData.question2.targetWord + '".</p>';
       } else {
-        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "use". Be careful to not count other words that contain "use" inside them.</p>';
+        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "' + quizData.question2.targetWord + '". Be careful to not count other words that contain "' + quizData.question2.targetWord + '" inside them.</p>';
       }
 
       // Question 3: Check if undo and redo actions were performed
