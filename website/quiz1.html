@@ -93,6 +93,14 @@
     .cancel-button:hover {
       background-color: var(--background-color) !important;
     }
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-out;
+    }
   </style>
   <script src="scripts/quiz-certificate.js" defer></script>
   <script src="scripts/certificate-utils.js" defer></script>
@@ -127,20 +135,22 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
           2. Use the Find function to answer the following question:
         </p>
         <div style="margin-left: 20px;">
-          <label for="q2-answer">How many times does the word "use" appear on this page?</label>
+          <label for="q2-answer">
+            How many times does the word "<span id="q2-target-word"></span>" appear in the passage below?
+          </label>
           <input type="number" id="q2-answer" class="answer-input" placeholder="">
+          <div id="q2-text" style="margin-top:10px; padding:10px; border:1px solid #ccc;"></div>
         </div>
-        <div id="q2-feedback" class="feedback"></div>
       </div>
 
-      <!-- Question 3: Undo and Redo Actions -->
+      <!-- Question 3: Undo and Redo Actions with AI-generated text -->
       <div class="practice-section">
         <p class="question-title">
           3. Edit the paragraph below: delete the text, then use the undo shortcut to restore it, and finally use the redo shortcut to remove it again.
         </p>
         <div style="margin-left: 20px;">
           <p contenteditable="true" id="q3-paragraph" class="bordered-box" style="outline: none;">
-            This paragraph contains important information that you might need later. Please delete it using your keyboard, undo the deletion, and then redo it using the appropriate keyboard shortcuts.
+            <!-- AI-generated text will be typed out here -->
           </p>
         </div>
       </div>
@@ -163,161 +173,214 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
     <div id="quiz-result"></div>
   </div>
 
-  <!-- Include the footer -->
+  <!-- Footer Placeholder -->
   <div id="footer-placeholder"></div>
 
   <!-- Script to load header and footer -->
   <script src="imports/loadImports.js"></script>
 
   <script>
-    // Variables to store quiz answers
-    let quizAnswers = {
-      q1SelectAll: false,
-      q1CopiedText: '',
-      q2: false,
-      q3Undo: false,
-      q3Redo: false,
-      q4: false
-    };
-
-    // Question 1: Monitor Ctrl+A and Paste Events
-    const q1Source = document.getElementById('q1-source');
-    const q1Destination = document.getElementById('q1-destination');
-
-    q1Source.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && (e.key === 'a' || e.key === 'A')) {
-        quizAnswers.q1SelectAll = true;
-      }
-    });
-
-    q1Destination.addEventListener('paste', function() {
-      setTimeout(() => {
-        quizAnswers.q1CopiedText = this.value;
-      }, 100);
-    });
-
-    // Question 2: Check Answer
-    document.getElementById('q2-answer').addEventListener('input', function() {
-      const answer = this.value;
-      const feedback = document.getElementById('q2-feedback');
-      const correctAnswer = 5; // The correct number of times "use" appears in the passage
-
-      if (answer == correctAnswer) {
-        quizAnswers.q2 = true;
-      } else {
-        quizAnswers.q2 = false;
-      }
-    });
-
-    // Question 3: Undo and Redo Actions
-    let q3Paragraph = document.getElementById('q3-paragraph');
-    let q3OriginalContent = q3Paragraph.innerHTML;
-    let q3History = [q3OriginalContent];
-
-    q3Paragraph.addEventListener('input', function() {
-      q3History.push(q3Paragraph.innerHTML);
-    });
-
-    document.addEventListener('keydown', function(e) {
-      // Undo action
-      if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
-        e.preventDefault();
-        if (q3History.length > 1) {
-          q3History.pop();
-          q3Paragraph.innerHTML = q3History[q3History.length - 1];
-          quizAnswers.q3Undo = true;
-        }
-      }
-      // Redo action
-      else if (e.ctrlKey && (e.key === 'y' || e.key === 'Y')) {
-        e.preventDefault();
-        // For simplicity, assume redo restores the deleted content
-        q3Paragraph.innerHTML = '';
-        quizAnswers.q3Redo = true;
-      }
-    });
-
-    // Question 4: Monitor Save Shortcut (Ctrl+S)
-    document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
-        e.preventDefault();
-        quizAnswers.q4 = true;
-        alert('Document saved successfully!');
-      }
-    });
-
-    // Function to Submit Quiz
-    function submitQuiz() {
-      let score = 0;
-      let explanations = '';
-
-      // Question 1: Check if Ctrl+A was used and text was pasted correctly
-      let originalText = q1Source.value.trim();
-      if (quizAnswers.q1SelectAll && quizAnswers.q1CopiedText.trim() === originalText) {
-        score += 1;
-        explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+A to select all, Ctrl+C to copy, and Ctrl+V to paste the text.</p>';
-      } else if (quizAnswers.q1CopiedText.trim() === originalText) {
-        explanations += '<p><strong>Question 1:</strong> Partially correct. You copied and pasted the text, but did not use Ctrl+A to select all.</p>';
-      } else {
-        explanations += '<p><strong>Question 1:</strong> Incorrect. Ensure you used Ctrl+A to select all the text, then Ctrl+C to copy, and Ctrl+V to paste.</p>';
+    document.addEventListener("DOMContentLoaded", function() {
+      // Typewriter function for live writing animation
+      function typeWriter(element, text, speed, callback) {
+        let i = 0;
+        element.textContent = '';
+        let interval = setInterval(() => {
+          element.textContent += text.charAt(i);
+          i++;
+          if (i >= text.length) {
+            clearInterval(interval);
+            if (callback) callback();
+          }
+        }, speed);
       }
 
-      // Question 2: Check if the word was highlighted
-      if (quizAnswers.q2) {
-        score += 1;
-        explanations += '<p><strong>Question 2:</strong> Correct! You used Ctrl+F to find and highlight all occurrences of "use".</p>';
-      } else {
-        explanations += '<p><strong>Question 2:</strong> Incorrect. You needed to press Ctrl+F and search for "use". Be careful to not count other words that contain "use" inside them.</p>';
-      }
-
-      // Question 3: Check if undo and redo actions were performed
-      if (quizAnswers.q3Undo && quizAnswers.q3Redo) {
-        score += 1;
-        explanations += '<p><strong>Question 3:</strong> Correct! You deleted the paragraph, used Ctrl+Z to undo the deletion, and then used Ctrl+Y to redo it.</p>';
-      } else {
-        explanations += '<p><strong>Question 3:</strong> Incorrect. You needed to delete the paragraph, undo the deletion with Ctrl+Z, and then redo it with Ctrl+Y.</p>';
-      }
-
-      // Question 4: Check if Save shortcut was used
-      if (quizAnswers.q4) {
-        score += 1;
-        explanations += '<p><strong>Question 4:</strong> Correct! You used Ctrl+S to save the document.</p>';
-      } else {
-        explanations += '<p><strong>Question 4:</strong> Incorrect. You needed to press Ctrl+S to save the document.</p>';
-      }
-
-      // Display the result and explanations
-      let resultElement = document.getElementById('quiz-result');
-      resultElement.style.display = 'block';
-      resultElement.innerHTML = 'You scored ' + score + ' out of 4!';
-      resultElement.innerHTML += '<div class="explanation">' + explanations + '</div>';
-
-      // Add certificate button if score is perfect
-      if (score === 4) {
-        addCertificateButton(resultElement);
-      }
-
-      // Reset the quiz after submission
-      document.getElementById('quiz-form').reset();
-      quizAnswers = {
+      // Global quiz answer tracking (exposed globally)
+      window.quizAnswers = {
         q1SelectAll: false,
         q1CopiedText: '',
-        q2: false,
+        // Q2 will be validated during submission
         q3Undo: false,
         q3Redo: false,
         q4: false
       };
-      // Reset contenteditable paragraph
-      q3Paragraph.innerHTML = q3OriginalContent;
-    }
 
-    // Add event listener for Ctrl+F
-    document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && (e.key === 'f' || e.key === 'F')) {
-        quizAnswers.q2 = true; // Mark question 2 as correct when Ctrl+F is used
-      }
+      // Q1: Randomize source text and prompt
+      const q1Texts = [
+        `"Efficiency is doing things right; effectiveness is doing the right things." – Peter Drucker
+Mastering keyboard shortcuts is a step towards both efficiency and effectiveness in your daily tasks.`,
+        `"Simplicity is the ultimate sophistication." – Leonardo da Vinci
+Learning keyboard shortcuts can simplify your workflow and boost productivity.`,
+        `"The only way to do great work is to love what you do." – Steve Jobs
+Using shortcuts helps you work smarter, not harder.`
+      ];
+      const q1QuestionVariants = [
+        '1. Select all the text below using the keyboard, copy it, and paste it into the box.',
+        '1. Use a keyboard shortcut to select, copy, and paste the following text.',
+        '1. Quickly select and copy the text below, then paste it into the provided box.'
+      ];
+      const q1Title = document.querySelectorAll('.question-title')[0];
+      q1Title.innerHTML = q1QuestionVariants[Math.floor(Math.random() * q1QuestionVariants.length)];
+      const q1Source = document.getElementById('q1-source');
+      q1Source.value = q1Texts[Math.floor(Math.random() * q1Texts.length)];
+
+      // Q2: Randomize target word, text, and expected count
+      const q2Variants = [
+        {
+          word: "use",
+          text: "In today's digital age, we constantly interact with various applications. Sometimes you have to figure out how often you use certain commands without any hints.",
+          count: 4
+        },
+        {
+          word: "tech",
+          text: "Modern innovations in tech allow us to stay connected and informed. Find out how often the key term appears in this passage.",
+          count: 4
+        },
+        {
+          word: "key",
+          text: "Success often relies on understanding the key components of a process. Try to determine how many times this important word occurs here.",
+          count: 3
+        }
+      ];
+      window.q2Data = q2Variants[Math.floor(Math.random() * q2Variants.length)];
+      document.getElementById('q2-target-word').textContent = q2Data.word;
+      // Animate Q2 passage text using typewriter effect
+      const q2TextElement = document.getElementById('q2-text');
+      typeWriter(q2TextElement, q2Data.text, 30);
+
+      // Q3: Randomize AI-generated text for the paragraph with typewriter animation
+      const q3Passages = [
+        "Artificial intelligence is reshaping the world. Delete this text, then use undo and redo to see the magic.",
+        "In a world of constant change, your keyboard shortcuts are the unsung heroes. Try deleting, undoing, and redoing this sentence.",
+        "AI-generated content: Efficiency and innovation go hand in hand. Practice the undo and redo commands on this text."
+      ];
+      const chosenQ3Passage = q3Passages[Math.floor(Math.random() * q3Passages.length)];
+      const q3Paragraph = document.getElementById('q3-paragraph');
+      typeWriter(q3Paragraph, chosenQ3Passage, 30);
+      const q3OriginalContent = chosenQ3Passage;
+      let q3History = [q3OriginalContent];
+
+      // Q4: Randomize prompt for save action
+      const q4QuestionVariants = [
+        '4. Save your document using the keyboard shortcut without touching the mouse.',
+        '4. Use the save shortcut to quickly save your document.',
+        '4. Press the appropriate shortcut (Ctrl+S) to save your document now.'
+      ];
+      const q4Title = document.querySelectorAll('.question-title')[3];
+      q4Title.innerHTML = q4QuestionVariants[Math.floor(Math.random() * q4QuestionVariants.length)];
+
+      // Apply fade-in to dynamic elements
+      const animatedElements = document.querySelectorAll('.question-title, #q2-text');
+      animatedElements.forEach(el => el.classList.add('fade-in'));
+
+      // --- Event Listeners ---
+      // Q1: Monitor Ctrl+A on source textarea
+      q1Source.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 'a' || e.key === 'A')) {
+          quizAnswers.q1SelectAll = true;
+        }
+      });
+      // Q1: Monitor paste on destination textarea
+      const q1Destination = document.getElementById('q1-destination');
+      q1Destination.addEventListener('paste', function() {
+        setTimeout(() => {
+          quizAnswers.q1CopiedText = this.value;
+        }, 100);
+      });
+
+      // Q3: Record changes in contenteditable paragraph
+      q3Paragraph.addEventListener('input', function() {
+        q3History.push(q3Paragraph.innerHTML);
+      });
+      // Q3: Undo (Ctrl+Z) and Redo (Ctrl+Y) handling
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
+          e.preventDefault();
+          if (q3History.length > 1) {
+            q3History.pop();
+            q3Paragraph.innerHTML = q3History[q3History.length - 1];
+            quizAnswers.q3Undo = true;
+          }
+        } else if (e.ctrlKey && (e.key === 'y' || e.key === 'Y')) {
+          e.preventDefault();
+          // For simplicity, redo clears the paragraph
+          q3Paragraph.innerHTML = '';
+          quizAnswers.q3Redo = true;
+        }
+      });
+
+      // Q4: Monitor Save Shortcut (Ctrl+S)
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+          e.preventDefault();
+          quizAnswers.q4 = true;
+          alert('Document saved successfully!');
+        }
+      });
+
+      // --- Submit Quiz Function ---
+      window.submitQuiz = function() {
+        let score = 0;
+        let explanations = '';
+
+        // Q1 Check
+        let originalText = q1Source.value.trim();
+        if (quizAnswers.q1SelectAll && quizAnswers.q1CopiedText.trim() === originalText) {
+          score++;
+          explanations += '<p><strong>Question 1:</strong> Correct! You used Ctrl+A, Ctrl+C, and Ctrl+V properly.</p>';
+        } else if (quizAnswers.q1CopiedText.trim() === originalText) {
+          explanations += '<p><strong>Question 1:</strong> Partially correct. You copied and pasted the text, but didn’t use Ctrl+A.</p>';
+        } else {
+          explanations += '<p><strong>Question 1:</strong> Incorrect. Please use Ctrl+A to select all, then copy and paste.</p>';
+        }
+
+        // Q2 Check: Count occurrences of the target word in the Q2 passage
+        const q2TextContent = q2TextElement.textContent;
+        const targetWord = q2Data.word;
+        const regex = new RegExp('\\b' + targetWord + '\\b', 'g');
+        const matches = q2TextContent.match(regex);
+        const actualCount = matches ? matches.length : 0;
+        const userAnswer = parseInt(document.getElementById('q2-answer').value, 10);
+        if (userAnswer === actualCount) {
+          score++;
+          explanations += `<p><strong>Question 2:</strong> Correct! The word "${targetWord}" appears ${actualCount} times in the passage.</p>`;
+        } else {
+          explanations += `<p><strong>Question 2:</strong> Incorrect. The word "${targetWord}" appears ${actualCount} times in the passage.</p>`;
+        }
+
+        // Q3 Check
+        if (quizAnswers.q3Undo && quizAnswers.q3Redo) {
+          score++;
+          explanations += '<p><strong>Question 3:</strong> Correct! You performed undo and redo as required.</p>';
+        } else {
+          explanations += '<p><strong>Question 3:</strong> Incorrect. Please perform the undo (Ctrl+Z) and redo (Ctrl+Y) actions correctly.</p>';
+        }
+
+        // Q4 Check
+        if (quizAnswers.q4) {
+          score++;
+          explanations += '<p><strong>Question 4:</strong> Correct! You used Ctrl+S to save the document.</p>';
+        } else {
+          explanations += '<p><strong>Question 4:</strong> Incorrect. Please press Ctrl+S to save your document.</p>';
+        }
+
+        // Display results
+        const resultElement = document.getElementById('quiz-result');
+        resultElement.style.display = 'block';
+        resultElement.innerHTML = 'You scored ' + score + ' out of 4!';
+        resultElement.innerHTML += '<div class="explanation">' + explanations + '</div>';
+
+        // Add certificate button if perfect score
+        if (score === 4) {
+          addCertificateButton(resultElement);
+        }
+
+        // Reset quiz form and tracking variables
+        document.getElementById('quiz-form').reset();
+        quizAnswers = { q1SelectAll: false, q1CopiedText: '', q3Undo: false, q3Redo: false, q4: false };
+        q3Paragraph.innerHTML = q3OriginalContent;
+      };
     });
   </script>
-
 </body>
 </html>
