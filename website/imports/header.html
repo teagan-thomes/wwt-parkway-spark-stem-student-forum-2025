@@ -1,24 +1,25 @@
-<!-- Header Component -->
-<link rel="stylesheet" href="/website/styles/header.css">
+<!-- file: imports/header.html -->
+<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/header.css">
 
 <header>
-    <div class="logo">
-        <img src="images/wwt-simple.png" alt="WWT Logo" id="logo-img">
-    </div>
-    <nav class="nav-left">
-        <a href="index.html" id="home-link">Home</a>
-        <a href="course_content.html" id="courses-link">Courses</a>
-    </nav>
-    <nav class="nav-right">
-        <!-- Dark/Light toggle button -->
-        <button id="theme-icon" onclick="toggleTheme()" class="theme-toggle" title="Switch to Light Mode">
-            <img src="images/dark-mode.svg" alt="Theme Toggle" class="theme-icon-img">
-        </button>
+  <div class="logo">
+      <img src="images/wwt-simple.png" alt="WWT Logo" id="logo-img">
+  </div>
+  <nav class="nav-left">
+      <a href="index.html" id="home-link">Home</a>
+      <a href="course_content.html" id="courses-link">Courses</a>
+  </nav>
+  <nav class="nav-right">
+      <!-- Dark/Light toggle button -->
+      <button id="theme-icon" onclick="toggleTheme()" class="theme-toggle" title="Switch to Light Mode">
+          <img src="images/dark-mode.svg" alt="Theme Toggle" class="theme-icon-img">
+      </button>
         <!-- AMOLED toggle button (visible only when theme is dark) -->
-        <button id="amoled-button" onclick="setAmoledTheme()" class="amoled-toggle" title="Switch to AMOLED Mode" style="display: none;">
-            AMOLED
-        </button>
-        <a href="#" id="login-button">Login</a>
-        <a href="#" id="register-button">Register</a>
-    </nav>
+      <button id="amoled-button" onclick="setAmoledTheme()" class="amoled-toggle" title="Switch to AMOLED Mode" style="display: none;">
+          AMOLED
+      </button>
+      <a href="#" id="login-button">Login</a>
+      <a href="#" id="register-button">Register</a>
+  </nav>
 </header>
