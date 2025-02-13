@@ -1,0 +1,34 @@
+{
+    "texts": [
+        {
+            "id": "phone-rings",
+            "content": "The phone rang, then rang again, until finally, someone answered the ringing.",
+            "targetWord": "rang",
+            "occurrences": 3
+        },
+        {
+            "id": "ocean-rocks",
+            "content": "The waves crashed against the rocks, pulling back only to hit the rocks again, shaping the rocks over time.",
+            "targetWord": "rocks",
+            "occurrences": 3
+        },
+        {
+            "id": "wind-whispers",
+            "content": "The leaves rustled in the wind, the wind carrying whispers through the trees, and the wind continued on its endless journey.",
+            "targetWord": "wind",
+            "occurrences": 3
+        },
+        {
+            "id": "forest-birds",
+            "content": "The forest was full of birds, each bird singing a unique tune, the sound of the birds filling the air.",
+            "targetWord": "birds",
+            "occurrences": 3
+        },
+        {
+            "id": "sunrise",
+            "content": "The sun slowly rose, its light creeping over the horizon, marking the beginning of a new day as the sky rose in color.",
+            "targetWord": "rose",
+            "occurrences": 3
+        }
+    ]
+} 

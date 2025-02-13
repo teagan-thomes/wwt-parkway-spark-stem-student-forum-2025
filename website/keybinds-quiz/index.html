@@ -2,108 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Interactive Keyboard Shortcuts Quiz</title>
+  <title>Keybinds Quiz</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/styles.css">
-  <style>
-    .bordered-box:focus {
-      border: 2px solid var(--primary-color);
-    }
-    .submit-button {
-      margin-top: 30px;
-    }
-    .certificate-button {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: var(--primary-color);
-      color: var(--text-color);
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .certificate-button:hover {
-      background-color: var(--secondary-color);
-      transform: translateY(-2px);
-    }
-    .name-dialog {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .name-dialog-content {
-      background-color: var(--card-background-color);
-      color: var(--text-color);
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 4px 10px var(--card-box-shadow);
-    }
-    .name-dialog-content h2 {
-      color: var(--primary-color);
-      margin-bottom: 15px;
-    }
-    .name-dialog-content input {
-      width: 100%;
-      padding: 10px;
-      margin: 15px 0;
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      background-color: var(--light-background);
-      color: var(--text-color);
-    }
-    .name-dialog-content input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-    }
-    .dialog-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .name-dialog-content button {
-      padding: 10px 20px;
-      background-color: var(--primary-color);
-      color: var(--text-color);
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .name-dialog-content button:hover {
-      background-color: var(--secondary-color);
-      transform: translateY(-2px);
-    }
-    .cancel-button {
-      background-color: var(--light-background) !important;
-    }
-    .cancel-button:hover {
-      background-color: var(--background-color) !important;
-    }
-  </style>
-  <script src="scripts/quiz-text.js" defer></script>
-  <script src="scripts/quiz-certificate.js" defer></script>
-  <script src="scripts/certificate-utils.js" defer></script>
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/quiz.css">
+  <script src="../scripts/quiz-text.js" defer></script>
+  <script src="../scripts/quiz-certificate.js" defer></script>
+  <script src="../scripts/certificate-utils.js" defer></script>
 </head>
 <body>
   <!-- Header Placeholder -->
   <div id="header-placeholder"></div>
 
   <div class="container">
-    <h1>Interactive Keyboard Shortcuts Quiz</h1>
+    <h1>Keybinds Quiz</h1>
     <form id="quiz-form">
       <!-- Question 1: Copy, Select All, and Paste Interaction -->
       <div class="practice-section">
@@ -163,7 +75,7 @@
   <div id="footer-placeholder"></div>
 
   <!-- Script to load header and footer -->
-  <script src="imports/loadImports.js"></script>
+  <script src="../imports/loadImports.js" defer></script>
 
   <script>
     // Variables to store quiz answers and question data

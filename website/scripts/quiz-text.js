@@ -8,7 +8,7 @@ async function loadQuizTexts() {
 
 	try {
 		// Load question 1 text
-		const q1Response = await fetch("/website/data/quiz-texts/question1.json");
+		const q1Response = await fetch("../keybinds-quiz/question1.json");
 		const q1Data = await q1Response.json();
 		// Randomly select one text from the array
 		const q1Text =
@@ -16,7 +16,7 @@ async function loadQuizTexts() {
 		quizTexts.question1 = q1Text.content;
 
 		// Load question 2 text
-		const q2Response = await fetch("/website/data/quiz-texts/question2.json");
+		const q2Response = await fetch("../keybinds-quiz/question2.json");
 		const q2Data = await q2Response.json();
 		const q2Text =
 			q2Data.texts[Math.floor(Math.random() * q2Data.texts.length)];
@@ -27,7 +27,7 @@ async function loadQuizTexts() {
 		};
 
 		// Load question 3 text
-		const q3Response = await fetch("/website/data/quiz-texts/question3.json");
+		const q3Response = await fetch("../keybinds-quiz/question3.json");
 		const q3Data = await q3Response.json();
 		const q3Text =
 			q3Data.texts[Math.floor(Math.random() * q3Data.texts.length)];
