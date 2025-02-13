@@ -185,7 +185,7 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
     const q1Destination = document.getElementById('q1-destination');
 
     q1Source.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && (e.key === 'a' || e.key === 'A')) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A')) {
         quizAnswers.q1SelectAll = true;
       }
     });
@@ -213,33 +213,42 @@ Mastering keyboard shortcuts is a step towards both efficiency and effectiveness
     let q3Paragraph = document.getElementById('q3-paragraph');
     let q3OriginalContent = q3Paragraph.innerHTML;
     let q3History = [q3OriginalContent];
+    let q3CurrentIndex = 0;
 
     q3Paragraph.addEventListener('input', function() {
+      // When new content is added, remove any redo history
+      q3History = q3History.slice(0, q3CurrentIndex + 1);
       q3History.push(q3Paragraph.innerHTML);
+      q3CurrentIndex = q3History.length - 1;
     });
 
     document.addEventListener('keydown', function(e) {
-      // Undo action
-      if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
+      // Undo action (Ctrl/Cmd + Z)
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && (e.key === 'z' || e.key === 'Z')) {
         e.preventDefault();
-        if (q3History.length > 1) {
-          q3History.pop();
-          q3Paragraph.innerHTML = q3History[q3History.length - 1];
+        if (q3CurrentIndex > 0) {
+          q3CurrentIndex--;
+          q3Paragraph.innerHTML = q3History[q3CurrentIndex];
           quizAnswers.q3Undo = true;
         }
       }
-      // Redo action
-      else if (e.ctrlKey && (e.key === 'y' || e.key === 'Y')) {
+      // Redo action (Ctrl/Cmd + Shift + Z) or (Ctrl/Cmd + Y)
+      else if (
+        ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'z' || e.key === 'Z')) ||
+        ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y'))
+      ) {
         e.preventDefault();
-        // For simplicity, assume redo restores the deleted content
-        q3Paragraph.innerHTML = '';
-        quizAnswers.q3Redo = true;
+        if (q3CurrentIndex < q3History.length - 1) {
+          q3CurrentIndex++;
+          q3Paragraph.innerHTML = q3History[q3CurrentIndex];
+          quizAnswers.q3Redo = true;
+        }
       }
     });
 
-    // Question 4: Monitor Save Shortcut (Ctrl+S)
+    // Question 4: Monitor Save Shortcut (Ctrl/Cmd + S)
     document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
         e.preventDefault();
         quizAnswers.q4 = true;
         alert('Document saved successfully!');
