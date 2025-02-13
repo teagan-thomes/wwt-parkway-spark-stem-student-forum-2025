@@ -9,8 +9,8 @@
 	--border-color: var(--primary-color);
 
 	/* Component Colors */
-	--header-footer-background: var(--light-background);
-	--card-background: var(--light-background);
+	--header-footer-background-color: var(--light-background);
+	--card-background-color: var(--light-background);
 
 	/* Interactive Colors */
 	--hover-color: #e9ecef;
@@ -49,7 +49,7 @@ header {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: var(--header-footer-background);
+	background-color: var(--header-footer-background-color);
 	box-shadow: 0 2px 5px var(--shadow-color);
 	z-index: 1000;
 	display: flex;
@@ -133,7 +133,7 @@ header .nav-left {
 
 /* Footer Styling */
 footer {
-	background-color: var(--header-footer-background);
+	background-color: var(--header-footer-background-color);
 	padding: 20px;
 	border-top: 1px solid var(--border-color);
 	box-shadow: 0 -2px 5px var(--shadow-color);
@@ -190,7 +190,7 @@ footer a:hover {
 }
 
 .course-card {
-	background-color: var(--card-background);
+	background-color: var(--card-background-color);
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
 	width: 300px;
@@ -312,7 +312,7 @@ li {
 
 /* Code Blocks */
 code {
-	background-color: var(--light-background);
+	background-color: var(--code-background-color);
 	padding: 2px 6px;
 	border-radius: 4px;
 	font-family: "Courier New", Courier, monospace;
