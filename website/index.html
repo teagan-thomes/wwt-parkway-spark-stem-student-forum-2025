@@ -37,5 +37,10 @@
 
     <!-- Script to load header and footer -->
     <script src="imports/loadImports.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.removeItem('course-progress');
+        });
+    </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- copy_paste.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,8 @@
     <title>Digital Literacy Course: Mastering Copy and Paste</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
-
 </head>
-<body>
+<body onload="markCopyPasteAsCompleted()">
 
     <div id="header-placeholder"></div>
 
@@ -64,7 +64,6 @@
                 <textarea id="practice-area" class="practice-area" placeholder="Type or paste text here to copy, cut, or paste..."></textarea>
                 <div id="feedback" class="feedback"></div>
             </div>
-
         </section>
 
         <div class="navigation">
@@ -75,6 +74,13 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="../scripts/course_progress_shortcuts.js"></script>
+    <script src="../imports/loadImports.js" defer></script>
+    <script>
+        window.addEventListener('beforeunload', function() {
+            markCourseAsCompleted('course-copy-paste');
+        });
+    </script>
     <script>
         // Get references to the practice area and feedback div
         const practiceArea = document.getElementById('practice-area');
@@ -119,6 +125,5 @@
             }
         });
     </script>
-    <script src="../imports/loadImports.js" defer></script>
 </body>
 </html>
