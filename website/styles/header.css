@@ -14,10 +14,23 @@
 
 /* Header layout */
 header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: var(--header-footer-background);
+	box-shadow: 0 2px 5px var(--shadow-color);
+	z-index: 1000;
+	display: flex;
+	align-items: center;
 	padding: 0 15px 0 10px;
+	height: 65px;
 }
 
 header nav {
+	display: flex;
+	align-items: center;
 	gap: 5px;
 }
 
