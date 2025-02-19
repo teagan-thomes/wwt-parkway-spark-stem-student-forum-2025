@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
-<body>
+<body onload="markCourseAsCompleted('course-select-all')">
 
     <header>
         <!-- Logo Placeholder -->
@@ -54,27 +54,28 @@
                 </div>
             </div>
             <div class="tip">
-                <p><strong>Pro Tip:</strong> Tabbing into a text box will let you only select all the text ONLY in that box!</p>
+                <p><strong>Pro Tip:</strong> Tabbing into a text box will focus it, allowing you to use the select all shortcut immediately.</p>
             </div>
         </section>
 
         <section id="interactive-practice">
             <h2>Hands-On Practice</h2>
-            <p>Click inside the editor below and use the 'Select All' keyboard shortcut to highlight all the text. Try copying it afterwards.</p>
+            <p>Use the editor below to practice selecting all content. Try using the keyboard shortcuts to select all text within the editor.</p>
             <div class="practice-section">
-                <textarea id="select-all-editor" class="practice-area">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+                <textarea id="practice-area" class="practice-area" placeholder="Type or paste text here to practice selecting all content..."></textarea>
                 <div id="feedback" class="feedback"></div>
             </div>
         </section>
 
         <div class="navigation">
             <a href="hub.html">&#8592; Back to Hub</a>
-            <a href="../quiz1.html">Start the quiz &#8594;</a>
+            <a href="save.html">Saving Your Work &#8594;</a>
         </div>
     </div>
 
     <div id="footer-placeholder"></div>
 
-    <script src="../scripts/loadImports.js"></script>
+    <script src="../scripts/course_progress_shortcuts.js"></script>
+    <script src="../scripts/loadImports.js" defer></script>
 </body>
 </html>

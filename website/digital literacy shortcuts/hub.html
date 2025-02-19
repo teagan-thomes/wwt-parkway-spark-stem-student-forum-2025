@@ -1,3 +1,4 @@
+<!-- hub.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +39,13 @@
         .quiz-section .quiz-button:hover {
             background-color: var(--secondary-color);
         }
+        .completed {
+            border-color: #28a745 !important; /* Green border for completed */
+        }
+        .completed .button {
+            background-color: #28a745 !important; /* Green button for completed */
+            border-color: #28a745 !important; /* Green border for button */
+        }
     </style>
 </head>
 <body>
@@ -50,50 +58,72 @@
 
         <div class="courses">
             <!-- Course 1: Copy and Paste -->
-            <div class="course-card">
+            <div class="course-card" id="course-copy-paste">
                 <h2>Copy and Paste</h2>
                 <p>Learn how to copy, cut, and paste text efficiently.</p>
-                <a href="copy_paste.html" class="button">Start Lesson</a>
+                <a href="copy_paste.html" class="button" onclick="markCourseAsCompleted('course-copy-paste')">Start Lesson</a>
             </div>
 
             <!-- Course 2: Undo and Redo -->
-            <div class="course-card">
+            <div class="course-card" id="course-undo-redo">
                 <h2>Undo and Redo</h2>
                 <p>Master the undo and redo functions to correct mistakes and refine your work.</p>
-                <a href="undo_redo.html" class="button">Start Lesson</a>
+                <a href="undo_redo.html" class="button" onclick="markCourseAsCompleted('course-undo-redo')">Start Lesson</a>
             </div>
 
             <!-- Course 3: Find Function -->
-            <div class="course-card">
+            <div class="course-card" id="course-find">
                 <h2>Find Function</h2>
                 <p>Learn how to use the find function to quickly locate specific words or phrases in a document.</p>
-                <a href="find.html" class="button">Start Lesson</a>
+                <a href="find.html" class="button" onclick="markCourseAsCompleted('course-find')">Start Lesson</a>
             </div>
 
             <!-- Course 4: Saving Your Work -->
-            <div class="course-card">
+            <div class="course-card" id="course-save">
                 <h2>Saving Your Work</h2>
                 <p>Understand the importance of saving your work and learn how to do it efficiently.</p>
-                <a href="save.html" class="button">Start Lesson</a>
+                <a href="save.html" class="button" onclick="markCourseAsCompleted('course-save')">Start Lesson</a>
             </div>
 
             <!-- Course 5: Selecting All Content -->
-            <div class="course-card">
+            <div class="course-card" id="course-select-all">
                 <h2>Selecting All Content</h2>
                 <p>Learn how to select all content in a document or text area with a simple keyboard shortcut.</p>
-                <a href="select_all.html" class="button">Start Lesson</a>
+                <a href="select_all.html" class="button" onclick="markCourseAsCompleted('course-select-all')">Start Lesson</a>
             </div>
         </div>
 
-        <div class="quiz-section">
+        <div class="quiz-section" id="quiz-section">
             <h2>Interactive Keyboard Shortcuts Quiz</h2>
             <p>Test your knowledge of keyboard shortcuts with this interactive quiz.</p>
-            <a href="../quiz1.html" class="quiz-button">Start Quiz</a>
+            <a href="../quiz1.html" class="quiz-button" onclick="markQuizAsCompleted()">Start Quiz</a>
+        </div>
+
+        <!-- Text boxes to show if courses are completed -->
+        <div class="status-section">
+            <h2>Course Completion Status</h2>
+            <p>Copy and Paste: <span id="copy-pasteStatus"></span></p>
+            <p>Undo and Redo: <span id="undo-redoStatus"></span></p>
+            <p>Find Function: <span id="findStatus"></span></p>
+            <p>Saving Your Work: <span id="saveStatus"></span></p>
+            <p>Selecting All Content: <span id="select-allStatus"></span></p>
+            <p>Quiz: <span id="quizStatus"></span></p>
         </div>
     </div>
 
     <div id="footer-placeholder"></div>
 
-    <script src="../scripts/loadImports.js" defer></script>
+    <script src="../scripts/course_progress_shortcuts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus();
+            checkAndMarkCompletedCourses();
+
+            document.addEventListener('courseCompleted', function(event) {
+                console.log('Course completed event received:', event.detail.courseId);
+                updateStatus();
+            });
+        });
+    </script>
 </body>
 </html>

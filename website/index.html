@@ -40,5 +40,10 @@
 
   <!-- Script to load header and footer components dynamically -->
   <script src="scripts/loadImports.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.removeItem('course-progress');
+        });
+    </script>
 </body>
 </html>

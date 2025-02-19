@@ -6,8 +6,9 @@
     <title>Digital Literacy Course: Mastering Undo and Redo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../scripts/course_progress_shortcuts.js"></script>
 </head>
-<body>
+<body onload="markUndoRedoAsCompleted()">
 
     <div id="header-placeholder"></div>
 
@@ -57,18 +58,23 @@
         </section>
 
         <div class="navigation">
-            <a href="hub.html">&#8592; Back to Hub</a>
-            <a href="find.html">Find Function Overview &#8594;</a>
+            <!-- Call the completion function on click so that the hub updates immediately -->
+            <a href="hub.html" onclick="markCourseAsCompleted('course-undo-redo')">&#8592; Back to Hub</a>
+            <a href="find.html" onclick="markCourseAsCompleted('course-undo-redo')">Find &#8594;</a>
         </div>
     </div>
 
     <div id="footer-placeholder"></div>
 
+    <!-- Define markUndoRedoAsCompleted -->
     <script>
-        const practiceArea = document.getElementById('practice-area');
-        practiceArea.focus();
-        // Undo and Redo are handled by the browser; no JS required
+        function markUndoRedoAsCompleted() {
+            // Mark the course as complete immediately
+            markCourseAsCompleted('course-undo-redo');
+        }
     </script>
+    
+    <!-- Load import scripts after -->
     <script src="../scripts/loadImports.js" defer></script>
 </body>
 </html>
