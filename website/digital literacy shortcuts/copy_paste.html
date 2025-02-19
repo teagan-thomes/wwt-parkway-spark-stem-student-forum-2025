@@ -1,3 +1,4 @@
+<!-- copy_paste.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,8 @@
     <title>Digital Literacy Course: Mastering Copy and Paste</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/styles.css">
-
 </head>
-<body>
+<body onload="markCopyPasteAsCompleted()">
 
     <div id="header-placeholder"></div>
 
@@ -64,7 +64,6 @@
                 <textarea id="practice-area" class="practice-area" placeholder="Type or paste text here to copy, cut, or paste..."></textarea>
                 <div id="feedback" class="feedback"></div>
             </div>
-
         </section>
 
         <div class="navigation">
@@ -75,50 +74,12 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="../scripts/course_progress_shortcuts.js"></script>
+    <script src="../imports/loadImports.js" defer></script>
     <script>
-        // Get references to the practice area and feedback div
-        const practiceArea = document.getElementById('practice-area');
-        const feedback = document.getElementById('feedback');
-
-        // Function to display feedback messages
-        function showFeedback(message, isError = true) {
-            feedback.textContent = message;
-            feedback.style.color = isError ? '#dc3545' : '#28a745'; // Red for errors, green for success
-            // Clear the message after 3 seconds
-            setTimeout(() => {
-                feedback.textContent = '';
-            }, 3000);
-        }
-
-        // Event listener for keydown events within the practice area
-        practiceArea.addEventListener('keydown', function(event) {
-            // Detect specific key combinations
-            if (event.ctrlKey || event.metaKey) { // metaKey for Mac (Cmd)
-                switch(event.key.toLowerCase()) {
-                    case 'c':
-                        showFeedback('Copy action detected! Try using Ctrl + C to copy text.', false);
-                        break;
-                    case 'v':
-                        showFeedback('Paste action detected! Try using Ctrl + V to paste text.', false);
-                        break;
-                    case 'x':
-                        showFeedback('Cut action detected! Try using Ctrl + X to cut text.', false);
-                        break;
-                    default:
-                        // Do nothing for other keys
-                        break;
-                }
-            }
-        });
-
-        // Optional: Prevent default browser actions for certain keybinds within the practice area
-        practiceArea.addEventListener('keydown', function(event) {
-            const keysToPrevent = ['s', 'f']; // Add more keys if needed
-            if ((event.ctrlKey || event.metaKey) && keysToPrevent.includes(event.key.toLowerCase())) {
-                event.preventDefault(); // Prevent default action (e.g., opening save dialog)
-            }
+        window.addEventListener('beforeunload', function() {
+            markCourseAsCompleted('course-copy-paste');
         });
     </script>
-    <script src="../imports/loadImports.js" defer></script>
 </body>
 </html>
