@@ -20,9 +20,7 @@ function loadComponent(placeholderId, filePath) {
 				placeholder.innerHTML = htmlContent;
 				console.log(`${filePath} loaded successfully into #${placeholderId}`);
 			} else {
-				console.error(
-					`Placeholder element with id "${placeholderId}" not found.`
-				);
+				console.error(`Placeholder element with id "${placeholderId}" not found.`);
 			}
 		})
 		.catch((error) => {
@@ -31,10 +29,20 @@ function loadComponent(placeholderId, filePath) {
 }
 
 /**
- * Gets the website root path and current depth
- * @returns {Object} Object containing websiteRoot and currentPath
+ * Gets the website root path and current depth.
+ * If window.overrideWebsiteRoot is set, it uses that value.
+ * @returns {Object} Object containing websiteRoot and currentPath.
  */
 function getWebsitePaths() {
+	// Check for an override (useful for pages in subdirectories)
+	if (window.overrideWebsiteRoot) {
+		console.log("Using overridden website root:", window.overrideWebsiteRoot);
+		return {
+			websiteRoot: window.overrideWebsiteRoot,
+			currentPath: window.location.pathname,
+		};
+	}
+
 	const path = decodeURIComponent(window.location.pathname);
 	console.log("Full decoded path:", path);
 
@@ -67,7 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	themeSwitcherScript.defer = true;
 	document.head.appendChild(themeSwitcherScript);
 
-	// Function to load a component
+	/**
+	 * Loads a component from the imports folder based on its name
+	 * and injects it into the element with the provided id.
+	 * @param {string} name - The name of the component (e.g., "header" or "footer").
+	 * @param {string} elementId - The id of the element where the component should be injected.
+	 */
 	function loadComponent(name, elementId) {
 		const url = `${websiteRoot}imports/${name}.html`;
 		console.log(`Attempting to load ${name} from:`, url);
@@ -102,14 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					if (logoImg) logoImg.src = `${websiteRoot}images/wwt-simple.png`;
 					if (homeLink) homeLink.href = `${websiteRoot}index.html`;
-					if (coursesLink)
-						coursesLink.href = `${websiteRoot}course_content.html`;
+					if (coursesLink) coursesLink.href = `${websiteRoot}course_content.html`;
 					if (themeIcon) themeIcon.src = `${websiteRoot}images/dark-mode.svg`;
 				} else if (name === "footer") {
 					const tosLink = document.querySelector('footer a[href*="TOS.html"]');
-					const privacyLink = document.querySelector(
-						'footer a[href*="privacy.html"]'
-					);
+					const privacyLink = document.querySelector('footer a[href*="privacy.html"]');
 
 					if (tosLink) tosLink.href = `${websiteRoot}TOS.html`;
 					if (privacyLink) privacyLink.href = `${websiteRoot}privacy.html`;
@@ -137,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 	}
 
-	// Load header and footer
+	// Load header and footer components
 	loadComponent("header", "header-placeholder");
 	loadComponent("footer", "footer-placeholder");
 });
