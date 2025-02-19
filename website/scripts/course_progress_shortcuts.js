@@ -72,22 +72,7 @@ function checkAndMarkCompletedCourses() {
 
 // Update text status indicators in the Hub page
 function updateStatus() {
-  const ids = [
-    'course-copy-paste',
-    'course-undo-redo',
-    'course-find',
-    'course-save',
-    'course-select-all',
-    'quiz-completed'
-  ];
-
-  ids.forEach(id => {
-    const statusElement = document.getElementById(id.replace('course-', '') + 'Status');
-    if (statusElement) {
-      statusElement.textContent = isCourseCompleted(id) ? 'true' : 'false';
-    }
-    updateCourseStatus(id);
-  });
+  console.log()
 }
 
 // Listen for DOMContentLoaded to ensure elements are ready

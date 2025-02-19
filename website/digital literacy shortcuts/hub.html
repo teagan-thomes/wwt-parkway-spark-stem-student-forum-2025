@@ -98,32 +98,10 @@
             <p>Test your knowledge of keyboard shortcuts with this interactive quiz.</p>
             <a href="../quiz1.html" class="quiz-button" onclick="markQuizAsCompleted()">Start Quiz</a>
         </div>
-
-        <!-- Text boxes to show if courses are completed -->
-        <div class="status-section">
-            <h2>Course Completion Status</h2>
-            <p>Copy and Paste: <span id="copy-pasteStatus"></span></p>
-            <p>Undo and Redo: <span id="undo-redoStatus"></span></p>
-            <p>Find Function: <span id="findStatus"></span></p>
-            <p>Saving Your Work: <span id="saveStatus"></span></p>
-            <p>Selecting All Content: <span id="select-allStatus"></span></p>
-            <p>Quiz: <span id="quizStatus"></span></p>
-        </div>
     </div>
 
     <div id="footer-placeholder"></div>
 
     <script src="../scripts/course_progress_shortcuts.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            updateStatus();
-            checkAndMarkCompletedCourses();
-
-            document.addEventListener('courseCompleted', function(event) {
-                console.log('Course completed event received:', event.detail.courseId);
-                updateStatus();
-            });
-        });
-    </script>
 </body>
 </html>
