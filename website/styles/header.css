@@ -59,11 +59,65 @@ header button:hover {
 /* Theme toggle button specific styles */
 .theme-toggle {
 	padding: 0 8px;
+	position: relative;
+	overflow: hidden;
+}
+
+.theme-toggle::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0) 0%);
+	opacity: 0;
+	transition: all 0.5s ease;
+	z-index: 0;
+}
+
+/* Light mode button has no darkness overlay */
+.theme-toggle.light-mode::before {
+	background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0) 0%);
+	opacity: 0;
+}
+
+/* Dark mode button has partial darkness overlay */
+.theme-toggle.dark-mode::before {
+	background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+	opacity: 0.7;
+}
+
+/* AMOLED mode button has more intense darkness overlay */
+.theme-toggle.amoled-mode::before {
+	background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+	opacity: 0.9;
 }
 
 .theme-toggle img {
 	height: 20px;
 	width: 20px;
+	position: relative;
+	z-index: 1;
+	transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Light mode animation */
+.theme-icon-img.light-mode {
+	transform: rotate(180deg);
+	filter: brightness(1);
+}
+
+/* Dark mode animation */
+.theme-icon-img.dark-mode {
+	transform: rotate(0deg);
+	filter: brightness(0.8);
+}
+
+/* AMOLED mode animation - darker filter instead of pulsing */
+.theme-icon-img.amoled-mode {
+	transform: scale(0.9);
+	filter: brightness(0.6) contrast(1.5);
 }
 
 /* AMOLED button specific styles */
@@ -94,21 +148,6 @@ header .nav-left {
 
 /* Theme toggle specific styles */
 .theme-toggle:hover {
-	background-color: var(--header-hover-background);
-}
-
-.theme-icon-img {
-	width: 20px;
-	height: 20px;
-	transition: transform 0.5s ease;
-}
-
-.theme-icon-img.light-mode {
-	transform: rotate(180deg);
-}
-
-/* AMOLED toggle button styles */
-.amoled-toggle:hover {
 	background-color: var(--header-hover-background);
 }
 

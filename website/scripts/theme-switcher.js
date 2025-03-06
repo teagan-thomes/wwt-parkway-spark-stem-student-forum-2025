@@ -85,40 +85,53 @@ function applyTheme(themeName) {
 	}
 	localStorage.setItem("theme", themeName);
 	updateThemeIcon(themeName);
-	updateAmoledButtonVisibility(themeName);
 }
 
-// Toggle between dark and light themes (treating amoled as a variant of dark)
+// Toggle between light, dark, and AMOLED themes in sequence
 function toggleTheme() {
 	const currentTheme = localStorage.getItem("theme") || "dark";
-	// If current is light, switch to dark; otherwise (if dark or amoled), switch to light.
-	const newTheme = currentTheme === "light" ? "dark" : "light";
+	let newTheme;
+
+	// Cycle through themes: light -> dark -> amoled -> light
+	if (currentTheme === "light") {
+		newTheme = "dark";
+	} else if (currentTheme === "dark") {
+		newTheme = "amoled";
+	} else {
+		newTheme = "light";
+	}
+
 	applyTheme(newTheme);
 }
 
-// Update the icon and tooltip for the dark/light toggle button
+// Update the icon and tooltip for the theme toggle button
 function updateThemeIcon(themeName) {
 	const themeIcon = document.querySelector(".theme-icon-img");
-	if (themeIcon) {
-		// Add a class if in light mode (for possible animation effects)
-		themeIcon.classList.toggle("light-mode", themeName === "light");
-		const button = document.getElementById("theme-icon");
-		if (button) {
-			// When in light mode, clicking will switch to dark; otherwise switch to light.
-			button.title = themeName === "light" ? "Switch to Dark Mode" : "Switch to Light Mode";
+	const button = document.getElementById("theme-icon");
+
+	if (themeIcon && button) {
+		// Remove all theme classes from the icon
+		themeIcon.classList.remove("light-mode", "dark-mode", "amoled-mode");
+
+		// Remove all theme classes from the button
+		button.classList.remove("light-mode", "dark-mode", "amoled-mode");
+
+		// Add the appropriate class based on current theme to both elements
+		themeIcon.classList.add(`${themeName}-mode`);
+		button.classList.add(`${themeName}-mode`);
+
+		// Update tooltip based on what the next theme will be
+		if (themeName === "light") {
+			button.title = "Switch to Dark Mode";
+		} else if (themeName === "dark") {
+			button.title = "Switch to AMOLED Mode";
+		} else {
+			button.title = "Switch to Light Mode";
 		}
 	}
 }
 
-// Show or hide the AMOLED button: only visible when theme is dark.
-function updateAmoledButtonVisibility(themeName) {
-	const amoledButton = document.getElementById("amoled-button");
-	if (amoledButton) {
-		amoledButton.style.display = themeName === "dark" ? "inline-block" : "none";
-	}
-}
-
-// Function to set the AMOLED theme
+// Function to set the AMOLED theme directly (kept for backward compatibility)
 function setAmoledTheme() {
 	applyTheme("amoled");
 }
