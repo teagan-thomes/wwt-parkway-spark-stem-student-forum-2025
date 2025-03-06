@@ -1,0 +1,44 @@
+- teach drew
+    - how to make a course
+    - basic html
+    - how to use copilot (ai)
+    - course ideas: 
+        - set up of github pages
+        - presentation basics
+        - how to be a good mentee
+            - send linkedin connections to your mentors
+            - when using a chat software include profile pictures not the default
+            - ask questions
+                - use your mentor like google
+
+- presentation notes
+    - group presention
+        - make sure people's faces are in the video
+        - when doing an interview, make sure the person doing the interview and the person doing the interview are on camera
+        - have a picture of the entire team
+    - business value/plan
+        - include a breakdown of costs for the project
+            - explain the impact of the project
+        - include who is going to use it
+            - marketing plan
+        - include who is going to maintain it
+    - completion/realistic capability
+        - focus more on the video and less on the prototype
+        - when walking through show a full flow not just pictures/parts
+    - ai
+        - 🤷
+        - take an ai fundamentals course before stem student forum
+    - research & discovery
+        - do surveys
+            - show numbers in the video
+        - figure out if you need the interview for the video before spending time on it
+
+
+    - video notes
+        - start the video as soon as possible
+            - minimum possible video
+                - start off with a powerpoint presentation
+            - give completed video to mentor as soon as possible
+                - ask them to score it
+        - use a good microphone from spark
+        
