@@ -1,9 +1,8 @@
 /* Logo styles */
 .logo {
+	padding: 0 5px;
 	display: flex;
 	align-items: center;
-	min-width: fit-content;
-	padding: 0;
 }
 
 .logo img {
@@ -16,31 +15,68 @@
 header {
 	position: fixed;
 	top: 0;
-	left: 0;
-	right: 0;
 	width: 100%;
 	background-color: var(--header-footer-background);
 	box-shadow: 0 2px 5px var(--shadow-color);
 	z-index: 1000;
 	display: flex;
 	align-items: center;
-	padding: 0 15px 0 10px;
+	padding: 0 20px;
 	height: 65px;
 }
 
 header nav {
 	display: flex;
+	gap: 10px;
 	align-items: center;
-	gap: 5px;
+	height: 100%;
 }
 
-.nav-left {
-	margin-left: 5px;
+/* Common styles for all interactive elements in header */
+header nav a,
+header button {
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 12px;
+	border-radius: 5px;
+	font-size: 1rem;
+	transition: color 0.3s, background-color 0.3s, transform 0.2s;
+	text-decoration: none;
+	color: var(--text-color);
+	background-color: var(--light-background);
+	border: 1px solid var(--border-color);
 }
 
-.nav-right {
+header nav a:hover,
+header button:hover {
+	color: var(--text-color);
+	background-color: var(--secondary-color);
+	transform: translateY(-2px);
+}
+
+/* Theme toggle button specific styles */
+.theme-toggle {
+	padding: 0 8px;
+}
+
+.theme-toggle img {
+	height: 20px;
+	width: 20px;
+}
+
+/* AMOLED button specific styles */
+.amoled-toggle {
+	white-space: nowrap;
+}
+
+header .nav-right {
 	margin-left: auto;
-	gap: 5px;
+}
+
+header .nav-left {
+	margin-left: 20px;
 }
 
 /* Navigation link styles */
@@ -57,19 +93,6 @@ header nav {
 }
 
 /* Theme toggle specific styles */
-.theme-toggle {
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 8px;
-	border-radius: 50%;
-	transition: background-color 0.3s;
-	color: var(--text-color);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
 .theme-toggle:hover {
 	background-color: var(--header-hover-background);
 }
@@ -85,16 +108,6 @@ header nav {
 }
 
 /* AMOLED toggle button styles */
-.amoled-toggle {
-	background: none;
-	border: 1px solid var(--border-color);
-	color: var(--text-color);
-	cursor: pointer;
-	padding: 8px 12px;
-	border-radius: 5px;
-	transition: background-color 0.3s;
-}
-
 .amoled-toggle:hover {
 	background-color: var(--header-hover-background);
 }

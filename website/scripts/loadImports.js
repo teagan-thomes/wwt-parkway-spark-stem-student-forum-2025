@@ -20,7 +20,9 @@ function loadComponent(placeholderId, filePath) {
 				placeholder.innerHTML = htmlContent;
 				console.log(`${filePath} loaded successfully into #${placeholderId}`);
 			} else {
-				console.error(`Placeholder element with id "${placeholderId}" not found.`);
+				console.error(
+					`Placeholder element with id "${placeholderId}" not found.`
+				);
 			}
 		})
 		.catch((error) => {
@@ -115,11 +117,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					if (logoImg) logoImg.src = `${websiteRoot}images/wwt-simple.png`;
 					if (homeLink) homeLink.href = `${websiteRoot}index.html`;
-					if (coursesLink) coursesLink.href = `${websiteRoot}course_content.html`;
+					if (coursesLink)
+						coursesLink.href = `${websiteRoot}digital_literacy_shortcuts/hub.html`;
 					if (themeIcon) themeIcon.src = `${websiteRoot}images/dark-mode.svg`;
 				} else if (name === "footer") {
 					const tosLink = document.querySelector('footer a[href*="TOS.html"]');
-					const privacyLink = document.querySelector('footer a[href*="privacy.html"]');
+					const privacyLink = document.querySelector(
+						'footer a[href*="privacy.html"]'
+					);
 
 					if (tosLink) tosLink.href = `${websiteRoot}TOS.html`;
 					if (privacyLink) privacyLink.href = `${websiteRoot}privacy.html`;
